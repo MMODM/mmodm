@@ -1,0 +1,9 @@
+*~
+*.lock
+*.DS_Store
+*.swp
+*.out
+._*
+.Spotlight-V100
+.Trashes
+.sass-cache

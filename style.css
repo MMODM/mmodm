@@ -1,0 +1,164 @@
+* { margin:0; padding:0; }
+h1,h2,h3 { font-size: 100%; font-weight: normal; }
+ol,ul { list-style: none; }
+img {border: 0;}
+
+body {
+	background: #000;
+	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+	font-weight: 300;
+}
+
+.grid {
+	position: absolute;
+	top: 0; left: 0;
+	width: 100%; height: 100%;
+	background: url('images/grid.png') 12.5px 12.5px;
+	background-size: 25px 25px;
+	opacity: .15;
+	z-index: 2;
+}
+
+.grunge {
+	position: absolute;
+	top: 0; left: 0;
+	width: 100%; height: 100%;
+	background: url('images/grunge.jpg');
+	background-size: 1000px 750px;
+	opacity: .75;
+	z-index: 1;
+}
+
+.container {
+	position: relative;
+	z-index: 10;
+	text-align: center;
+	padding-top: 50px;
+}
+
+.logo {
+	width: 250px;
+	max-width: 100%;
+	height: 75px;
+}
+
+.sequences {
+	position: relative;
+	width: 860px;
+	margin: 30px auto 0 auto;
+}
+
+.sequences ul {
+	display: inline-block;
+	margin-right: 20px;
+}
+
+.sequences ul:first-child {
+	padding-left: 20px;
+}
+
+.sequences li {
+	position: relative;
+	display: block;
+	width: 8px;
+	height: 8px;
+	margin-bottom: 20px;
+	z-index: 5;
+	animation: pulse 4s linear infinite;
+}
+
+.a li {background: #3fa7ff; color: #3fa7ff;} .b li {background: #3f80ff; color: #3f80ff;} .c li {background: #3f5aff; color: #3f5aff;} .d li {background: #4a3fff; color: #4a3fff;} .e li {background: #703fff; color: #703fff;} .f li {background: #973fff; color: #973fff;} .g li {background: #bd3fff; color: #bd3fff;} .h li {background: #e33fff; color: #e33fff;} .i li {background: #ff3ff3; color: #ff3ff3;} .j li {background: #ff3fcd; color: #ff3fcd;} .k li {background: #ff3fa6; color: #ff3fa6;} .l li {background: #ff3f80; color: #ff3f80;} .m li {background: #ff3f5a; color: #ff3f5a;} .n li {background: #ff4a3f; color: #ff4a3f;} .o li {background: #ff703f; color: #ff703f;} .p li {background: #ff973f; color: #ff973f;} .q li {background: #ffbd3f; color: #ffbd3f;} .r li {background: #ffe33f; color: #ffe33f;} .s li {background: #f3ff3f; color: #f3ff3f;} .t li {background: #cdff3f; color: #cdff3f;} .u li {background: #a6ff3f; color: #a6ff3f;} .v li {background: #80ff3f; color: #80ff3f;} .w li {background: #5aff3f; color: #5aff3f;} .x li {background: #3fff4a; color: #3fff4a;} .y li {background: #3fff70; color: #3fff70;} .z li {background: #3fff97; color: #3fff97;}
+
+.sequences li:last-child {
+	background: none;
+	text-transform: uppercase;
+	font-size: 10px;
+	animation: none;
+}
+
+.sequences li:nth-child(1) { animation-delay: 0.0s; }
+.sequences li:nth-child(2) { animation-delay: 0.25s; }
+.sequences li:nth-child(3) { animation-delay: 0.5s }
+.sequences li:nth-child(4) { animation-delay: 0.75s; }
+.sequences li:nth-child(5) { animation-delay: 1.0s }
+.sequences li:nth-child(6) { animation-delay: 1.25s; }
+.sequences li:nth-child(7) { animation-delay: 1.5s; }
+.sequences li:nth-child(8) { animation-delay: 1.75s; }
+.sequences li:nth-child(9) { animation-delay: 2.0s; }
+.sequences li:nth-child(10) { animation-delay: 2.25s; }
+.sequences li:nth-child(11) { animation-delay: 2.5s; }
+.sequences li:nth-child(12) { animation-delay: 2.75s; }
+.sequences li:nth-child(13) { animation-delay: 3.0s; }
+.sequences li:nth-child(14) { animation-delay: 3.25s; }
+.sequences li:nth-child(15) { animation-delay: 3.5s; }
+.sequences li:nth-child(16) { animation-delay: 3.75s; }
+
+@keyframes pulse {
+    0% {
+     transform: scale(1);
+    }
+
+    2% {
+     transform: scale(1.5);
+    }
+
+    4% {
+    transform: scale(1);
+    }
+}
+
+.twitter {
+	display: inline-block;
+	width: 630px;
+	margin-top: 25px;
+}
+
+.avatar {
+	width: 35px;
+	height: 35px;
+	margin-right: 15px;
+	float: left;
+}
+
+.tweet {
+	background: #fff;
+	color: #444;
+	height: 35px;
+	width: 488px;
+	font-size: 15px;
+	margin: 0;
+	padding: 0;
+	padding-left: 12px;
+	border: none;
+	float: left;
+}
+
+.post {
+	background: #3fa7ff;
+	color: #fff;
+	font-size: 15px;
+	text-shadow: 0 1px 0 rgba(0,0,0,.25);
+	margin: 0;
+	padding: 0;
+	border: none;
+	height: 35px;
+	width: 80px;
+	float: left;
+	cursor: pointer;
+}
+
+.help {
+	position: absolute;
+	top: 35px;
+	right: 35px;
+	width: 25px;
+	height: 35px;
+	background: #1e1e1e;
+	color: #565656;
+	font-size: 25px;
+	line-height: 35px;
+	padding-left: 10px;
+	text-shadow: 0 2px 0 rgba(0,0,0,.5);
+	z-index: 11;
+	cursor: pointer;
+}
