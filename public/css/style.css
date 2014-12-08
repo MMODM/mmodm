@@ -64,7 +64,7 @@ body {
 	height: 8px;
 	margin-bottom: 20px;
 	z-index: 5;
-	animation: pulse 4s linear infinite;
+	animation: pulse 2s linear infinite;
 }
 
 .a li {background: #3fa7ff; color: #3fa7ff;} .b li {background: #3f80ff; color: #3f80ff;} .c li {background: #3f5aff; color: #3f5aff;} .d li {background: #4a3fff; color: #4a3fff;} .e li {background: #703fff; color: #703fff;} .f li {background: #973fff; color: #973fff;} .g li {background: #bd3fff; color: #bd3fff;} .h li {background: #e33fff; color: #e33fff;} .i li {background: #ff3ff3; color: #ff3ff3;} .j li {background: #ff3fcd; color: #ff3fcd;} .k li {background: #ff3fa6; color: #ff3fa6;} .l li {background: #ff3f80; color: #ff3f80;} .m li {background: #ff3f5a; color: #ff3f5a;} .n li {background: #ff4a3f; color: #ff4a3f;} .o li {background: #ff703f; color: #ff703f;} .p li {background: #ff973f; color: #ff973f;} .q li {background: #ffbd3f; color: #ffbd3f;} .r li {background: #ffe33f; color: #ffe33f;} .s li {background: #f3ff3f; color: #f3ff3f;} .t li {background: #cdff3f; color: #cdff3f;} .u li {background: #a6ff3f; color: #a6ff3f;} .v li {background: #80ff3f; color: #80ff3f;} .w li {background: #5aff3f; color: #5aff3f;} .x li {background: #3fff4a; color: #3fff4a;} .y li {background: #3fff70; color: #3fff70;} .z li {background: #3fff97; color: #3fff97;}
@@ -77,21 +77,21 @@ body {
 }
 
 .sequences li:nth-child(1) { animation-delay: 0.0s; }
-.sequences li:nth-child(2) { animation-delay: 0.25s; }
-.sequences li:nth-child(3) { animation-delay: 0.5s }
-.sequences li:nth-child(4) { animation-delay: 0.75s; }
-.sequences li:nth-child(5) { animation-delay: 1.0s }
-.sequences li:nth-child(6) { animation-delay: 1.25s; }
-.sequences li:nth-child(7) { animation-delay: 1.5s; }
-.sequences li:nth-child(8) { animation-delay: 1.75s; }
-.sequences li:nth-child(9) { animation-delay: 2.0s; }
-.sequences li:nth-child(10) { animation-delay: 2.25s; }
-.sequences li:nth-child(11) { animation-delay: 2.5s; }
-.sequences li:nth-child(12) { animation-delay: 2.75s; }
-.sequences li:nth-child(13) { animation-delay: 3.0s; }
-.sequences li:nth-child(14) { animation-delay: 3.25s; }
-.sequences li:nth-child(15) { animation-delay: 3.5s; }
-.sequences li:nth-child(16) { animation-delay: 3.75s; }
+.sequences li:nth-child(2) { animation-delay: 0.125s; }
+.sequences li:nth-child(3) { animation-delay: 0.25s }
+.sequences li:nth-child(4) { animation-delay: 0.375s; }
+.sequences li:nth-child(5) { animation-delay: 0.5s }
+.sequences li:nth-child(6) { animation-delay: 0.625s; }
+.sequences li:nth-child(7) { animation-delay: 0.75s; }
+.sequences li:nth-child(8) { animation-delay: 0.875s; }
+.sequences li:nth-child(9) { animation-delay: 1.0s; }
+.sequences li:nth-child(10) { animation-delay: 1.125s; }
+.sequences li:nth-child(11) { animation-delay: 1.25s; }
+.sequences li:nth-child(12) { animation-delay: 1.375s; }
+.sequences li:nth-child(13) { animation-delay: 1.5s; }
+.sequences li:nth-child(14) { animation-delay: 1.625s; }
+.sequences li:nth-child(15) { animation-delay: 1.75s; }
+.sequences li:nth-child(16) { animation-delay: 1.875s; }
 
 @keyframes pulse {
     0% {
