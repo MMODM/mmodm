@@ -1,7 +1,7 @@
 ##MMODM
 A Massive Multiplayer Online Drum Machine powered by Twitter stream API FTW!
 
-###Intsall & Run
+###Install & Run
 
 make sure to edit config.js with your keys
 
