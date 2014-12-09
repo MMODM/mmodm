@@ -1,5 +1,5 @@
 /**
- * Module dependencies. FOo
+ * Module dependencies.
  */
 
 var mongoose = require('mongoose');
