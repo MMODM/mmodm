@@ -76,12 +76,19 @@ body {
 	background: none;
 	text-transform: uppercase;
 	font-size: 10px;
+	opacity: .25;
 }
 
 .pulse {
 	-webkit-animation: pulse .1s linear;
 	-moz-animation: pulse .1s linear;
 	animation: pulse .1s linear;
+}
+
+.glow {
+	-webkit-animation: glow 1s linear;
+	-moz-animation: glow 1s linear;
+	animation: glow 1s linear;
 }
 
 @-webkit-keyframes pulse {
@@ -134,6 +141,22 @@ body {
     	-moz-transform: scale(1);
     	transform: scale(1);
     }
+}
+
+@-webkit-keyframes glow {
+    0% { opacity: .25; }
+    50% { opacity: 1; }
+    100% { opacity: .25; }
+}
+@-moz-keyframes glow {
+    0% { opacity: .25; }
+    50% { opacity: 1; }
+    100% { opacity: .25; }
+}
+@keyframes glow {
+    0% { opacity: .25; }
+    50% { opacity: 1; }
+    100% { opacity: .25; }
 }
 
 .paused {

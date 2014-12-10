@@ -356,6 +356,9 @@ function pulse(object) {
 	object.addClass('pulse').on('webkitAnimationEnd animationend', function() {
 		$(this).removeClass('pulse').off('webkitAnimationEnd animationend');
 	});
+	object.parent().find('.label').addClass('glow').on('webkitAnimationEnd animationend', function() {
+		$(this).removeClass('glow').off('webkitAnimationEnd animationend');
+	});
 }
 
 function row() {
