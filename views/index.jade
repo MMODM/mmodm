@@ -7,16 +7,19 @@ block content
     .container
         img.logo(src="images/logo.png", alt="MMODM")
         .menu
-            img.clear.button(src="images/clear-menu.png", alt="Clear Sequence")
-            img.restart.button(src="images/restart.png", alt="Restart")
             .pauseplay.button
-                img.play(src="images/play.png", alt="Play")
-                img.pause.off(src="images/pause.png", alt="Pause")
+                img.play.off(src="images/play.png", alt="Play")
+                img.pause(src="images/pause.png", alt="Pause")
             img.stop.button(src="images/stop.png", alt="Stop")
+            img.restart.button(src="images/restart.png", alt="Restart")
             .tempo
                 img.larrow.button(src="images/larrow.png", alt="<")
                 .text=120
                 img.rarrow.button(src="images/rarrow.png", alt=">")
+            .filters
+                img.lowpass.button(src="images/lowpass.png", alt="Low Pass Filter")
+                img.highpass.button(src="images/highpass.png", alt="High Pass Filter")
+            img.clear.button(src="images/clear-menu.png", alt="Clear Sequence")
         .sequences
             mixin drumLine('a')
             mixin drumLine('b')

@@ -11,6 +11,37 @@ $(document).ready(function() {
 
 	// Click handlers for effects buttons
 
+	$('.pauseplay').click(function(e) {
+		if (state == 'playing') {
+			pause();
+		} else {
+			play();
+		}
+	});
+
+	$('.stop').click(function(e) {
+		stop();
+	});
+
+	$('.restart').click(function(e) {
+		restart();
+	});
+
+	$('.tempo .larrow').click(function(e) {
+		changeTempo(-10);
+	});
+
+	$('.tempo .rarrow').click(function(e) {
+		changeTempo(10);
+	});
+
+	$('.menu .clear').click(function(e) {
+		stop();
+		$('.sequences ul li').css({
+			'opacity': 0.125
+		});
+	});
+
 	$('.effects .clear').click(function(e) {
 		stutter(0);
 		gater(0);
@@ -49,7 +80,6 @@ $(document).ready(function() {
 
 	// Handlers for keyboard buttons
 	$(document).keydown(function(e) {
-		console.log(e.keyCode);
 		if (e.keyCode == 46 || e.keyCode == 8) {
 			// Backspace / Delete
 			e.preventDefault();
@@ -58,12 +88,17 @@ $(document).ready(function() {
 				'opacity': 0.125
 			});
 		}
+		if (e.keyCode == 27) {
+			// Esc
+			e.preventDefault();
+			stop();
+		}
 		if (e.keyCode == 32) {
 			// Spacebar
 			e.preventDefault();
 			if (state == 'playing') {
 				pause();
-			} else if (state == 'paused') {
+			} else {
 				play();
 			}
 		}
@@ -75,18 +110,12 @@ $(document).ready(function() {
 		if (e.keyCode == 39) {
 			// Right Arrow
 			e.preventDefault();
-			if (state == 'playing') {
-				play(tempo + 10);
-			}
+			changeTempo(10);
 		}
 		if (e.keyCode == 37) {
 			// Left Arrow
 			e.preventDefault();
-			if (state == 'playing') {
-				if (tempo - 10 > 0) {
-					play(tempo - 10);
-				}
-			}
+			changeTempo(-10);
 		}
 		if (e.keyCode == 220) {
 			// \
@@ -259,6 +288,8 @@ function play(newTempo) {
 		} else if (state == 'playing') {
 			clearInterval(mainLoop);
 		}
+		$('.off').removeClass('off');
+		$('.play').addClass('off');
 		mainLoop = setInterval(function() {
 			beat();
 			if (stutter() > 0) {
@@ -290,23 +321,46 @@ function pause() {
 		for (var i=1; i<27; i++) {
 			$('.sequences ul:nth-child(' + i + ') li:nth-child(' + time + ')').addClass('paused');
 		}
+		$('.off').removeClass('off');
+		$('.pause').addClass('off');
 		state = 'paused';
 	}
 }
 
 function stop() {
-	clearInterval(mainLoop);
 	time = 1;
 	gater(0);
 	stutter(0);
+	clearInterval(mainLoop);
+	$('.paused').removeClass('paused');
+	$('.off').removeClass('off');
+	$('.pause').addClass('off');
 	state = 'stopped';
 }
 
 function restart() {
+	$('.paused').removeClass('paused');
+	$('.off').removeClass('off');
+	$('.pause').addClass('off');
 	time = 1;
 	gcounter = 0;
 	stutter(0);
 	play();
+}
+
+function changeTempo(change) {
+	if (state == 'playing') {
+		if (tempo + change > 0 && tempo + change < 1000) {
+			play(tempo + change);
+		}
+	}
+	if (tempo < 100) {
+		$('.tempo .text').html('&nbsp;&nbsp;' + tempo);
+	} else if (tempo < 10) {
+		$('.tempo .text').html('&nbsp;&nbsp;&nbsp;&nbsp;' + tempo);
+	} else {
+		$('.tempo .text').html(tempo);
+	}
 }
 
 // Helper function

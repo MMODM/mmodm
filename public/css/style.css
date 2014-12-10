@@ -172,7 +172,7 @@ body {
 	height: 10px;
 	width: 10px;
 	padding: 10px;
-	margin-right: 0;
+	margin-right: 50px;
 	background: #222;
 	border-radius: 6px;
 	border: 1px solid #fff;
@@ -186,6 +186,7 @@ body {
 	height: 12.5px;
 	width: 12.5px;
 	padding: 8.75px;
+	margin-right: 75px;
 }
 
 .pauseplay.button {
@@ -193,6 +194,7 @@ body {
 	padding: 0;
 	height: 30px;
 	width: 30px;
+	margin-right: 25px;
 }
 
 .pauseplay img {
@@ -204,24 +206,63 @@ body {
 	left: 0;
 }
 
+.stop.button {
+	margin-right: 25px;
+}
+
 .tempo {
 	display: inline-block;
-	vertical-align: text-bottom;
+	margin-right: 75px;
+}
+
+.tempo .larrow, .tempo .rarrow {
+	position: relative;
+	z-index: 1;
+	margin-right: 0;
+}
+
+.tempo .button.larrow:active, .tempo .button.rarrow:active {
+	box-shadow: 0 -1px 0 5px #222;
 }
 
 .tempo .text {
-	height: 40px;
-	line-height: 40px;
+	position: relative;
+	height: 35px;
+	line-height: 35px;
 	display: inline-block;
-	padding: 0 8px;
-	margin: 0;
+	padding: 0 20px;
+	margin: 0 -8px;
 	font-size: 15px;
+	vertical-align: text-bottom;
 	color: #fff;
 	background: #222;
-	border-radius: 6px;
+	border: 1px solid #222;
+	border-top: 2px solid #222;
+	box-shadow: 0 0 0 2px #222;
+	z-index: 0;
 	-webkit-transition: .15s opacity ease-in-out;
 	-moz-transition: .15s opacity ease-in-out;
 	transition: .15s opacity ease-in-out;
+}
+
+.filters {
+	display: inline-block;
+}
+
+.filters .button {
+	width: 20px;
+}
+
+.lowpass.button {
+	margin-right: 25px;
+}
+
+.highpass.button {
+	margin-right: 140px;
+}
+
+.menu .clear {
+	margin-right: 0;
 }
 
 .effects {
@@ -265,7 +306,7 @@ body {
 .twitter {
 	display: inline-block;
 	width: 630px;
-	margin-top: 25px;
+	margin: 25px 0 40px 0;
 }
 
 .avatar {
