@@ -76,7 +76,17 @@ body {
 	background: none;
 	text-transform: uppercase;
 	font-size: 10px;
-	opacity: .25;
+	opacity: 1;
+	cursor: pointer;
+}
+
+.label:hover {
+	opacity: 1 !important;
+}
+
+.label:active {
+	position: relative;
+	top: 1px;
 }
 
 .pulse {

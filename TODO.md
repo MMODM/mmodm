@@ -2,6 +2,7 @@
 
 # Twitter
 * Regex for brackets in tweets
+* Dash/space support
 
 # Effects
 * Low-pass filter
@@ -9,6 +10,3 @@
 
 # General
 * Tutorial
-
-# UI
-* Change tempo while paused or stopped

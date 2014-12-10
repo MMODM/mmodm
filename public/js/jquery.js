@@ -218,6 +218,14 @@ $(document).ready(function() {
 		//
 	});
 
+	// Click handler for sound on labels
+
+	$('.label').on('click', function() {
+		playSound(samples[$('.' + $(this).text()).index()]);
+	})
+
+	
+
 	// Click handlers for effects buttons
 
 	var drag = false;
@@ -610,9 +618,11 @@ function restart() {
 }
 
 function changeTempo(change) {
-	if (state == 'playing') {
-		if (tempo + change > 0 && tempo + change < 1000) {
+	if (tempo + change > 0 && tempo + change < 1000) {
+		if (state == 'playing') {
 			play(tempo + change);
+		} else {
+			tempo = tempo + change;
 		}
 	}
 	if (tempo < 100) {
