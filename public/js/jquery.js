@@ -180,7 +180,6 @@ $(document).ready(function() {
 			if (Math.round((Math.random())) > 0) {
 			if (Math.round((Math.random())) > 0) {
 				$('.sequences ul:nth-child(' + i + ') li:nth-child(' + j + ')').css({'opacity': 1});
-				$('.sequences ul:nth-child(' + i + ') li:nth-child(' + j + ')').css({'opacity': 1});
 			}}}
 		}
 	}
