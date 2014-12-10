@@ -10,3 +10,6 @@
 
 # General
 * Tutorial
+* Figure out death rate
+* Reconsider audio snippets
+* Level audio snippets
