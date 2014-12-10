@@ -6,6 +6,17 @@ block content
     .grid
     .container
         img.logo(src="images/logo.png", alt="MMODM")
+        .menu
+            img.clear.button(src="images/clear-menu.png", alt="Clear Sequence")
+            img.restart.button(src="images/restart.png", alt="Restart")
+            .pauseplay.button
+                img.play(src="images/play.png", alt="Play")
+                img.pause.off(src="images/pause.png", alt="Pause")
+            img.stop.button(src="images/stop.png", alt="Stop")
+            .tempo
+                img.larrow.button(src="images/larrow.png", alt="<")
+                .text=120
+                img.rarrow.button(src="images/rarrow.png", alt=">")
         .sequences
             mixin drumLine('a')
             mixin drumLine('b')
@@ -33,5 +44,17 @@ block content
             mixin drumLine('x')
             mixin drumLine('y')
             mixin drumLine('z')
+        .effects
+            img.clear.button.on(src="images/clear-effects.png", alt="Clear Effects")
+            .stutter
+                img.none.button.on(src="images/stutter-none.png", alt="No Stutter")
+                img.full.button(src="images/stutter-full.png", alt="1 Stutter")
+                img.half.button(src="images/stutter-half.png", alt="1/2 Stutter")
+                img.quarter.button(src="images/stutter-quarter.png", alt="1/4 Stutter")
+                img.eighth.button(src="images/stutter-eighth.png", alt="1/8 Stutter")
+            .gater
+                img.none.button.on(src="images/gater-none.png", alt="No Gater")
+                img.half.button(src="images/gater-half.png", alt="1:1 Gater")
+                img.third.button(src="images/gater-third.png", alt="2:1 Gater")
         mixin tweetForm('images/basheer.jpg','Basheer')
     .help ?
