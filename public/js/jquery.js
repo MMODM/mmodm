@@ -186,6 +186,18 @@ function samplesLoaded(samples){
 
 $(document).ready(function() {
 	// Seeding random "data" so that it doesn't look bad while I'm coding
+	function seed() {
+		for (var i=1; i<27; i++) {
+			for (var j=1; j<17; j++) {
+				if (Math.round((Math.random())) > 0) {
+				if (Math.round((Math.random())) > 0) {
+				if (Math.round((Math.random())) > 0) {
+					$('.sequences ul:nth-child(' + i + ') li:nth-child(' + j + ')').css({'opacity': 1});
+				}}}
+			}
+		}
+	}
+
 
 	function lightObject(x, y){
 		$('.sequences ul:nth-child(' + x + ') li:nth-child(' + y + ')').css({'opacity': 1});
