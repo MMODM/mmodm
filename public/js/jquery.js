@@ -137,10 +137,10 @@ var samples = [];
 var loader=0;
 
 tracks.forEach(function(track, i, arr){
-	loadSample('samples/'+track.filename);
+	loadSample(i,'samples/'+track.filename);
 })
 
-function loadSample(url) {
+function loadSample(id, url) {
 	var request = new XMLHttpRequest();
 	request.open('GET', url, true);
 	request.responseType = 'arraybuffer';
@@ -148,6 +148,7 @@ function loadSample(url) {
 	// Decode asynchronously and push to samples
 	request.onload = function() {
 		context.decodeAudioData(request.response, function(buffer) {
+			buffer.id=id;
 			samples.push(buffer);
 			incLoader(loader++)
 		}, function(err){});
@@ -169,21 +170,44 @@ function playSound(buffer) {
 }
 
 function samplesLoaded(samples){
+
+	samples.sort(function (a, b) {
+		if (a.id < b.id) {
+			return -1;
+		}
+		else if (a.id > b.id) {
+			return 1;
+		}
+		return 0;
+	});
 	console.log(samples);
+
 }
 
 $(document).ready(function() {
 	// Seeding random "data" so that it doesn't look bad while I'm coding
-	for (var i=1; i<27; i++) {
-		for (var j=1; j<17; j++) {
-			if (Math.round((Math.random())) > 0) {
-			if (Math.round((Math.random())) > 0) {
-			if (Math.round((Math.random())) > 0) {
-				$('.sequences ul:nth-child(' + i + ') li:nth-child(' + j + ')').css({'opacity': 1});
-			}}}
-		}
+
+	function lightObject(x, y){
+		$('.sequences ul:nth-child(' + x + ') li:nth-child(' + y + ')').css({'opacity': 1});
 	}
 
+	lightObject(26,1)
+	lightObject(26,2)
+	lightObject(26,3)
+	lightObject(26,4)
+	lightObject(26,5)
+	lightObject(14,6)
+	lightObject(15,5)
+	lightObject(15,6)
+	lightObject(12,7)
+	lightObject(11,2)
+	lightObject(10,10)
+	lightObject(12,11)
+	lightObject(11,16)
+	lightObject(11,7)
+	lightObject(3,12)
+
+	//lightObject(5,5)
 	// Click handlers for effects buttons
 
 	$('.pauseplay').click(function(e) {
