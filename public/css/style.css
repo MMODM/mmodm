@@ -64,6 +64,7 @@ body {
 	height: 8px;
 	margin-bottom: 20px;
 	z-index: 5;
+	opacity: .125;
 	-webkit-transition: -webkit-transform .05s linear;
 	-moz-transition: -moz-transform .05s linear;
 	transition: transform .05s linear;

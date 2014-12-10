@@ -16,9 +16,10 @@ block content
                 img.larrow.button(src="images/larrow.png", alt="<")
                 .text=120
                 img.rarrow.button(src="images/rarrow.png", alt=">")
-            .filters
-                img.lowpass.button(src="images/lowpass.png", alt="Low Pass Filter")
-                img.highpass.button(src="images/highpass.png", alt="High Pass Filter")
+            .filters.button
+                img.lowpass(src="images/lowpass.png")
+                img.highpass(src="images/highpass.png")
+                p low high pass
             img.clear.button(src="images/clear-menu.png", alt="Clear Sequence")
         .sequences
             mixin drumLine('a')
