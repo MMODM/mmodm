@@ -78,7 +78,7 @@ io.on('connection', function (socket) {
     users.push(socket);
 });
 
-var watch = ['#MMODrumMachine'];
+var watch = ['#MMODM'];
 
 twit.verifyCredentials(function (err, data) {
     if(err) console.log(err);
@@ -90,11 +90,12 @@ twit.verifyCredentials(function (err, data) {
             var name = data.user.screen_name;
 
             var tweet_txt = data.text.split("#");
-            var notes = tweet_txt[0].split("");
+            var keystrokes = tweet_txt[0].split("");
             notes.pop();
             console.log(notes)
-            //socket.emit('notes', notes);
-
+            users.forEach(function(i, socket, arr){
+                socket.emit('keys', keystrokes);
+            })
         }
     });
 
