@@ -11,6 +11,7 @@ var controller = require('./controller');
 var path = require('path');
 var config = require('./config');
 var twitter = require('ntwitter');
+var fs = require('fs');
 
 mongoose.connect(config.db);
 
@@ -68,6 +69,7 @@ function ensureAuthenticated(req, res, next) {
 
 http.listen(app.get('port'), function(){
   console.log('MM0DM server listening on port ' + app.get('port'));
+  fs.writeFile(__dirname + '/start.log', 'started');
 });
 
 //Socket.io & Twitter Stream API
