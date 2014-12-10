@@ -220,6 +220,44 @@ $(document).ready(function() {
 
 	// Click handlers for effects buttons
 
+	var drag = false;
+	$('.filters:not(.sliding)').on('click', function() {
+		$(this).addClass('sliding');
+		$(this).on('mousedown', function(e) {
+			drag = true;
+		}).on('mouseup', function(e) {
+			drag = false;
+		})
+		$(this).on('mousemove mousedown', function(e) {
+			if (drag) {
+				var position = e.pageX - $(this).offset().left;
+				var width = $(this).outerWidth();
+				var barWidth = $('.slider .bar').width();
+				if (position + width/60.0 < width/2.0 - width/60.0) {
+					fxpass = -1 * (10 - Math.floor(position / 10.0));
+				} else if (position - width/60.0 > width/2.0 + width/60.0) {
+					fxpass = Math.floor(position / 10.0) - 9;
+				} else {
+					fxpass = 0;
+				}
+				var left = barWidth/2.0;
+				var right = barWidth/2.0;
+				if (fxpass > 0) {
+					right = barWidth/2.0 + (fxpass / 20)*barWidth;
+				} else if (fxpass < 0) {
+					left = barWidth/2.0 - (Math.abs(fxpass) / 20)*barWidth;
+				} else {
+					left = barWidth*.4875;
+					right = barWidth*.5125;
+				}
+				$('.slider .bar').css({
+					'clip': 'rect(0px,' + right + 'px,' + $(this).height() + 'px,' + left + 'px)'
+				});
+			}
+		});
+		changeFxPass(0);
+	});
+
 	$('.pauseplay').click(function(e) {
 		if (state == 'playing') {
 			pause();
@@ -372,6 +410,16 @@ $(document).ready(function() {
 			e.preventDefault();
 			gater(2);
 		}
+		if (e.keyCode == 189) {
+			// _-
+			e.preventDefault();
+			changeFxPass(-1);
+		}
+		if (e.keyCode == 187) {
+			// +=
+			e.preventDefault();
+			changeFxPass(1);
+		}
 	});
 
 	play();
@@ -383,6 +431,7 @@ var mainLoop;
 var state = 'stopped';
 var time = 1;
 var tempo = 120;
+var fxpass = 0;
 
 // Basic functions for pulse
 
@@ -577,6 +626,27 @@ function changeTempo(change) {
 	}
 }
 
+function changeFxPass(change) {
+	if (fxpass + change < 11 && fxpass + change > -11) {
+		fxpass = fxpass + change;
+	}
+	var width = $('filters').outerWidth();
+	var barWidth = $('.slider .bar').width();
+	var left = barWidth/2.0;
+	var right = barWidth/2.0;
+	if (fxpass > 0) {
+		right = barWidth/2.0 + (fxpass / 20)*barWidth;
+	} else if (fxpass < 0) {
+		left = barWidth/2.0 - (Math.abs(fxpass) / 20)*barWidth;
+	} else {
+		left = barWidth*.4875;
+		right = barWidth*.5125;
+	}
+	$('.slider .bar').css({
+		'clip': 'rect(0px,' + right + 'px,' + $(this).height() + 'px,' + left + 'px)'
+	});
+}
+
 // Helper function
 
 setInterval(function() {
@@ -585,6 +655,7 @@ setInterval(function() {
 		'tempo: ' + tempo + ', ' +
 		'gater: ' + gater() + ', ' +
 		'stutter: ' + stutter() + ', ' +
+		'fxpass: ' + fxpass + ', ' +
 		'time: ' + time
 	);
 }, 15);
