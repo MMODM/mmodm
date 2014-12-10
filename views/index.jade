@@ -19,7 +19,12 @@ block content
             .filters.button
                 img.lowpass(src="images/lowpass.png")
                 img.highpass(src="images/highpass.png")
-                p low high pass
+                p low / high pass
+                .slider
+                    span="• • • • • • • • • • "
+                    span="| "
+                    span="• • • • • • • • • •"
+                    .bar
             img.clear.button(src="images/clear-menu.png", alt="Clear Sequence")
         .sequences
             mixin drumLine('a')

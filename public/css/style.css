@@ -1,4 +1,4 @@
-* { margin:0; padding:0; }
+* { margin:0; padding:0; -webkit-user-select: none; -moz-user-select: none; user-select: none;}
 h1,h2,h3 { font-size: 100%; font-weight: normal; }
 ol,ul { list-style: none; }
 img {border: 0;}
@@ -210,7 +210,7 @@ body {
 	height: 12.5px;
 	width: 12.5px;
 	padding: 8.75px;
-	margin-right: 75px;
+	margin-right: 66px;
 }
 
 .pauseplay.button {
@@ -236,7 +236,7 @@ body {
 
 .tempo {
 	display: inline-block;
-	margin-right: 75px;
+	margin-right: 66px;
 }
 
 .tempo .larrow, .tempo .rarrow {
@@ -264,25 +264,83 @@ body {
 	border-top: 2px solid #222;
 	box-shadow: 0 0 0 2px #222;
 	z-index: 0;
-	-webkit-transition: .15s opacity ease-in-out;
-	-moz-transition: .15s opacity ease-in-out;
-	transition: .15s opacity ease-in-out;
 }
 
 .filters {
 	display: inline-block;
 }
 
-.filters .button {
+.filters.button {
+	position: relative;
+	width: auto;
+	height: 35px;
+	line-height: 35px;
+	padding: 0 20px;
+	margin-right: 67px;
+	font-size: 15px;
+	vertical-align: text-bottom;
+	color: #fff;
+	background: #222;
+	border: 1px solid #222;
+	border-top: 2px solid #222;
+	box-shadow: 0 0 0 2px #222;
+}
+
+.lowpass, .highpass {
 	width: 20px;
+	margin-right: 10px;
 }
 
-.lowpass.button {
-	margin-right: 25px;
+.filters p {
+	display: inline-block;
 }
 
-.highpass.button {
-	margin-right: 140px;
+.slider {
+	visibility: hidden;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	font-size: 5px;
+	color: rgba(255,255,255,.45);
+	letter-spacing: 2.25px;
+	cursor: crosshair;
+}
+
+.slider span {
+	position: relative;
+	z-index: 1;
+}
+
+.slider span:nth-child(2) {
+	color: #fff;
+}
+
+.slider .bar {
+	position: absolute;
+	top: 5px;
+	left: 5px;
+	width: calc(100% - 10px);
+	height: calc(100% - 10px);
+	background: #3fa7ff;
+	border-radius: 2px;
+	z-index: 0;
+	clip: rect(0,0,0,0);
+}
+
+.filters.sliding:active {
+	top: 0px;
+}
+
+.filters.sliding .lowpass,
+.filters.sliding .highpass,
+.filters.sliding p {
+	visibility: hidden;
+}
+
+.filters.sliding .slider {
+	visibility: visible;
 }
 
 .menu .clear {
@@ -351,6 +409,9 @@ body {
 	padding-left: 12px;
 	border: none;
 	float: left;
+	-webkit-user-select: text;
+	-moz-user-select: text;
+	user-select: text;
 }
 
 .post {
