@@ -26,6 +26,10 @@ $(document).ready(function(){
 				playState('running');
 			}
 		}
+		if (e.keyCode == 13) {
+			// Enter
+			$('.pulse, .pulses').toggleClass('pulse').toggleClass('pulses');
+		}
 		if (e.keyCode == 38) {
 			// Up Arrow
 		}
@@ -37,20 +41,20 @@ $(document).ready(function(){
 
 function playState(state) {
 	if (state === 'running') {
-		$('.sequences ul li').css({
+		$('.pulse, .pulses').css({
 			'-webkit-animation-play-state': 'running',
 			'-moz-animation-play-state': 'running',
 			'animation-play-state': 'running'
 		});
-		return state;
+		return 'now ' + state;
 	} else if (state === 'paused') {
-		$('.sequences ul li').css({
+		$('.pulse, .pulses').css({
 			'-webkit-animation-play-state': 'paused',
 			'-moz-animation-play-state': 'paused',
 			'animation-play-state': 'paused'
 		});
-		return state;
+		return 'now ' + state;
 	} else {
-		return $('.sequences ul li').css('animation-play-state');
+		return $('.pulse, .pulses').css('animation-play-state');
 	}
 }

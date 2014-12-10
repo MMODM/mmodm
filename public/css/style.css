@@ -80,6 +80,12 @@ body {
 	animation: pulse 2s linear infinite;
 }
 
+.pulses {
+	-webkit-animation: pulses 2s linear infinite;
+	-moz-animation: pulses 2s linear infinite;
+	animation: pulses 2s linear infinite;
+}
+
 @-webkit-keyframes pulse {
     0% {
     	-webkit-transform: scale(1);
@@ -125,6 +131,72 @@ body {
     }
 }
 @keyframes pulse {
+    0% {
+    	-webkit-transform: scale(1);
+    	-moz-transform: scale(1);
+    	transform: scale(1);
+    }
+    2% {
+    	-webkit-transform: scale(1.5);
+    	-moz-transform: scale(1.5);
+    	transform: scale(1.5);
+    }
+    4% {
+    	-webkit-transform: scale(1);
+    	-moz-transform: scale(1);
+    	transform: scale(1);
+    }
+    100% {
+    	-webkit-transform: scale(1);
+    	-moz-transform: scale(1);
+    	transform: scale(1);
+    }
+}
+@-webkit-keyframes pulses {
+    0% {
+    	-webkit-transform: scale(1);
+    	-moz-transform: scale(1);
+    	transform: scale(1);
+    }
+    2% {
+    	-webkit-transform: scale(1.5);
+    	-moz-transform: scale(1.5);
+    	transform: scale(1.5);
+    }
+    4% {
+    	-webkit-transform: scale(1);
+    	-moz-transform: scale(1);
+    	transform: scale(1);
+    }
+    100% {
+    	-webkit-transform: scale(1);
+    	-moz-transform: scale(1);
+    	transform: scale(1);
+    }
+}
+@-moz-keyframes pulses {
+    0% {
+    	-webkit-transform: scale(1);
+    	-moz-transform: scale(1);
+    	transform: scale(1);
+    }
+    2% {
+    	-webkit-transform: scale(1.5);
+    	-moz-transform: scale(1.5);
+    	transform: scale(1.5);
+    }
+    4% {
+    	-webkit-transform: scale(1);
+    	-moz-transform: scale(1);
+    	transform: scale(1);
+    }
+    100% {
+    	-webkit-transform: scale(1);
+    	-moz-transform: scale(1);
+    	transform: scale(1);
+    }
+}
+@keyframes pulses {
     0% {
     	-webkit-transform: scale(1);
     	-moz-transform: scale(1);
