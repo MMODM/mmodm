@@ -78,6 +78,14 @@ io.on('connection', function (socket) {
     users.push(socket);
 });
 
+function emitKeys(users,keystrokes){
+    if(users.length >= 0){
+        users.forEach(function(s, i, arr){
+            s.emit('keys', keystrokes);
+        })
+    }
+}
+
 var watch = ['#MMODM'];
 
 twit.verifyCredentials(function (err, data) {
@@ -86,16 +94,13 @@ twit.verifyCredentials(function (err, data) {
 .stream('user', {track:watch}, function(stream) {
     console.log("Twitter stream is ready and waiting for inc tweets...");
     stream.on('data', function (data) {
+
         if (data.text !== undefined) {
             var name = data.user.screen_name;
-
             var tweet_txt = data.text.split("#");
             var keystrokes = tweet_txt[0].split("");
-            notes.pop();
-            console.log(notes)
-            users.forEach(function(i, socket, arr){
-                socket.emit('keys', keystrokes);
-            })
+            keystrokes.pop();
+            emitKeys(users,keystrokes);
         }
     });
 

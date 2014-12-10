@@ -202,24 +202,22 @@ $(document).ready(function() {
 	function lightObject(x, y){
 		$('.sequences ul:nth-child(' + x + ') li:nth-child(' + y + ')').css({'opacity': 1});
 	}
+	function offObject(x, y){
+		$('.sequences ul:nth-child(' + x + ') li:nth-child(' + y + ')').css({'opacity': 0});
+	}
+	var socket = io();
+	socket.on('keys', function (data) {
+		console.log(data)
+		data.forEach(function(letter, index, arr){
+			for(var i=0; i<tracks.length; i++){
+				if(letter == tracks[i].name){
+					lightObject(i+1,(index+1)%16)
+				}
+			}
+		})
+		//
+	});
 
-	lightObject(26,1)
-	lightObject(26,2)
-	lightObject(26,3)
-	lightObject(26,4)
-	lightObject(26,5)
-	lightObject(14,6)
-	lightObject(15,5)
-	lightObject(15,6)
-	lightObject(12,7)
-	lightObject(11,2)
-	lightObject(10,10)
-	lightObject(12,11)
-	lightObject(11,16)
-	lightObject(11,7)
-	lightObject(3,12)
-
-	//lightObject(5,5)
 	// Click handlers for effects buttons
 
 	$('.pauseplay').click(function(e) {
