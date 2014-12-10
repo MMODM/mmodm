@@ -438,7 +438,7 @@ var state = 'stopped';
 var time = 1;
 var tempo = 120;
 var fxpass = 0;
-var death = 10000;
+var death = 20000;
 
 // Basic functions for pulse
 
