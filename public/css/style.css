@@ -93,7 +93,7 @@ body {
 .sequences li:nth-child(15) { -webkit-animation-delay: 1.75s; }
 .sequences li:nth-child(16) { -webkit-animation-delay: 1.875s; }
 
-@keyframes pulse {
+@-webkit-keyframes pulse {
     0% {
      transform: scale(1);
     }
