@@ -191,7 +191,7 @@ function seed() {
 			if (Math.round((Math.random())) > 0) {
 			if (Math.round((Math.random())) > 0) {
 			if (Math.round((Math.random())) > 0) {
-				$('.sequences ul:nth-child(' + i + ') li:nth-child(' + j + ')').css({'opacity': 1});
+				$('.sequences ul:nth-child(' + i + ') li:nth-child(' + j + ')').css({'opacity': 1}).animate({'opacity': 0.125}, death);
 			}}}
 		}
 	}
@@ -200,10 +200,10 @@ function seed() {
 $(document).ready(function() {
 
 	function lightObject(x, y){
-		$('.sequences ul:nth-child(' + x + ') li:nth-child(' + y + ')').css({'opacity': 1});
+		$('.sequences ul:nth-child(' + x + ') li:nth-child(' + y + ')').css({'opacity': 1}).animate({'opacity': 0.125}, death);
 	}
 	function offObject(x, y){
-		$('.sequences ul:nth-child(' + x + ') li:nth-child(' + y + ')').css({'opacity': 0});
+		$('.sequences ul:nth-child(' + x + ') li:nth-child(' + y + ')').css({'opacity': 0.125});
 	}
 	var socket = io();
 	socket.on('keys', function (data) {
@@ -438,6 +438,7 @@ var state = 'stopped';
 var time = 1;
 var tempo = 120;
 var fxpass = 0;
+var death = 10000;
 
 // Basic functions for pulse
 
