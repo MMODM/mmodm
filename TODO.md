@@ -13,3 +13,8 @@
 * Figure out death rate
 * Reconsider audio snippets
 * Level audio snippets
+
+# Tips?
+* XOR Blending
+* MD5 Hash of tweets for sequences from popular hash tags
+* Random-interval stutter
