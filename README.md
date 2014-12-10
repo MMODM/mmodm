@@ -22,6 +22,12 @@ npm install
 npm start
 ```
 
+```
+sudo mongod
+nodemon -e js,jade
+guard
+```
+
 ### How it works
 
 Tweet with [#MMODrumMachine](https://twitter.com/search?q=%23MMODrumMachine&src=typd) with a sequence of your notes. More details are being brewed.
