@@ -291,14 +291,19 @@ body {
 	vertical-align: text-bottom;
 	color: #fff;
 	background: #222;
-	border: 1px solid #222;
 	border-top: 2px solid #222;
 	box-shadow: 0 0 0 2px #222;
+	border-radius: 6px;
+	border: 1px solid #fff;
+	box-shadow: 0 0 0 5px #222;
+	-webkit-transition: .15s opacity ease-in-out;
+	-moz-transition: .15s opacity ease-in-out;
+	transition: .15s opacity ease-in-out;
 }
 
 .lowpass, .highpass {
 	width: 20px;
-	margin-right: 10px;
+	margin: 0 14px -6px 0px;
 }
 
 .filters p {
