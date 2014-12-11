@@ -162,10 +162,20 @@ function incLoader(loader){
 		return samplesLoaded(samples);
 	}
 
-function playSound(buffer) {
+function playSound(buffer,type,freq) {
 	var source = context.createBufferSource();
 	source.buffer = buffer;
-	source.connect(context.destination);
+	if(type){
+		var filter = context.createBiquadFilter();
+		filter.type = type;
+		filter.frequency.value = freq;
+		source.connect(filter);
+		filter.connect(context.destination);
+		this.filter = filter;
+	}
+	else
+		source.connect(context.destination);
+
 	source.start(0);
 }
 
@@ -203,7 +213,7 @@ $(document).ready(function() {
 	inputField.on('focus', function(e){
 		$(document).unbind('keydown');
 	})
-	$("#simForm input:submit").on('click', function(e){
+	$("#simForm").on('submit', function(e){
 		e.preventDefault();
 		turnOnShortcuts();
 		data = inputField.val().split('');
@@ -246,8 +256,6 @@ $(document).ready(function() {
 	$('.label').on('click', function() {
 		playSound(samples[$('.' + $(this).text()).index()]);
 	})
-
-
 
 	// Click handlers for effects buttons
 
@@ -480,10 +488,22 @@ function row() {
 		var object = $('.sequences ul:nth-child(' + i + ') li:nth-child(' + time + ')')
 		if (object.css('opacity') > .125) {
 			pulse(object);
-			playSound(samples[i-1]);
+			playSound(samples[i-1],false,false);
 		}
 	}
 }
+
+function rowFilter(type, freq){
+	for (var i=1; i<27; i++) {
+		var object = $('.sequences ul:nth-child(' + i + ') li:nth-child(' + time + ')')
+		if (object.css('opacity') > .125) {
+			pulse(object);
+			playSound(samples[i-1],type,freq)
+		}
+	}
+}
+
+
 
 // Getter/Setter Effects functions
 
@@ -663,26 +683,29 @@ function changeFxPass(change) {
 	if (fxpass + change < 11 && fxpass + change > -11) {
 		fxpass = fxpass + change;
 	}
+
 	var width = $('filters').outerWidth();
 	var barWidth = $('.slider .bar').width();
 	var left = barWidth/2.0;
 	var right = barWidth/2.0;
 	if (fxpass > 0) {
 		right = barWidth/2.0 + (fxpass / 20)*barWidth;
+		rowFilter('lowpass',left*24)
 	} else if (fxpass < 0) {
 		left = barWidth/2.0 - (Math.abs(fxpass) / 20)*barWidth;
+		rowFilter('highpass',right*24)
 	} else {
 		left = barWidth*.4875;
 		right = barWidth*.5125;
 	}
+
 	$('.slider .bar').css({
 		'clip': 'rect(0px,' + right + 'px,' + $(this).height() + 'px,' + left + 'px)'
 	});
 }
 
 // Helper function
-
-setInterval(function() {
+/*setInterval(function() {
 	$('.tweet').attr('placeholder',
 		'state: ' + state + ', ' +
 		'tempo: ' + tempo + ', ' +
@@ -691,4 +714,4 @@ setInterval(function() {
 		'fxpass: ' + fxpass + ', ' +
 		'time: ' + time
 	);
-}, 15);
+}, 15);*/
