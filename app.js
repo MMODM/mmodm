@@ -76,12 +76,21 @@ http.listen(app.get('port'), function(){
 var users = []
 io.on('connection', function (socket) {
     users.push(socket);
+    //simulateTweet(users, ["a", "a", "-", "-", "a", "a", "-", "-", "c", "c", "-", "-", "c", "c", "-", "-", "a", "a"]);
 });
 
 function emitKeys(users,keystrokes){
     if(users.length >= 0){
         users.forEach(function(s, i, arr){
             s.emit('keys', keystrokes);
+        })
+    }
+}
+
+function simulateTweet(users,tweet){
+    if(users.length >= 0){
+        users.forEach(function(s, i, arr){
+            s.emit('keys', tweet);
         })
     }
 }

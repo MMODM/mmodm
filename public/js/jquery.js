@@ -214,6 +214,7 @@ $(document).ready(function() {
 					lightObject(i+1,(index+1)%16)
 				}
 				else if(letter == '-' || letter == ' '){
+					console.log('beat')
 					offObject(i+1,(index+1)%16)
 				}
 			}
