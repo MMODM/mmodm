@@ -98,9 +98,16 @@ twit.verifyCredentials(function (err, data) {
         if (data.text !== undefined) {
             var name = data.user.screen_name;
             var tweet_txt = data.text.split("#");
-            var keystrokes = tweet_txt[0].split("");
-            keystrokes.pop();
-            emitKeys(users,keystrokes);
+            var ma = false
+            if(tweet_txt[0] != null)
+                ma = tweet_txt[0].match(/\[.*\]/);
+            if (ma){
+                var m = ma[0].split("");
+                var keystrokes = m.splice(1,m.length-1);
+                    emitKeys(users,keystrokes);
+            }
+            else
+                console.log("Dump.")
         }
     });
 
