@@ -44,8 +44,10 @@ body {
 
 .sequences {
 	position: relative;
-	width: 860px;
+	width: 750px;
 	margin: 30px auto 0 auto;
+	background: #000;
+	padding: 20px 0px 0px 5px;
 }
 
 .sequences ul {
@@ -302,8 +304,8 @@ body {
 }
 
 .lowpass, .highpass {
-	width: 20px;
-	margin: 0 14px -6px 0px;
+	width: 16px;
+	margin: 0 16px -4px 0px;
 }
 
 .filters p {
