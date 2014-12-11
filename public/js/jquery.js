@@ -198,7 +198,27 @@ function seed() {
 }
 
 $(document).ready(function() {
-
+	turnOnShortcuts();
+	var inputField = $("#simForm input:text");
+	inputField.on('focus', function(e){
+		$(document).unbind('keydown');
+	})
+	$("#simForm input:submit").on('click', function(e){
+		e.preventDefault();
+		turnOnShortcuts();
+		data = inputField.val().split('');
+		data.forEach(function(letter, index, arr){
+			for(var i=0; i<tracks.length; i++){
+				if(letter == tracks[i].name){
+					lightObject(i+1,(index+1)%16)
+				}
+				else if(letter == '-' || letter == ' '){
+					offObject(i+1,(index+1)%16)
+				}
+			}
+		})
+		inputField.val('');
+	})
 	function lightObject(x, y){
 		$('.sequences ul:nth-child(' + x + ') li:nth-child(' + y + ')').css({'opacity': 1}).animate({'opacity': 0.125}, death);
 	}
@@ -207,7 +227,6 @@ $(document).ready(function() {
 	}
 	var socket = io();
 	socket.on('keys', function (data) {
-		console.log(data)
 		data.forEach(function(letter, index, arr){
 			for(var i=0; i<tracks.length; i++){
 				if(letter == tracks[i].name){
@@ -336,6 +355,7 @@ $(document).ready(function() {
 		gater(2);
 	});
 
+	function turnOnShortcuts(){
 	// Handlers for keyboard buttons
 	$(document).keydown(function(e) {
 		if (e.keyCode == 46 || e.keyCode == 8) {
@@ -431,7 +451,7 @@ $(document).ready(function() {
 			changeFxPass(1);
 		}
 	});
-
+	}
 	play();
 });
 

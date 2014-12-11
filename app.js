@@ -61,6 +61,10 @@ routes.auth_cb);
 
 app.get('/logout', routes.logout);
 
+app.post('/simulate/tweet', function(req, res){
+    console.log(res.body);
+})
+
 //Middlewear
 function ensureAuthenticated(req, res, next) {
     if (req.isAuthenticated()) { return next(); }
@@ -76,7 +80,6 @@ http.listen(app.get('port'), function(){
 var users = []
 io.on('connection', function (socket) {
     users.push(socket);
-    //simulateTweet(users, ["a", "a", "-", "-", "a", "a", "-", "-", "c", "c", "-", "-", "c", "c", "-", "-", "a", "a"]);
 });
 
 function emitKeys(users,keystrokes){
@@ -96,7 +99,7 @@ function simulateTweet(users,tweet){
 }
 
 var watch = ['#MMODM'];
-
+/*
 twit.verifyCredentials(function (err, data) {
     if(err) console.log(err);
 })
@@ -125,3 +128,4 @@ twit.verifyCredentials(function (err, data) {
         console.log("err: "+err+" "+code)
     });
 });
+*/
