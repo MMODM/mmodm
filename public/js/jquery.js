@@ -213,6 +213,9 @@ $(document).ready(function() {
 				if(letter == tracks[i].name){
 					lightObject(i+1,(index+1)%16)
 				}
+				else if(letter == '-' || letter == ' '){
+					offObject(i+1,(index+1)%16)
+				}
 			}
 		})
 		//
@@ -224,7 +227,7 @@ $(document).ready(function() {
 		playSound(samples[$('.' + $(this).text()).index()]);
 	})
 
-	
+
 
 	// Click handlers for effects buttons
 

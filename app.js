@@ -97,6 +97,7 @@ twit.verifyCredentials(function (err, data) {
 
         if (data.text !== undefined) {
             var name = data.user.screen_name;
+            console.log(name);
             var tweet_txt = data.text.split("#");
             var ma = false
             if(tweet_txt[0] != null)
