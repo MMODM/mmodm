@@ -90,16 +90,8 @@ function emitKeys(users,keystrokes){
     }
 }
 
-function simulateTweet(users,tweet){
-    if(users.length >= 0){
-        users.forEach(function(s, i, arr){
-            s.emit('keys', tweet);
-        })
-    }
-}
-
 var watch = ['#MMODM'];
-/*
+
 twit.verifyCredentials(function (err, data) {
     if(err) console.log(err);
 })
@@ -128,4 +120,3 @@ twit.verifyCredentials(function (err, data) {
         console.log("err: "+err+" "+code)
     });
 });
-*/
