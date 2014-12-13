@@ -13,5 +13,12 @@ var UserSchema = new Schema({
     created: {type: Date, default: Date.now}
 });
 
+var TweetSchema = new Schema({
+    handler: String,
+    beat: [],
+    msg: String,
+    created: {type: Date, default: Date.now}
+})
 
 mongoose.model('User',UserSchema);
+mongoose.model('Tweet',TweetSchema);

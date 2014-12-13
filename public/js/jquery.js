@@ -283,8 +283,10 @@ $(document).ready(function() {
 				var right = barWidth/2.0;
 				if (fxpass > 0) {
 					right = barWidth/2.0 + (fxpass / 20)*barWidth;
+					rowFilter('lowpass',right*24)	
 				} else if (fxpass < 0) {
 					left = barWidth/2.0 - (Math.abs(fxpass) / 20)*barWidth;
+					rowFilter('lowpass',left*24)
 				} else {
 					left = barWidth*.4875;
 					right = barWidth*.5125;

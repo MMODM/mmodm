@@ -8,8 +8,6 @@ var TwitterStrategy = require('passport-twitter').Strategy;
 var mode = require('./model');
 var config = require('./config');
 
-User = mongoose.model('User');
-
 var User = mongoose.model('User');
 
 passport.use(new TwitterStrategy({
@@ -45,3 +43,13 @@ passport.deserializeUser(function(uid, done) {
         done(err, user);
     });
 });
+
+var Tweet = mongoose.model('Tweet');
+
+exports.insert = function (tw){
+    var tweet = new Tweet();
+    tweet.handler = tw.handler;
+    tweet.beat = tw.beat;
+    tweet.msg = tw.msg;
+    tweet.save();
+}

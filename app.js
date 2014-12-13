@@ -95,13 +95,12 @@ var watch = ['#MMODM'];
 twit.verifyCredentials(function (err, data) {
     if(err) console.log(err);
 })
-.stream('user', {track:watch}, function(stream) {
+.stream('statuses/filter', {track:watch}, function(stream) {
     console.log("Twitter stream is ready and waiting for inc tweets...");
     stream.on('data', function (data) {
 
         if (data.text !== undefined) {
             var name = data.user.screen_name;
-            console.log(name);
             var tweet_txt = data.text.split("#");
             var ma = false
             if(tweet_txt[0] != null)
@@ -109,7 +108,12 @@ twit.verifyCredentials(function (err, data) {
             if (ma){
                 var m = ma[0].split("");
                 var keystrokes = m.splice(1,m.length-1);
-                    emitKeys(users,keystrokes);
+                emitKeys(users,keystrokes);
+                var tweet = {};
+                tweet.handler = name;
+                tweet.beat = keystrokes;
+                tweet.msg = tweet_txt[0];
+                controller.insert(tweet);
             }
             else
                 console.log("Dump.")
