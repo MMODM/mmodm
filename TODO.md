@@ -15,3 +15,15 @@
 * Figure out death rate
 * Reconsider audio snippets
 * Level audio snippets
+<<<<<<< Updated upstream
+=======
+
+# Tips?
+* XOR Blending
+* MD5 Hash of tweets for sequences from popular hash tags
+* Random-interval stutter
+* Equalizer with tilt?
+
+* Sessions? / Save
+* MIxer you vs everyone?
+>>>>>>> Stashed changes
