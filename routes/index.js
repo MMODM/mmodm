@@ -7,6 +7,11 @@ exports.index = function(req, res){
   res.render('index', { title: 'MMODM', user: req.user });
 };
 
+exports.urlplay = function(req, res){
+    console.log(req.params.keys);
+    res.render('index', { title: 'MMODM', user: req.user, keys: req.params.keys})
+}
+
 exports.logout = function(req, res){
     req.logout();
     res.redirect('/');
@@ -29,4 +34,6 @@ exports.tweet = function(req, res){
         res.send(200);
     }
 );
+
+
 }
