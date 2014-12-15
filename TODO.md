@@ -10,7 +10,7 @@
 * Click on column to lock it in
 * Save states & share
 * Rooms (http://mmodm.co/#whatsup/m3m3k2k2) & share
-* Show Names / visuals for incoming tweets
+* Show visuals for incoming tweets
 
 
 # General
