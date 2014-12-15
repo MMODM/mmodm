@@ -192,8 +192,6 @@ function samplesLoaded(samples){
 		}
 		return 0;
 	});
-	console.log(samples);
-
 }
 
 // Seeding random "data" so that it doesn't look bad while I'm coding
@@ -223,12 +221,15 @@ function startIntro() {
 $(document).ready(function() {
 	turnOnShortcuts();
 	var inputField = $("#simForm input:text");
-	inputField.on('focus', function(e){
-		$(document).unbind('keydown');
-	})
-	$("#simForm").on('submit', function(e){
+	inputField.on('focus',function(e){
+		console.log('ff');
 		e.preventDefault();
+		$(document).unbind('keydown');
+	}).on('focusout', function(e) {
 		turnOnShortcuts();
+	});
+	$('#simForm').on('submit', function(e){
+		e.preventDefault();
 		data = inputField.val().split('');
 		data.forEach(function(letter, index, arr){
 			for(var i=0; i<tracks.length; i++){
@@ -296,7 +297,7 @@ $(document).ready(function() {
 				var right = barWidth/2.0;
 				if (fxpass > 0) {
 					right = barWidth/2.0 + (fxpass / 20)*barWidth;
-					rowFilter('lowpass',right*24)	
+					rowFilter('lowpass',right*24)
 				} else if (fxpass < 0) {
 					left = barWidth/2.0 - (Math.abs(fxpass) / 20)*barWidth;
 					rowFilter('lowpass',left*24)
