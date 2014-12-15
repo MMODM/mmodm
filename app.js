@@ -64,7 +64,7 @@ app.get('/logout', routes.logout);
 app.post('/simulate/tweet', function(req, res){
     console.log(res.body);
 })
-
+app.get('/:keys', routes.urlplay)
 //Middlewear
 function ensureAuthenticated(req, res, next) {
     if (req.isAuthenticated()) { return next(); }
