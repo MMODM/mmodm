@@ -11,6 +11,7 @@
 * Save states & share
 * Rooms (http://mmodm.co/#whatsup/m3m3k2k2) & share
 * Show visuals for incoming tweets
+* Click on notes to generate letter sequence
 
 
 # General
