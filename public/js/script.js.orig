@@ -3,7 +3,7 @@ var context = new AudioContext();
 var samples = [];
 var loader=0;
 
-tracks.forEach(function(track, i, arr){
+tracks.forEach(function(track, i){
 	loadSample(i,'samples/'+track.filename);
 })
 
@@ -93,15 +93,24 @@ function offObject(x, y){
 }
 
 function playKeys(seed) {
+<<<<<<< HEAD
+	seed.forEach(function(letter, index, arr){
+		for(var i=0; i<tracks.length; i++){
+			if(letter == tracks[i].name){
+				lightObject(i+1,(index+1)%16)
+=======
 	$('.stream').append('<ul></ul>');
 	setTimeout(function() {
 		$('.stream ul:first-child').remove();
 	},10000);
 
 	seed.forEach(function(letter, index){
+		var found = false;
 		for(var i=0; i<tracks.length; i++){
 			if(letter === tracks[i].name){
+				found=true;
 				lightObject(i+1,(index+1)%17)
+>>>>>>> 996df6b1f3903512b18536f9deb5eb63b3d38471
 			}
 		}
 	})
