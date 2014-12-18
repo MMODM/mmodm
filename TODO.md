@@ -17,9 +17,6 @@
 
 ##Basheer
 
-# General
-* Write tutorial
-
 # Samples
 * Reconsider note samples
 * Level note samples
