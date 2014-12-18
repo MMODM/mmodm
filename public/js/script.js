@@ -43,9 +43,8 @@ function playSound(buffer,type,freq) {
 		}
 		else
 			source.connect(context.destination);
-
-		source.start(0);
-	}
+			source.start(0);
+		}
 }
 
 function samplesLoaded(samples){
@@ -63,12 +62,20 @@ function samplesLoaded(samples){
 
 // Seeding random "data" so that it doesn't look bad while I'm coding
 function seed() {
+	$('.stream').append('<ul></ul>');
+	setTimeout(function() {
+		$('.stream ul:first-child').remove();
+	},10000)
+
 	for (var i=1; i<27; i++) {
 		for (var j=1; j<17; j++) {
 			if (Math.round((Math.random())) > 0) {
 			if (Math.round((Math.random())) > 0) {
 			if (Math.round((Math.random())) > 0) {
 				$('.sequences ul:not(.locked):nth-child(' + i + ') li:nth-child(' + j + ') span').css({'opacity': 1});
+				if (letters[j]) {
+					$('.stream ul:last-child').append('<li class="' + letters[j] + '"></li>');
+				}
 				// $('.sequences ul:nth-child(' + i + ') li:nth-child(' + j + ') span').css({'opacity': 1}).animate({'opacity': 0.125}, death);
 			}}}
 		}
@@ -88,8 +95,12 @@ function startIntro() {
 
 function lightObject(x, y){
 	$('.sequences ul:not(.locked):nth-child(' + x + ') li:nth-child(' + y + ') span').css({'opacity': 1});
+	if (letters[x]) {
+		$('.stream ul:last-child').append('<li class="' + letters[x] + '"></li>');
+	}
 	// $('.sequences ul:not(.locked):nth-child(' + x + ') li:nth-child(' + y + ') span').css({'opacity': 1}).animate({'opacity': 0.125}, death);
 }
+
 function offObject(x, y){
 	$('.sequences ul:not(.locked):nth-child(' + x + ') li:nth-child(' + y + ') span').css({'opacity': 0.125});
 }
@@ -111,13 +122,11 @@ function playKeys(seed) {
 }
 
 $(document).ready(function() {
-
 	//Get Keys from URL
 	if(document.location.hash != undefined && document.location.hash.length){
 		var introSeed = document.location.hash.split('#')[1].split('');
 		playKeys(introSeed);
 	}
-
 	turnOnShortcuts();
 	var inputField = $("#simForm input:text");
 	inputField.on('focus',function(e){
@@ -128,14 +137,21 @@ $(document).ready(function() {
 	});
 	$('#simForm').on('submit', function(e){
 		e.preventDefault();
+		$('.stream').append('<ul></ul>');
+		setTimeout(function() {
+			$('.stream ul:first-child').remove();
+		},10000)
 		data = inputField.val().split('');
 		playKeys(data);
 		inputField.val('');
 	})
-
 	var socket = io();
 	socket.on('keys', function (data) {
-		playKeys(data)
+		$('.stream').append('<ul></ul>');
+		setTimeout(function() {
+			$('.stream ul:first-child').remove();
+		},10000)
+		playKeys(data);
 	});
 
 	uiEvents();

@@ -80,7 +80,160 @@ body {
 	opacity: .125;
 }
 
-.a {color: #3fa7ff;} .a li:not(:last-child) {box-shadow: 0 0 0 1px rgba(63, 167, 255, .225);} .a li span {background: #3fa7ff;} .a.locked::after {box-shadow: 0 0 0 1px;} .b {color: #3f80ff;} .b li:not(:last-child) {box-shadow: 0 0 0 1px rgba(63, 128, 255, .225);} .b li span {background: #3f80ff;} .b.locked::after {box-shadow: 0 0 0 1px;} .c {color: #3f5aff;} .c li:not(:last-child) {box-shadow: 0 0 0 1px rgba(63, 90, 255, .225);} .c li span {background: #3f5aff;} .c.locked::after {box-shadow: 0 0 0 1px;} .d {color: #4a3fff;} .d li:not(:last-child) {box-shadow: 0 0 0 1px rgba(74, 63, 255, .225);} .d li span {background: #4a3fff;} .d.locked::after {box-shadow: 0 0 0 1px;} .e {color: #703fff;} .e li:not(:last-child) {box-shadow: 0 0 0 1px rgba(112, 63, 255, .225);} .e li span {background: #703fff;} .e.locked::after {box-shadow: 0 0 0 1px;} .f {color: #973fff;} .f li:not(:last-child) {box-shadow: 0 0 0 1px rgba(151, 63, 255, .225);} .f li span {background: #973fff;} .f.locked::after {box-shadow: 0 0 0 1px;} .g {color: #bd3fff;} .g li:not(:last-child) {box-shadow: 0 0 0 1px rgba(189, 63, 255, .225);} .g li span {background: #bd3fff;} .g.locked::after {box-shadow: 0 0 0 1px;} .h {color: #e33fff;} .h li:not(:last-child) {box-shadow: 0 0 0 1px rgba(227, 63, 255, .225);} .h li span {background: #e33fff;} .h.locked::after {box-shadow: 0 0 0 1px;} .i {color: #ff3ff3;} .i li:not(:last-child) {box-shadow: 0 0 0 1px rgba(255, 63, 243, .225);} .i li span {background: #ff3ff3;} .i.locked::after {box-shadow: 0 0 0 1px;} .j {color: #ff3fcd;} .j li:not(:last-child) {box-shadow: 0 0 0 1px rgba(255, 63, 205, .225);} .j li span {background: #ff3fcd;} .j.locked::after {box-shadow: 0 0 0 1px;} .k {color: #ff3fa6;} .k li:not(:last-child) {box-shadow: 0 0 0 1px rgba(255, 63, 166, .225);} .k li span {background: #ff3fa6;} .k.locked::after {box-shadow: 0 0 0 1px;} .l {color: #ff3f80;} .l li:not(:last-child) {box-shadow: 0 0 0 1px rgba(255, 63, 128, .225);} .l li span {background: #ff3f80;} .l.locked::after {box-shadow: 0 0 0 1px;} .m {color: #ff3f5a;} .m li:not(:last-child) {box-shadow: 0 0 0 1px rgba(255, 63, 90, .225);} .m li span {background: #ff3f5a;} .m.locked::after {box-shadow: 0 0 0 1px;} .n {color: #ff4a3f;} .n li:not(:last-child) {box-shadow: 0 0 0 1px rgba(255, 74, 63, .225);} .n li span {background: #ff4a3f;} .n.locked::after {box-shadow: 0 0 0 1px;} .o {color: #ff703f;} .o li:not(:last-child) {box-shadow: 0 0 0 1px rgba(255, 112, 63, .225);} .o li span {background: #ff703f;} .o.locked::after {box-shadow: 0 0 0 1px;} .p {color: #ff973f;} .p li:not(:last-child) {box-shadow: 0 0 0 1px rgba(255, 151, 63, .225);} .p li span {background: #ff973f;} .p.locked::after {box-shadow: 0 0 0 1px;} .q {color: #ffbd3f;} .q li:not(:last-child) {box-shadow: 0 0 0 1px rgba(255, 189, 63, .225);} .q li span {background: #ffbd3f;} .q.locked::after {box-shadow: 0 0 0 1px;} .r {color: #ffe33f;} .r li:not(:last-child) {box-shadow: 0 0 0 1px rgba(255, 227, 63, .225);} .r li span {background: #ffe33f;} .r.locked::after {box-shadow: 0 0 0 1px;} .s {color: #f3ff3f;} .s li:not(:last-child) {box-shadow: 0 0 0 1px rgba(243, 255, 63, .225);} .s li span {background: #f3ff3f;} .s.locked::after {box-shadow: 0 0 0 1px;} .t {color: #cdff3f;} .t li:not(:last-child) {box-shadow: 0 0 0 1px rgba(205, 255, 63, .225);} .t li span {background: #cdff3f;} .t.locked::after {box-shadow: 0 0 0 1px;} .u {color: #a6ff3f;} .u li:not(:last-child) {box-shadow: 0 0 0 1px rgba(166, 255, 63, .225);} .u li span {background: #a6ff3f;} .u.locked::after {box-shadow: 0 0 0 1px;} .v {color: #80ff3f;} .v li:not(:last-child) {box-shadow: 0 0 0 1px rgba(128, 255, 63, .225);} .v li span {background: #80ff3f;} .v.locked::after {box-shadow: 0 0 0 1px;} .w {color: #5aff3f;} .w li:not(:last-child) {box-shadow: 0 0 0 1px rgba(90, 255, 63, .225);} .w li span {background: #5aff3f;} .w.locked::after {box-shadow: 0 0 0 1px;} .x {color: #3fff4a;} .x li:not(:last-child) {box-shadow: 0 0 0 1px rgba(63, 255, 74, .225);} .x li span {background: #3fff4a;} .x.locked::after {box-shadow: 0 0 0 1px;} .y {color: #3fff70;} .y li:not(:last-child) {box-shadow: 0 0 0 1px rgba(63, 255, 112, .225);} .y li span {background: #3fff70;} .y.locked::after {box-shadow: 0 0 0 1px;} .z {color: #3fff97;} .z li:not(:last-child) {box-shadow: 0 0 0 1px rgba(63, 255, 151, .225);} .z li span {background: #3fff97;} .z.locked::after {box-shadow: 0 0 0 1px;}
+.a {color: #3fa7ff;}
+.a li:not(:last-child) {box-shadow: 0 0 0 1px rgba(63, 167, 255, .225);}
+.a li span {background: #3fa7ff;}
+.a.locked::after {box-shadow: 0 0 0 1px;}
+li.a {background: #3fa7ff;}
+
+.b {color: #3f80ff;}
+.b li:not(:last-child) {box-shadow: 0 0 0 1px rgba(63, 128, 255, .225);}
+.b li span {background: #3f80ff;}
+.b.locked::after {box-shadow: 0 0 0 1px;}
+li.b {background: #3f80ff;}
+
+.c {color: #3f5aff;}
+.c li:not(:last-child) {box-shadow: 0 0 0 1px rgba(63, 90, 255, .225);}
+.c li span {background: #3f5aff;}
+.c.locked::after {box-shadow: 0 0 0 1px;}
+li.c. {background: #3f5aff;}
+
+.d {color: #4a3fff;}
+.d li:not(:last-child) {box-shadow: 0 0 0 1px rgba(74, 63, 255, .225);}
+.d li span {background: #4a3fff;}
+.d.locked::after {box-shadow: 0 0 0 1px;}
+li.d. {background: #4a3fff;}
+
+.e {color: #703fff;}
+.e li:not(:last-child) {box-shadow: 0 0 0 1px rgba(112, 63, 255, .225);}
+.e li span {background: #703fff;}
+.e.locked::after {box-shadow: 0 0 0 1px;}
+li.e {background: #703fff;}
+
+.f {color: #973fff;}
+.f li:not(:last-child) {box-shadow: 0 0 0 1px rgba(151, 63, 255, .225);}
+.f li span {background: #973fff;}
+.f.locked::after {box-shadow: 0 0 0 1px;}
+li.f {background: #973fff;}
+
+.g {color: #bd3fff;}
+.g li:not(:last-child) {box-shadow: 0 0 0 1px rgba(189, 63, 255, .225);}
+.g li span {background: #bd3fff;}
+.g.locked::after {box-shadow: 0 0 0 1px;}
+li.g {background: #bd3fff;}
+
+.h {color: #e33fff;}
+.h li:not(:last-child) {box-shadow: 0 0 0 1px rgba(227, 63, 255, .225);}
+.h li span {background: #e33fff;}
+.h.locked::after {box-shadow: 0 0 0 1px;}
+li.h {background: #e33fff;}
+
+.i {color: #ff3ff3;}
+.i li:not(:last-child) {box-shadow: 0 0 0 1px rgba(255, 63, 243, .225);}
+.i li span {background: #ff3ff3;}
+.i.locked::after {box-shadow: 0 0 0 1px;}
+li.i {background: #ff3ff3;}
+
+.j {color: #ff3fcd;}
+.j li:not(:last-child) {box-shadow: 0 0 0 1px rgba(255, 63, 205, .225);}
+.j li span {background: #ff3fcd;}
+.j.locked::after {box-shadow: 0 0 0 1px;}
+li.j {background: #ff3fcd;}
+
+.k {color: #ff3fa6;}
+.k li:not(:last-child) {box-shadow: 0 0 0 1px rgba(255, 63, 166, .225);}
+.k li span {background: #ff3fa6;}
+.k.locked::after {box-shadow: 0 0 0 1px;}
+li.k {background: #ff3fa6;}
+
+.l {color: #ff3f80;}
+.l li:not(:last-child) {box-shadow: 0 0 0 1px rgba(255, 63, 128, .225);}
+.l li span {background: #ff3f80;}
+.l.locked::after {box-shadow: 0 0 0 1px;}
+li.l {background: #ff3f80;}
+
+.m {color: #ff3f5a;}
+.m li:not(:last-child) {box-shadow: 0 0 0 1px rgba(255, 63, 90, .225);}
+.m li span {background: #ff3f5a;}
+.m.locked::after {box-shadow: 0 0 0 1px;}
+li.m {background: #ff3f5a;}
+
+.n {color: #ff4a3f;}
+.n li:not(:last-child) {box-shadow: 0 0 0 1px rgba(255, 74, 63, .225);}
+.n li span {background: #ff4a3f;}
+.n.locked::after {box-shadow: 0 0 0 1px;}
+li.n {background: #ff4a3f;}
+
+.o {color: #ff703f;}
+.o li:not(:last-child) {box-shadow: 0 0 0 1px rgba(255, 112, 63, .225);}
+.o li span {background: #ff703f;}
+.o.locked::after {box-shadow: 0 0 0 1px;}
+li.o {background: #ff703f;}
+
+.p {color: #ff973f;}
+.p li:not(:last-child) {box-shadow: 0 0 0 1px rgba(255, 151, 63, .225);}
+.p li span {background: #ff973f;}
+.p.locked::after {box-shadow: 0 0 0 1px;}
+li.p {background: #ff973f;}
+
+.q {color: #ffbd3f;}
+.q li:not(:last-child) {box-shadow: 0 0 0 1px rgba(255, 189, 63, .225);}
+.q li span {background: #ffbd3f;}
+.q.locked::after {box-shadow: 0 0 0 1px;}
+li.q {background: #ffbd3f;}
+
+.r {color: #ffe33f;}
+.r li:not(:last-child) {box-shadow: 0 0 0 1px rgba(255, 227, 63, .225);}
+.r li span {background: #ffe33f;}
+.r.locked::after {box-shadow: 0 0 0 1px;}
+li.r {background: #ffe33f;}
+
+.s {color: #f3ff3f;}
+.s li:not(:last-child) {box-shadow: 0 0 0 1px rgba(243, 255, 63, .225);}
+.s li span {background: #f3ff3f;}
+.s.locked::after {box-shadow: 0 0 0 1px;}
+li.s {background: #f3ff3f;}
+
+.t {color: #cdff3f;}
+.t li:not(:last-child) {box-shadow: 0 0 0 1px rgba(205, 255, 63, .225);}
+.t li span {background: #cdff3f;}
+.t.locked::after {box-shadow: 0 0 0 1px;}
+li.t {background: #cdff3f;}
+
+.u {color: #a6ff3f;}
+.u li:not(:last-child) {box-shadow: 0 0 0 1px rgba(166, 255, 63, .225);}
+.u li span {background: #a6ff3f;}
+.u.locked::after {box-shadow: 0 0 0 1px;}
+li.u {background: #a6ff3f;}
+
+.v {color: #80ff3f;}
+.v li:not(:last-child) {box-shadow: 0 0 0 1px rgba(128, 255, 63, .225);}
+.v li span {background: #80ff3f;}
+.v.locked::after {box-shadow: 0 0 0 1px;}
+li.v {background: #80ff3f;}
+
+.w {color: #5aff3f;}
+.w li:not(:last-child) {box-shadow: 0 0 0 1px rgba(90, 255, 63, .225);}
+.w li span {background: #5aff3f;}
+.w.locked::after {box-shadow: 0 0 0 1px;}
+li.w {background: #5aff3f;}
+
+.x {color: #3fff4a;}
+.x li:not(:last-child) {box-shadow: 0 0 0 1px rgba(63, 255, 74, .225);}
+.x li span {background: #3fff4a;}
+.x.locked::after {box-shadow: 0 0 0 1px;}
+li.x {background: #3fff4a;}.y {color: #3fff70;}
+
+.y li:not(:last-child) {box-shadow: 0 0 0 1px rgba(63, 255, 112, .225);}
+.y li span {background: #3fff70;}
+.y.locked::after {box-shadow: 0 0 0 1px;}
+li.y {background: #3fff70;}
+
+.z {color: #3fff97;}
+.z li:not(:last-child) {box-shadow: 0 0 0 1px rgba(63, 255, 151, .225);}
+.z li span {background: #3fff97;}
+.z.locked::after {box-shadow: 0 0 0 1px;}
+li.z {background: #3fff97;}
 
 .sequences ul.locked::after {
 	content: "";
@@ -599,4 +752,49 @@ body {
 	-webkit-user-select: text;
 	-moz-user-select: text;
 	user-select: text;
+}
+
+.stream {
+	position: absolute;
+	display: block;
+	width: calc(100% - 8px);
+	height: 2px;
+	top: 4px;
+	left: 4px;
+	z-index: 50;
+	overflow:hidden;
+}
+
+.stream li {
+	display: inline-block;
+	width: 32px;
+	height: 2px;
+	vertical-align: top;
+}
+
+.stream ul {
+	position: absolute;
+	left: 100%;
+	-webkit-animation: shrink 10s ease-out;
+	-moz-animation: shrink 10s ease-out;
+	animation: shrink 10s ease-out;
+	-webkit-animation-fill-mode: forwards;
+	-moz-animation-fill-mode: forwards;
+	animation-fill-mode: forwards;
+}
+
+@-webkit-keyframes shrink {
+    0% { left: 100%; }
+    99% { left: -100%; opacity: 1; }
+    100% { opacity: 0; }
+}
+@-moz-keyframes shrink {
+    0% { left: 100%; }
+    99% { left: -100%; opacity: 1; }
+    100% { opacity: 0; }
+}
+@keyframes shrink {
+    0% { left: 100%; }
+    99% { left: -100%; opacity: 1; }
+    100% { opacity: 0; }
 }

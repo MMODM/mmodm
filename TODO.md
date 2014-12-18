@@ -13,9 +13,6 @@
 
 ##Basheer
 
-# Features
-* Show visuals for incoming tweets
-
 # Samples
 * Reconsider note samples
 * Level note samples

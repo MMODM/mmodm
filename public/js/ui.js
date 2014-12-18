@@ -175,6 +175,7 @@ function uiEvents() {
 			'opacity': 0.125
 		});
 		clearLock();
+		$('.stream').empty();
 	});
 
 	$('.effects .clear').click(function(e) {
@@ -226,6 +227,7 @@ function turnOnShortcuts(){
 				'opacity': 0.125
 			});
 			clearLock();
+			$('.stream').empty();
 		}
 		if (e.keyCode == 27) {
 			// Esc
