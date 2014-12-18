@@ -88,7 +88,6 @@ function lightObject(x, y){
 }
 
 function offObject(x, y){
-	console.log("off: " + x + ", " + y);
 	$('.sequences ul:not(.locked):nth-child(' + x + ') li:nth-child(' + y + ') span').css({'opacity': 0.125});
 }
 
@@ -157,10 +156,11 @@ function pulse(object) {
 		$(this).removeClass('glow').off('webkitAnimationEnd animationend');
 	});
 }
+
 var asciiArt = ['(≧◡≦)','(>‿◠)','(¬‿¬)','(^,^)','(─‿─)','(►.◄)','(◕‿◕)'];
 var asciiTemp = asciiArt;
-function row() {
 
+function row() {
 	for (var i=1; i<27; i++) {
 		var object = $('.sequences ul:nth-child(' + i + ') li:nth-child(' + time + ') span')
 		if (object.css('opacity') > .125) {
