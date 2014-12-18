@@ -431,11 +431,39 @@ body {
 	user-select: text;
 }
 
+.login{
+	background-color:#55ACEE;
+	position: relative;
+	width: auto;
+	height: 46px;
+	line-height: 35px;
+	padding: 0 20px;
+	font-size: 18px;
+	vertical-align: text-bottom;
+	color: #fff;
+	border-radius: 6px;
+	border: 1px solid #fff;
+	box-shadow: 0 0 0 5px #55ACEE;
+	-webkit-transition: .15s opacity ease-in-out;
+	-moz-transition: .15s opacity ease-in-out;
+	transition: .15s opacity ease-in-out;
+}
+
+.login img{
+	height: 30px;
+	margin-top: 8px;
+}
+
+.login p{
+	float: right;
+	font-size: 18px;
+	margin: 5px 0 0 12px
+}
+
 .post {
-	background: #3fa7ff;
+	background: #55ACEE;
 	color: #fff;
 	font-size: 15px;
-	text-shadow: 0 1px 0 rgba(0,0,0,.25);
 	margin: 0;
 	padding: 0;
 	border: none;

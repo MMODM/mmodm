@@ -9,7 +9,7 @@ var passport = require('passport');
 var routes = require('./routes');
 var controller = require('./controller');
 var path = require('path');
-var config = require('./config');
+var config = require('./config')[process.env.ENVAR || 'dev'];
 var twitter = require('ntwitter');
 var fs = require('fs');
 

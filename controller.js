@@ -6,7 +6,7 @@ var mongoose = require('mongoose');
 var passport = require('passport');
 var TwitterStrategy = require('passport-twitter').Strategy;
 var mode = require('./model');
-var config = require('./config');
+var config = require('./config')[process.env.ENVAR || 'dev'];
 
 var User = mongoose.model('User');
 
