@@ -371,7 +371,8 @@ li.z {background: #3fff97;}
 	cursor: pointer;
 }
 
-.button:hover {
+.button:hover,
+.button:hover img {
 	opacity: 1 !important;
 }
 
@@ -380,7 +381,8 @@ li.z {background: #3fff97;}
 	top: 1px;
 }
 
-.button.on {
+.button.on,
+.effects .button.on img {
 	opacity: 1 !important;
 }
 
@@ -408,10 +410,18 @@ li.z {background: #3fff97;}
 }
 
 .save.button {
+	position: relative;
+	padding: 0;
+	height: 30px;
+	width: 30px;
+	margin-right: 20px;
+}
+
+.save.button img {
 	width: 16px;
 	height: 16px;
 	padding: 7px;
-	margin-right: 20px;
+	margin-bottom: 1px;
 }
 
 .room.button {
@@ -478,10 +488,18 @@ li.z {background: #3fff97;}
 }
 
 .restart.button {
+	position: relative;
+	padding: 0;
+	height: 30px;
+	width: 30px;
+	margin-right: 40px;
+}
+
+.restart.button img {
 	height: 12.5px;
 	width: 12.5px;
 	padding: 8.75px;
-	margin-right: 40px;
+	margin-bottom: 1px;
 }
 
 .pauseplay.button {
@@ -502,10 +520,22 @@ li.z {background: #3fff97;}
 }
 
 .stop.button {
+	position: relative;
+	padding: 0;
+	height: 30px;
+	width: 30px;
 	margin-right: 20px;
 }
 
+.stop.button img {
+	height: 10px;
+	width: 10px;
+	padding: 10px;
+	margin-bottom: 1px;
+}
+
 .tempo {
+	position: relative;
 	display: inline-block;
 	margin-right: 40px;
 }
@@ -516,7 +546,8 @@ li.z {background: #3fff97;}
 	margin-right: 0;
 }
 
-.tempo .button.larrow:active, .tempo .button.rarrow:active {
+.tempo .button.larrow:active,
+.tempo .button.rarrow:active {
 	box-shadow: 0 -1px 0 5px #222;
 }
 
@@ -620,7 +651,18 @@ li.z {background: #3fff97;}
 }
 
 .menu .clear {
+	position: relative;
+	padding: 0;
+	height: 30px;
+	width: 30px;
 	margin-right: 0;
+}
+
+.menu .clear img {
+	height: 10px;
+	width: 10px;
+	padding: 10px;
+	margin-bottom: 1px;
 }
 
 .effects {
@@ -629,15 +671,21 @@ li.z {background: #3fff97;}
 }
 
 .effects .button {
+	position: relative;
+	background: #000;
+	border-radius: 25px;
+}
+
+.effects .button img {
 	width: 40px;
 	height: 40px;
-	border-radius: 25px;
 	background: #222;
 	border: 5px solid #222;
+	border-radius: 25px;
 	opacity: .3;
 	-webkit-transition: .15s opacity ease-in-out;
 	-moz-transition: .15s opacity ease-in-out;
-	transition: .15s opacity ease-in-out;
+	transition: .15s opacity ease-in-out;	
 }
 
 .effects .clear {
@@ -733,7 +781,9 @@ li.z {background: #3fff97;}
 	cursor: pointer;
 }
 
-.help, .twitterlink, .github {
+.help,
+.twitterlink,
+.github {
 	position: absolute;
 	top: 35px;
 	right: 35px;
@@ -752,16 +802,21 @@ li.z {background: #3fff97;}
 	transition: background .15s linear, color .15s linear;
 }
 
-.help:hover, .twitterlink:hover, .github:hover {
+.help:hover,
+.twitterlink:hover,
+.github:hover {
 	background: #55ACEE;
 	color: #fff;
 }
 
-.twitterlink:hover img, .github:hover img {
+.twitterlink:hover img,
+.github:hover img {
 	opacity: 1;
 }
 
-.help:active, .twitterlink:active, .github:active {
+.help:active,
+.twitterlink:active,
+.github:active {
 	top: 36px;
 }
 
@@ -842,3 +897,114 @@ li.z {background: #3fff97;}
     99% { left: -100%; opacity: 1; }
     100% { opacity: 0; }
 }
+
+.shade {
+	display: table;
+	position: absolute;
+	top: 0; left: 0;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	background: black;
+	z-index: 9;
+}
+
+.shade p {
+	width: 700px;
+	margin: 330px auto 0 auto;
+	text-align: left;
+	font-size: 24px;
+	line-height: 38px;
+	color: #aaa;
+}
+
+body.helping .help {
+	background: #55ACEE;
+	color: #fff;
+	padding-right: 1px;
+	padding-left: 9px;
+}
+
+body.helping .help img {
+	width: 16px;
+	margin-bottom: 1px;
+}
+
+body.helping .logo,
+body.helping .sequences,
+body.helping .twitter,
+body.helping .github,
+body.helping .twitterlink,
+body.helping .stream {
+	opacity: .2;
+}
+
+body.helping .menu .button,
+body.helping .tempo,
+body.helping .effects .button {
+	z-index: 100;
+}
+
+body.helping .menu .button::after,
+body.helping .tempo::after,
+body.helping .effects .button::after {
+	content: attr(data-helper);
+	position: absolute;
+	display: block;
+	white-space: pre;
+	line-height: 16px;
+	color: #fff;
+	z-index: 101;
+	-webkit-transform: rotate(-45deg);
+	-moz-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+	-webkit-transform-origin: bottom left;
+	-moz-transform-origin: bottom left;
+	transform-origin: bottom left;
+}
+
+body.helping .save.button::after,
+body.helping .room.button::after,
+body.helping .pauseplay.button::after,
+body.helping .stop.button::after,
+body.helping .restart.button::after {
+	top: 38px;
+	left: calc(50% - 8px);
+	-webkit-transform: rotate(45deg);
+	-moz-transform: rotate(45deg);
+	transform: rotate(45deg);
+}
+body.helping .tempo::after {
+	width: 500px;
+	top: 50px;
+	left: calc(50% - 250px);
+	text-align: center;
+	-webkit-transform: none;
+	-moz-transform: none;
+	transform: none;
+}
+body.helping .filters.button::after {
+	width: 500px;
+	top: 48px;
+	left: calc(50% - 250px);
+	text-align: center;
+	-webkit-transform: none;
+	-moz-transform: none;
+	transform: none;
+}
+body.helping .menu .clear::after {
+	top: 46px;
+	left: 0;
+	-webkit-transform: none;
+	-moz-transform: none;
+	transform: none;
+}
+body.helping .effects .clear::after {top: -15px; left: calc(100% + 6px);}
+body.helping .stutter .none::after {top: -15px; left: calc(100% + 6px);}
+body.helping .stutter .full::after {top: -15px; left: calc(100% + 6px);}
+body.helping .stutter .half::after {top: -15px; left: calc(100% + 6px);}
+body.helping .stutter .quarter::after {top: -15px; left: calc(100% + 6px);}
+body.helping .stutter .eighth::after {top: -15px; left: calc(100% + 6px);}
+body.helping .gater .none::after {top: -15px; left: calc(100% + 6px);}
+body.helping .gater .half::after {top: -15px; left: calc(100% + 6px);}
+body.helping .gater .third::after {top: -15px; left: calc(100% + 6px);}

@@ -4,6 +4,26 @@ function uiEvents() {
 
 	$('.tooltip').tooltipster();
 
+	// Click handler for help menu
+
+	$('.help').on('click', function() {
+		$('body').toggleClass('helping');
+		$('body.helping').on('click', function() {
+			$(this).removeClass('helping');
+			$(this).off('click');
+			$('.help').html('?');
+			$('.help').tooltipster('content', 'Help');
+		});
+		if ($('body').hasClass('helping')) {
+			$(this).html('<img src="images/clear-menu.png" alt="X" />');
+			$(this).tooltipster('content', 'Close');
+		} else {
+			$(this).html('?');
+			$(this).tooltipster('content', 'Help');
+		}
+		return false;
+	})
+
 	// Click handler for sound on labels
 
 	$('.label').on('click', function() {
@@ -72,6 +92,7 @@ function uiEvents() {
 		if (tweet === "") {
 			$('.tweet').attr('value', tweet + saveUrl);
 		}
+		return false;
 	})
 
 	// Click handler for opening room
@@ -80,6 +101,7 @@ function uiEvents() {
 		$(this).addClass('opened');
 		$('.roomform').fadeIn();
 		$(this).tooltipster('disable');
+		return false;
 	});
 
 	$('.roomform input:text').on('focus',function(e){
@@ -144,6 +166,7 @@ function uiEvents() {
 			}
 		});
 		changeFxPass(0);
+		return false;
 	});
 
 	$('.pauseplay').click(function(e) {
@@ -152,67 +175,84 @@ function uiEvents() {
 		} else {
 			play();
 		}
+		return false;
 	});
 
 	$('.stop').click(function(e) {
 		stop();
+		return false;
 	});
 
 	$('.restart').click(function(e) {
 		restart();
+		return false;
 	});
 
 	$('.tempo .larrow').click(function(e) {
 		changeTempo(-10);
+		return false;
 	});
 
 	$('.tempo .rarrow').click(function(e) {
 		changeTempo(10);
+		return false;
 	});
 
 	$('.menu .clear').click(function(e) {
-		$('.sequences ul li:not(:last-child) span').css({
-			'opacity': 0.125
-		});
+		for (var i=1; i<27; i++) {
+			for (var j=1; j<17; j++) {
+				offObject(i, j);
+			}
+		}
 		clearLock();
 		$('.stream').empty();
+		return false;
 	});
 
 	$('.effects .clear').click(function(e) {
 		stutter(0);
 		gater(0);
 		clearFxPass();
+		return false;
 	});
 
 	$('.stutter .none').click(function(e) {
 		stutter(0);
+		return false;
 	});
 
 	$('.stutter .full').click(function(e) {
 		stutter(1);
+		return false;
 	});
 
 	$('.stutter .half').click(function(e) {
 		stutter(2);
+		return false;
 	});
 
 	$('.stutter .quarter').click(function(e) {
 		stutter(3);
+		return false;
 	});
 	$('.stutter .eighth').click(function(e) {
 		stutter(4);
+		return false;
 	});
 
 	$('.gater .none').click(function(e) {
 		gater(0);
+		return false;
 	});
 
 	$('.gater .half').click(function(e) {
 		gater(1);
+		return false;
 	});
 
 	$('.gater .third').click(function(e) {
 		gater(2);
+		return false;
 	});
 }
 
@@ -223,9 +263,11 @@ function turnOnShortcuts(){
 		if (e.keyCode == 46 || e.keyCode == 8) {
 			// Backspace / Delete
 			e.preventDefault();
-			$('.sequences ul li:not(:last-child) span').css({
-				'opacity': 0.125
-			});
+			for (var i=1; i<27; i++) {
+				for (var j=1; j<17; j++) {
+					offObject(i, j);
+				}
+			}
 			clearLock();
 			$('.stream').empty();
 		}

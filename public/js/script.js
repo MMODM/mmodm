@@ -94,7 +94,7 @@ function fadeObject(object, opacity){
 }
 
 function offObject(x, y){
-	$('.sequences ul:not(.locked):nth-child(' + x + ') li:nth-child(' + y + ') span').css({'opacity': 0.125});
+	$('.sequences ul:not(.locked):nth-child(' + x + ') li:nth-child(' + y + ') span').css({'opacity': 0.125}).attr('data-life', 0);
 }
 
 function playKeys(seed) {
@@ -181,7 +181,6 @@ function pulse(object) {
 	var objectLife = object.attr('data-life');
 	if (objectLife <= 1) {
 			objectLife = 0;
-			object.attr('data-life', objectLife);
 			offObject(object.parent().parent().index()+1, object.parent().index()+1);
 	} else if (objectLife > 0) {
 		objectLife--;
@@ -192,18 +191,19 @@ function pulse(object) {
 	}
 }
 
-var asciiArt = ['(≧◡≦)','(>‿◠)','(¬‿¬)','(^,^)','(─‿─)','(►.◄)','(◕‿◕)'];
-var cu = 0;
+// var asciiArt = ['(≧◡≦)','(>‿◠)','(¬‿¬)','(^,^)','(─‿─)','(►.◄)','(◕‿◕)'];
+// var asciiTemp = asciiArt;
+// var cu = 0;
 
 function row() {
 	for (var i=1; i<27; i++) {
 		var object = $('.sequences ul:nth-child(' + i + ') li:nth-child(' + time + ') span');
 		if (object.attr('data-life') > 0) {
 			pulse(object);
-			/*if(tracks[i-1].name=='o'){
-				document.location.hash=asciiArt[cu%(asciiArt.length-1)]
-				cu++;
-			}*/
+			// if(tracks[i-1].name=='o'){
+			// 	document.location.hash=asciiArt[cu%(asciiArt.length-1)]
+			// 	cu++;
+			// }
 			playSound(samples[i-1],false,false);
 		}
 	}

@@ -7,8 +7,9 @@ block content
     .container
         img.logo(src="images/logo.png", alt="MMODM")
         .menu
-            img.save.tooltip.button(src="images/save.png", alt="Save & Share", title="Save & Share")
-            .room.tooltip.button.closed(title="Create Room")
+            .save.tooltip.button(title="Save & Share", data-helper="Save & Share")
+                img(src="images/save.png", alt="Save & Share")
+            .room.tooltip.button.closed(title="Create Room", data-helper="Create Room")
                 img(src="images/room.png", alt="Create Room")
                 form(action="#", id="roomform", class="roomform")
                     p
@@ -16,16 +17,18 @@ block content
                         span="#"
                     input(type="text", placeholder="ex: #medialab")
                     input(type="submit", value="go")
-            .pauseplay.tooltip.button(title="Pause")
+            .pauseplay.tooltip.button(title="Pause", data-helper="Pause / Play")
                 img.play.off(src="images/play.png", alt="Play")
                 img.pause(src="images/pause.png", alt="Pause")
-            img.stop.tooltip.button(src="images/stop.png", alt="Stop", title="Stop")
-            img.restart.tooltip.button(src="images/restart.png", alt="Restart", title="Restart Loop")
-            .tempo
+            .stop.tooltip.button(title="Stop", data-helper="Stop")
+                img(src="images/stop.png", alt="Stop")
+            .restart.tooltip.button(title="Restart Loop", data-helper="Restart Loop")
+                img(src="images/restart.png", alt="Restart")
+            .tempo(data-helper="Change Tempo")
                 img.larrow.tooltip.button(src="images/larrow.png", alt="<", title="Decrease Tempo")
                 .text=120
                 img.rarrow.tooltip.button(src="images/rarrow.png", alt=">", title="Increase Tempo")
-            .filters.tooltip.button(title="Enable Filter Slider")
+            .filters.tooltip.button(title="Enable Filter Slider", data-helper="Low & High Pass Filters")
                 img.lowpass(src="images/filter.png")
                 p low / high pass
                 .slider
@@ -33,7 +36,8 @@ block content
                     span="| "
                     span="• • • • • • • • • •"
                     .bar
-            img.clear.tooltip.button(src="images/clear-menu.png", alt="Clear Sequence", title="Clear Sequence")
+            .clear.tooltip.button(title="Clear Sequence", data-helper="Clear Sequence")
+                img(src="images/clear-menu.png", alt="Clear Sequence")
         .sequences
             mixin drumLine('a')
             mixin drumLine('b')
@@ -62,17 +66,26 @@ block content
             mixin drumLine('y')
             mixin drumLine('z')
         .effects
-            img.clear.tooltip.button.on(src="images/clear-effects.png", alt="Clear Effects", title="Clear Effects")
+            .clear.tooltip.button.on(title="Clear Effects", data-helper="Clear Effects")
+                img(src="images/clear-effects.png", alt="Clear Effects")
             .stutter
-                img.none.tooltip.button.on(src="images/stutter-none.png", alt="No Stutter", title="No Stutter")
-                img.full.tooltip.button(src="images/stutter-full.png", alt="1 Stutter", title="1 Stutter")
-                img.half.tooltip.button(src="images/stutter-half.png", alt="1/2 Stutter", title="1/2 Stutter")
-                img.quarter.tooltip.button(src="images/stutter-quarter.png", alt="1/4 Stutter", title="1/4 Stutter")
-                img.eighth.tooltip.button(src="images/stutter-eighth.png", alt="1/8 Stutter", title="1/8 Stutter")
+                .none.tooltip.button.on(title="No Stutter", data-helper="No Stutter")
+                    img(src="images/stutter-none.png", alt="No Stutter")
+                .full.tooltip.button(title="1 Stutter", data-helper="1 Stutter")
+                    img(src="images/stutter-full.png", alt="1 Stutter")
+                .half.tooltip.button(title="1/2 Stutter", data-helper="1/2 Stutter")
+                    img(src="images/stutter-half.png", alt="1/2 Stutter")
+                .quarter.tooltip.button(title="1/4 Stutter", data-helper="1/4 Stutter")
+                    img(src="images/stutter-quarter.png", alt="1/4 Stutter")
+                .eighth.tooltip.button(title="1/8 Stutter", data-helper="1/8 Stutter")
+                    img(src="images/stutter-eighth.png", alt="1/8 Stutter")
             .gater
-                img.none.tooltip.button.on(src="images/gater-none.png", alt="No Gater", title="No Gater")
-                img.half.tooltip.button(src="images/gater-half.png", alt="1:1 Gater", title="1:1 Gater")
-                img.third.tooltip.button(src="images/gater-third.png", alt="2:1 Gater", title="2:1 Gater")
+                .none.tooltip.button.on(title="No Gater", data-helper="No Gater")
+                    img(src="images/gater-none.png", alt="No Gater")
+                .half.tooltip.button(title="1:1 Gater", data-helper="1:1 Gater")
+                    img(src="images/gater-half.png", alt="1:1 Gater")
+                .third.tooltip.button(title="2:1 Gater", data-helper="2:1 Gater")
+                    img(src="images/gater-third.png", alt="2:1 Gater")
         mixin tweetForm('images/basheer.jpg','Basheer')
     .help.tooltip(title="Help") ?
     a.github.tooltip(href="https://github.com/MMODM/mmodm/", target="_blank", title="Our Github")
@@ -80,3 +93,5 @@ block content
     a.twitterlink.tooltip(href="https://twitter.com/playmmodm", target="_blank", title="Our Twitter")
         img(src="images/twitter_logo.png")
     .stream
+    .shade
+        p= "MMODM is a Massive Multiplayer Online Drum Machine powered by the Twitter streaming API! Use the buttons above to modify and adjust the sequence. The buttons below modify the effects. You can also create your own room with a second hashtag to jam with just your friends."
