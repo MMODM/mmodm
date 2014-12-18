@@ -66,7 +66,8 @@ function seed() {
 			if (Math.round((Math.random())) > 0) {
 			if (Math.round((Math.random())) > 0) {
 			if (Math.round((Math.random())) > 0) {
-				$('.sequences ul:nth-child(' + i + ') li:nth-child(' + j + ')').css({'opacity': 1}).animate({'opacity': 0.125}, death);
+				$('.sequences ul:not(.locked):nth-child(' + i + ') li:nth-child(' + j + ') span').css({'opacity': 1});
+				// $('.sequences ul:nth-child(' + i + ') li:nth-child(' + j + ') span').css({'opacity': 1}).animate({'opacity': 0.125}, death);
 			}}}
 		}
 	}
@@ -77,7 +78,7 @@ function startIntro() {
 		for (var i=0; i<16; i++) {
 			for (var j=0; j<26; j++) {
 				var l = j + k;
-				$('.sequences ul:nth-child(' + (j+1) + ') li:nth-child(' + (i+1) + ')').delay(0).animate({'opacity': intro[i][l]}, 0);
+				$('.sequences ul:not(.locked):nth-child(' + (j+1) + ') li:nth-child(' + (i+1) + ') span').delay(0).animate({'opacity': intro[i][l]}, 0);
 			}
 		}
 	}
@@ -87,7 +88,6 @@ $(document).ready(function() {
 	turnOnShortcuts();
 	var inputField = $("#simForm input:text");
 	inputField.on('focus',function(e){
-		console.log('ff');
 		e.preventDefault();
 		$(document).unbind('keydown');
 	}).on('focusout', function(e) {
@@ -109,10 +109,11 @@ $(document).ready(function() {
 		inputField.val('');
 	})
 	function lightObject(x, y){
-		$('.sequences ul:nth-child(' + x + ') li:nth-child(' + y + ')').css({'opacity': 1}).animate({'opacity': 0.125}, death);
+		$('.sequences ul:not(.locked):nth-child(' + x + ') li:nth-child(' + y + ') span').css({'opacity': 1});
+		// $('.sequences ul:not(.locked):nth-child(' + x + ') li:nth-child(' + y + ') span').css({'opacity': 1}).animate({'opacity': 0.125}, death);
 	}
 	function offObject(x, y){
-		$('.sequences ul:nth-child(' + x + ') li:nth-child(' + y + ')').css({'opacity': 0.125});
+		$('.sequences ul:not(.locked):nth-child(' + x + ') li:nth-child(' + y + ') span').css({'opacity': 0.125});
 	}
 	var socket = io();
 	socket.on('keys', function (data) {
@@ -157,7 +158,7 @@ function pulse(object) {
 
 function row() {
 	for (var i=1; i<27; i++) {
-		var object = $('.sequences ul:nth-child(' + i + ') li:nth-child(' + time + ')')
+		var object = $('.sequences ul:nth-child(' + i + ') li:nth-child(' + time + ') span')
 		if (object.css('opacity') > .125) {
 			pulse(object);
 			playSound(samples[i-1],false,false);
@@ -167,7 +168,7 @@ function row() {
 
 function rowFilter(type, freq){
 	for (var i=1; i<27; i++) {
-		var object = $('.sequences ul:nth-child(' + i + ') li:nth-child(' + time + ')')
+		var object = $('.sequences ul:nth-child(' + i + ') li:nth-child(' + time + ') span')
 		if (object.css('opacity') > .125) {
 			pulse(object);
 			playSound(samples[i-1],type,freq)
@@ -264,7 +265,7 @@ function play(newTempo) {
 	if (tempo > 0) {
 		if (state == 'paused') {
 			for (var i=1; i<27; i++) {
-				$('.sequences ul:nth-child(' + i + ') li:nth-child(' + time + ')').removeClass('paused');
+				$('.sequences ul:nth-child(' + i + ') li:nth-child(' + time + ') span').removeClass('paused');
 			}
 			if (time > 15) {
 				time = 1;
@@ -276,6 +277,7 @@ function play(newTempo) {
 		}
 		$('.off').removeClass('off');
 		$('.play').addClass('off');
+		$('.pauseplay').tooltipster('content', 'Pause');
 		mainLoop = setInterval(function() {
 			beat();
 			if (stutter() > 0) {
@@ -305,10 +307,11 @@ function pause() {
 	if (state == 'playing') {
 		clearInterval(mainLoop);
 		for (var i=1; i<27; i++) {
-			$('.sequences ul:nth-child(' + i + ') li:nth-child(' + time + ')').addClass('paused');
+			$('.sequences ul:nth-child(' + i + ') li:nth-child(' + time + ') span').addClass('paused');
 		}
 		$('.off').removeClass('off');
 		$('.pause').addClass('off');
+		$('.pauseplay').tooltipster('content', 'Play');
 		state = 'paused';
 	}
 }
@@ -321,6 +324,7 @@ function stop() {
 	$('.paused').removeClass('paused');
 	$('.off').removeClass('off');
 	$('.pause').addClass('off');
+	$('.pauseplay').tooltipster('content', 'Play');
 	state = 'stopped';
 }
 
@@ -328,6 +332,7 @@ function restart() {
 	$('.paused').removeClass('paused');
 	$('.off').removeClass('off');
 	$('.pause').addClass('off');
+	$('.pauseplay').tooltipster('content', 'Play');
 	time = 1;
 	gcounter = 0;
 	stutter(0);
@@ -373,6 +378,23 @@ function changeFxPass(change) {
 
 	$('.slider .bar').css({
 		'clip': 'rect(0px,' + right + 'px,' + $(this).height() + 'px,' + left + 'px)'
+	});
+}
+
+function clearFxPass() {
+	fxpass = 0;
+	changeFxPass(0);
+}
+
+function lockColumn(index) {
+	$('.sequences ul:nth-child(' + (index+1) + ')').toggleClass('locked');
+	lock[index] ^= 1;
+}
+
+function clearLock() {
+	$('.sequences ul').removeClass('locked');
+	$.each(lock, function(index, value) {
+		lock[index] = 0;
 	});
 }
 

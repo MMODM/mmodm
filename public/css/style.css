@@ -33,7 +33,7 @@ body {
 	position: relative;
 	z-index: 10;
 	text-align: center;
-	padding-top: 50px;
+	padding-top: 30px;
 }
 
 .logo {
@@ -45,18 +45,20 @@ body {
 .sequences {
 	position: relative;
 	width: 750px;
-	margin: 30px auto 0 auto;
+	margin: 10px auto 0 auto;
 	background: #000;
 	padding: 20px 0px 0px 5px;
 }
 
 .sequences ul {
+	position: relative;
 	display: inline-block;
 	margin-right: 20px;
+	cursor: pointer;
 }
 
 .sequences ul:first-child {
-	padding-left: 20px;
+	margin-left: 20px;
 }
 
 .sequences li {
@@ -66,13 +68,30 @@ body {
 	height: 8px;
 	margin-bottom: 20px;
 	z-index: 5;
-	opacity: .125;
 	-webkit-transition: -webkit-transform .05s linear;
 	-moz-transition: -moz-transform .05s linear;
 	transition: transform .05s linear;
 }
 
-.a li {background: #3fa7ff; color: #3fa7ff;} .b li {background: #3f80ff; color: #3f80ff;} .c li {background: #3f5aff; color: #3f5aff;} .d li {background: #4a3fff; color: #4a3fff;} .e li {background: #703fff; color: #703fff;} .f li {background: #973fff; color: #973fff;} .g li {background: #bd3fff; color: #bd3fff;} .h li {background: #e33fff; color: #e33fff;} .i li {background: #ff3ff3; color: #ff3ff3;} .j li {background: #ff3fcd; color: #ff3fcd;} .k li {background: #ff3fa6; color: #ff3fa6;} .l li {background: #ff3f80; color: #ff3f80;} .m li {background: #ff3f5a; color: #ff3f5a;} .n li {background: #ff4a3f; color: #ff4a3f;} .o li {background: #ff703f; color: #ff703f;} .p li {background: #ff973f; color: #ff973f;} .q li {background: #ffbd3f; color: #ffbd3f;} .r li {background: #ffe33f; color: #ffe33f;} .s li {background: #f3ff3f; color: #f3ff3f;} .t li {background: #cdff3f; color: #cdff3f;} .u li {background: #a6ff3f; color: #a6ff3f;} .v li {background: #80ff3f; color: #80ff3f;} .w li {background: #5aff3f; color: #5aff3f;} .x li {background: #3fff4a; color: #3fff4a;} .y li {background: #3fff70; color: #3fff70;} .z li {background: #3fff97; color: #3fff97;}
+.sequences li span {
+	position: absolute;
+	top: 0; left: 0;
+	width: 100%; height: 100%;
+	opacity: .125;
+}
+
+.a {color: #3fa7ff;} .a li:not(:last-child) {box-shadow: 0 0 0 1px rgba(63, 167, 255, .225);} .a li span {background: #3fa7ff;} .a.locked::after {box-shadow: 0 0 0 1px;} .b {color: #3f80ff;} .b li:not(:last-child) {box-shadow: 0 0 0 1px rgba(63, 128, 255, .225);} .b li span {background: #3f80ff;} .b.locked::after {box-shadow: 0 0 0 1px;} .c {color: #3f5aff;} .c li:not(:last-child) {box-shadow: 0 0 0 1px rgba(63, 90, 255, .225);} .c li span {background: #3f5aff;} .c.locked::after {box-shadow: 0 0 0 1px;} .d {color: #4a3fff;} .d li:not(:last-child) {box-shadow: 0 0 0 1px rgba(74, 63, 255, .225);} .d li span {background: #4a3fff;} .d.locked::after {box-shadow: 0 0 0 1px;} .e {color: #703fff;} .e li:not(:last-child) {box-shadow: 0 0 0 1px rgba(112, 63, 255, .225);} .e li span {background: #703fff;} .e.locked::after {box-shadow: 0 0 0 1px;} .f {color: #973fff;} .f li:not(:last-child) {box-shadow: 0 0 0 1px rgba(151, 63, 255, .225);} .f li span {background: #973fff;} .f.locked::after {box-shadow: 0 0 0 1px;} .g {color: #bd3fff;} .g li:not(:last-child) {box-shadow: 0 0 0 1px rgba(189, 63, 255, .225);} .g li span {background: #bd3fff;} .g.locked::after {box-shadow: 0 0 0 1px;} .h {color: #e33fff;} .h li:not(:last-child) {box-shadow: 0 0 0 1px rgba(227, 63, 255, .225);} .h li span {background: #e33fff;} .h.locked::after {box-shadow: 0 0 0 1px;} .i {color: #ff3ff3;} .i li:not(:last-child) {box-shadow: 0 0 0 1px rgba(255, 63, 243, .225);} .i li span {background: #ff3ff3;} .i.locked::after {box-shadow: 0 0 0 1px;} .j {color: #ff3fcd;} .j li:not(:last-child) {box-shadow: 0 0 0 1px rgba(255, 63, 205, .225);} .j li span {background: #ff3fcd;} .j.locked::after {box-shadow: 0 0 0 1px;} .k {color: #ff3fa6;} .k li:not(:last-child) {box-shadow: 0 0 0 1px rgba(255, 63, 166, .225);} .k li span {background: #ff3fa6;} .k.locked::after {box-shadow: 0 0 0 1px;} .l {color: #ff3f80;} .l li:not(:last-child) {box-shadow: 0 0 0 1px rgba(255, 63, 128, .225);} .l li span {background: #ff3f80;} .l.locked::after {box-shadow: 0 0 0 1px;} .m {color: #ff3f5a;} .m li:not(:last-child) {box-shadow: 0 0 0 1px rgba(255, 63, 90, .225);} .m li span {background: #ff3f5a;} .m.locked::after {box-shadow: 0 0 0 1px;} .n {color: #ff4a3f;} .n li:not(:last-child) {box-shadow: 0 0 0 1px rgba(255, 74, 63, .225);} .n li span {background: #ff4a3f;} .n.locked::after {box-shadow: 0 0 0 1px;} .o {color: #ff703f;} .o li:not(:last-child) {box-shadow: 0 0 0 1px rgba(255, 112, 63, .225);} .o li span {background: #ff703f;} .o.locked::after {box-shadow: 0 0 0 1px;} .p {color: #ff973f;} .p li:not(:last-child) {box-shadow: 0 0 0 1px rgba(255, 151, 63, .225);} .p li span {background: #ff973f;} .p.locked::after {box-shadow: 0 0 0 1px;} .q {color: #ffbd3f;} .q li:not(:last-child) {box-shadow: 0 0 0 1px rgba(255, 189, 63, .225);} .q li span {background: #ffbd3f;} .q.locked::after {box-shadow: 0 0 0 1px;} .r {color: #ffe33f;} .r li:not(:last-child) {box-shadow: 0 0 0 1px rgba(255, 227, 63, .225);} .r li span {background: #ffe33f;} .r.locked::after {box-shadow: 0 0 0 1px;} .s {color: #f3ff3f;} .s li:not(:last-child) {box-shadow: 0 0 0 1px rgba(243, 255, 63, .225);} .s li span {background: #f3ff3f;} .s.locked::after {box-shadow: 0 0 0 1px;} .t {color: #cdff3f;} .t li:not(:last-child) {box-shadow: 0 0 0 1px rgba(205, 255, 63, .225);} .t li span {background: #cdff3f;} .t.locked::after {box-shadow: 0 0 0 1px;} .u {color: #a6ff3f;} .u li:not(:last-child) {box-shadow: 0 0 0 1px rgba(166, 255, 63, .225);} .u li span {background: #a6ff3f;} .u.locked::after {box-shadow: 0 0 0 1px;} .v {color: #80ff3f;} .v li:not(:last-child) {box-shadow: 0 0 0 1px rgba(128, 255, 63, .225);} .v li span {background: #80ff3f;} .v.locked::after {box-shadow: 0 0 0 1px;} .w {color: #5aff3f;} .w li:not(:last-child) {box-shadow: 0 0 0 1px rgba(90, 255, 63, .225);} .w li span {background: #5aff3f;} .w.locked::after {box-shadow: 0 0 0 1px;} .x {color: #3fff4a;} .x li:not(:last-child) {box-shadow: 0 0 0 1px rgba(63, 255, 74, .225);} .x li span {background: #3fff4a;} .x.locked::after {box-shadow: 0 0 0 1px;} .y {color: #3fff70;} .y li:not(:last-child) {box-shadow: 0 0 0 1px rgba(63, 255, 112, .225);} .y li span {background: #3fff70;} .y.locked::after {box-shadow: 0 0 0 1px;} .z {color: #3fff97;} .z li:not(:last-child) {box-shadow: 0 0 0 1px rgba(63, 255, 151, .225);} .z li span {background: #3fff97;} .z.locked::after {box-shadow: 0 0 0 1px;}
+
+.sequences ul.locked::after {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 1px; left: 4px;
+	width: 0px; height: 426px;
+	-webkit-animation: slide .2s linear;
+	-moz-animation: slide .2s linear;
+	animation: slide .2s linear;
+}
 
 .sequences li.label {
 	background: none;
@@ -171,6 +190,22 @@ body {
     100% { opacity: .25; }
 }
 
+@-webkit-keyframes slide {
+    0% { opacity: .25; height: 0px; }
+    50% { opacity: 1; }
+    100% { opacity: .25; height: 426px; }
+}
+@-moz-keyframes slide {
+    0% { opacity: .25; height: 0px; }
+    50% { opacity: 1; }
+    100% { opacity: .25; height: 426px; }
+}
+@keyframes slide {
+    0% { opacity: .25; height: 0px; }
+    50% { opacity: 1; }
+    100% { opacity: .25; height: 426px; }
+}
+
 .paused {
 	-webkit-transform: scale(1.5);
 	-moz-transform: scale(1.5);
@@ -201,7 +236,7 @@ body {
 
 .menu {
 	width: 710px;
-	margin: 10px auto 5px auto;
+	margin: 30px auto 5px auto;
 }
 
 .menu .button {
@@ -218,11 +253,81 @@ body {
 	transition: .15s opacity ease-in-out;
 }
 
+.save.button {
+	width: 16px;
+	height: 16px;
+	padding: 7px;
+	margin-right: 20px;
+}
+
+.room.button {
+	position: relative;
+	padding: 0;
+	height: 30px;
+	width: 30px;
+}
+
+.room.button.opened:active {
+	top: 0;
+}
+
+.room.button img {
+	width: 16px;
+	height: 16px;
+	padding: 7px;
+	margin-bottom: 1px;
+}
+
+.roomform {
+	display: none;
+	position: absolute;
+	bottom: 50px; left: 0;
+	width: 277px;
+	padding: 10px 14px;
+	text-align: left;
+	background: #fff;
+	z-index: 15;
+	border-radius: 6px;
+	border: 0;
+	box-shadow: 0 0 10px 1px #000;
+}
+
+.roomform p {
+	margin-right: 10px;
+}
+
+.roomform p, .roomform input {
+	display: inline-block;
+}
+
+.roomform input:first-of-type {
+	background: #fff;
+	color: #333;
+	padding: 5px;
+	border: 1px solid rgba(0,0,0,.2);
+	margin-right: 10px;
+}
+
+.roomform input:last-child {
+	padding: 6px 7px;
+	border: 0;
+	background: #3fa7ff;
+	color: #fff;
+	border-top-right-radius: 2px;
+	border-bottom-right-radius: 2px;
+	cursor: pointer;
+}
+
+.roomform input:last-child:active {
+	position: relative;
+	top: 1px;
+}
+
 .restart.button {
 	height: 12.5px;
 	width: 12.5px;
 	padding: 8.75px;
-	margin-right: 66px;
+	margin-right: 40px;
 }
 
 .pauseplay.button {
@@ -230,7 +335,7 @@ body {
 	padding: 0;
 	height: 30px;
 	width: 30px;
-	margin-right: 25px;
+	margin-right: 20px;
 }
 
 .pauseplay img {
@@ -243,12 +348,12 @@ body {
 }
 
 .stop.button {
-	margin-right: 25px;
+	margin-right: 20px;
 }
 
 .tempo {
 	display: inline-block;
-	margin-right: 66px;
+	margin-right: 40px;
 }
 
 .tempo .larrow, .tempo .rarrow {
@@ -288,7 +393,7 @@ body {
 	height: 35px;
 	line-height: 35px;
 	padding: 0 20px;
-	margin-right: 67px;
+	margin-right: 40px;
 	font-size: 15px;
 	vertical-align: text-bottom;
 	color: #fff;
@@ -487,4 +592,10 @@ body {
 	text-shadow: 0 2px 0 rgba(0,0,0,.5);
 	z-index: 11;
 	cursor: pointer;
+}
+
+.tooltipster-content {
+	-webkit-user-select: text;
+	-moz-user-select: text;
+	user-select: text;	
 }
