@@ -3,7 +3,7 @@ var context = new AudioContext();
 var samples = [];
 var loader=0;
 
-tracks.forEach(function(track, i, arr){
+tracks.forEach(function(track, i){
 	loadSample(i,'samples/'+track.filename);
 })
 
@@ -48,7 +48,6 @@ function playSound(buffer,type,freq) {
 }
 
 function samplesLoaded(samples){
-
 	samples.sort(function (a, b) {
 		if (a.id < b.id) {
 			return -1;
@@ -62,23 +61,12 @@ function samplesLoaded(samples){
 
 // Seeding random "data" so that it doesn't look bad while I'm coding
 function seed() {
-	$('.stream').append('<ul></ul>');
-	setTimeout(function() {
-		$('.stream ul:first-child').remove();
-	},10000)
-
-	for (var i=1; i<27; i++) {
-		for (var j=1; j<17; j++) {
-			if (Math.round((Math.random())) > 0) {
-			if (Math.round((Math.random())) > 0) {
-			if (Math.round((Math.random())) > 0) {
-				$('.sequences ul:not(.locked):nth-child(' + i + ') li:nth-child(' + j + ') span').css({'opacity': 1});
-				if (letters[j]) {
-					$('.stream ul:last-child').append('<li class="' + letters[j] + '"></li>');
-				}
-				// $('.sequences ul:nth-child(' + i + ') li:nth-child(' + j + ') span').css({'opacity': 1}).animate({'opacity': 0.125}, death);
-			}}}
+	for (var tweets=1; tweets<3; tweets++) {
+		var seedArray = [];
+		for (var i=0; i<26; i++) {
+			seedArray.push(letters[Math.floor(Math.random() * (27))]);
 		}
+		playKeys(seedArray);
 	}
 }
 
@@ -95,27 +83,27 @@ function startIntro() {
 
 function lightObject(x, y){
 	$('.sequences ul:not(.locked):nth-child(' + x + ') li:nth-child(' + y + ') span').css({'opacity': 1});
-	if (letters[x]) {
-		$('.stream ul:last-child').append('<li class="' + letters[x] + '"></li>');
-	}
-	// $('.sequences ul:not(.locked):nth-child(' + x + ') li:nth-child(' + y + ') span').css({'opacity': 1}).animate({'opacity': 0.125}, death);
+	// .animate({'opacity': 0.125}, death);
+	$('.stream ul:last-child').append('<li class="' + letters[x] + '"></li>');
 }
 
 function offObject(x, y){
+	console.log("off: " + x + ", " + y);
 	$('.sequences ul:not(.locked):nth-child(' + x + ') li:nth-child(' + y + ') span').css({'opacity': 0.125});
 }
 
 function playKeys(seed) {
-	seed.forEach(function(letter, index, arr){
+	$('.stream').append('<ul></ul>');
+	setTimeout(function() {
+		$('.stream ul:first-child').remove();
+	},10000);
+
+	seed.forEach(function(letter, index){
 		var found = false;
 		for(var i=0; i<tracks.length; i++){
-			if(letter == tracks[i].name){
+			if(letter === tracks[i].name){
 				found=true;
-				lightObject(i+1,(index+1)%16)
-			}
-			if(found && letter == '-' || found && letter == ' '){
-				console.log(index)
-				offObject(i+1,(index+1)%16)
+				lightObject(i+1,(index+1)%17)
 			}
 		}
 	})
@@ -137,20 +125,12 @@ $(document).ready(function() {
 	});
 	$('#simForm').on('submit', function(e){
 		e.preventDefault();
-		$('.stream').append('<ul></ul>');
-		setTimeout(function() {
-			$('.stream ul:first-child').remove();
-		},10000)
 		data = inputField.val().split('');
 		playKeys(data);
 		inputField.val('');
 	})
 	var socket = io();
 	socket.on('keys', function (data) {
-		$('.stream').append('<ul></ul>');
-		setTimeout(function() {
-			$('.stream ul:first-child').remove();
-		},10000)
 		playKeys(data);
 	});
 
