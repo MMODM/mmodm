@@ -134,7 +134,7 @@ $(document).ready(function() {
 	//Get Keys from URL
 	if(document.location.hash != undefined && document.location.hash.length){
 		var introSeed = document.location.hash.split('#')[1].split('');
-		document.location.hash='>.<#'
+		document.location.hash='>.<#oc.mdomm'
 		playKeys(introSeed);
 	}
 	turnOnShortcuts();
@@ -193,21 +193,17 @@ function pulse(object) {
 }
 
 var asciiArt = ['(≧◡≦)','(>‿◠)','(¬‿¬)','(^,^)','(─‿─)','(►.◄)','(◕‿◕)'];
-var asciiTemp = asciiArt;
+var cu = 0;
 
 function row() {
 	for (var i=1; i<27; i++) {
 		var object = $('.sequences ul:nth-child(' + i + ') li:nth-child(' + time + ') span');
 		if (object.attr('data-life') > 0) {
 			pulse(object);
-			if(tracks[i-1].name=='o'){
-				if(asciiTemp.length >= 1){
-					document.location.hash=asciiTemp[asciiTemp.length-1]
-					asciiTemp.pop()
-				}
-				else
-					asciiTemp = ['(≧◡≦)','(>‿◠)','(¬‿¬)','(^,^)','(─‿─)','(►.◄)','(◕‿◕)'];
-			}
+			/*if(tracks[i-1].name=='o'){
+				document.location.hash=asciiArt[cu%(asciiArt.length-1)]
+				cu++;
+			}*/
 			playSound(samples[i-1],false,false);
 		}
 	}
