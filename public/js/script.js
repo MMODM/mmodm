@@ -31,19 +31,21 @@ function incLoader(loader){
 
 function playSound(buffer,type,freq) {
 	var source = context.createBufferSource();
-	source.buffer = buffer;
-	if(type){
-		var filter = context.createBiquadFilter();
-		filter.type = type;
-		filter.frequency.value = freq;
-		source.connect(filter);
-		filter.connect(context.destination);
-		this.filter = filter;
-	}
-	else
-		source.connect(context.destination);
+	if(typeof(buffer)=='object'){
+		source.buffer = buffer;
+		if(type){
+			var filter = context.createBiquadFilter();
+			filter.type = type;
+			filter.frequency.value = freq;
+			source.connect(filter);
+			filter.connect(context.destination);
+			this.filter = filter;
+		}
+		else
+			source.connect(context.destination);
 
-	source.start(0);
+		source.start(0);
+	}
 }
 
 function samplesLoaded(samples){
@@ -84,7 +86,36 @@ function startIntro() {
 	}
 }
 
+function lightObject(x, y){
+	$('.sequences ul:not(.locked):nth-child(' + x + ') li:nth-child(' + y + ') span').css({'opacity': 1});
+	// $('.sequences ul:not(.locked):nth-child(' + x + ') li:nth-child(' + y + ') span').css({'opacity': 1}).animate({'opacity': 0.125}, death);
+}
+function offObject(x, y){
+	$('.sequences ul:not(.locked):nth-child(' + x + ') li:nth-child(' + y + ') span').css({'opacity': 0.125});
+}
+
+function playKeys(seed) {
+	seed.forEach(function(letter, index, arr){
+		console.log(letter)
+		for(var i=0; i<tracks.length; i++){
+			if(letter == tracks[i].name){
+				lightObject(i+1,(index+1)%16)
+			}
+			else if(letter == '-' || letter == ' '){
+				offObject(i+1,(index+1)%16)
+			}
+		}
+	})
+}
+
 $(document).ready(function() {
+
+	//Get Keys from URL
+	if(document.location.hash != undefined){
+		var introSeed = document.location.hash.split('#')[1].split('');
+		playKeys(introSeed);
+	}
+
 	turnOnShortcuts();
 	var inputField = $("#simForm input:text");
 	inputField.on('focus',function(e){
@@ -108,13 +139,7 @@ $(document).ready(function() {
 		})
 		inputField.val('');
 	})
-	function lightObject(x, y){
-		$('.sequences ul:not(.locked):nth-child(' + x + ') li:nth-child(' + y + ') span').css({'opacity': 1});
-		// $('.sequences ul:not(.locked):nth-child(' + x + ') li:nth-child(' + y + ') span').css({'opacity': 1}).animate({'opacity': 0.125}, death);
-	}
-	function offObject(x, y){
-		$('.sequences ul:not(.locked):nth-child(' + x + ') li:nth-child(' + y + ') span').css({'opacity': 0.125});
-	}
+
 	var socket = io();
 	socket.on('keys', function (data) {
 		data.forEach(function(letter, index, arr){
@@ -132,7 +157,7 @@ $(document).ready(function() {
 	});
 
 	uiEvents();
-	
+
 	play();
 });
 
