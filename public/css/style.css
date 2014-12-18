@@ -556,6 +556,7 @@ body {
 
 .login img{
 	height: 30px;
+	width: 38px;
 	margin-top: 8px;
 }
 
@@ -597,5 +598,5 @@ body {
 .tooltipster-content {
 	-webkit-user-select: text;
 	-moz-user-select: text;
-	user-select: text;	
+	user-select: text;
 }
