@@ -96,12 +96,14 @@ function offObject(x, y){
 
 function playKeys(seed) {
 	seed.forEach(function(letter, index, arr){
-		console.log(letter)
+		var found = false;
 		for(var i=0; i<tracks.length; i++){
 			if(letter == tracks[i].name){
+				found=true;
 				lightObject(i+1,(index+1)%16)
 			}
-			else if(letter == '-' || letter == ' '){
+			if(found && letter == '-' || found && letter == ' '){
+				console.log(index)
 				offObject(i+1,(index+1)%16)
 			}
 		}
@@ -111,7 +113,7 @@ function playKeys(seed) {
 $(document).ready(function() {
 
 	//Get Keys from URL
-	if(document.location.hash != undefined){
+	if(document.location.hash != undefined && document.location.hash.length){
 		var introSeed = document.location.hash.split('#')[1].split('');
 		playKeys(introSeed);
 	}
@@ -127,33 +129,13 @@ $(document).ready(function() {
 	$('#simForm').on('submit', function(e){
 		e.preventDefault();
 		data = inputField.val().split('');
-		data.forEach(function(letter, index, arr){
-			for(var i=0; i<tracks.length; i++){
-				if(letter == tracks[i].name){
-					lightObject(i+1,(index+1)%16)
-				}
-				else if(letter == '-' || letter == ' '){
-					offObject(i+1,(index+1)%16)
-				}
-			}
-		})
+		playKeys(data);
 		inputField.val('');
 	})
 
 	var socket = io();
 	socket.on('keys', function (data) {
-		data.forEach(function(letter, index, arr){
-			for(var i=0; i<tracks.length; i++){
-				if(letter == tracks[i].name){
-					lightObject(i+1,(index+1)%16)
-				}
-				else if(letter == '-' || letter == ' '){
-					console.log('beat')
-					offObject(i+1,(index+1)%16)
-				}
-			}
-		})
-		//
+		playKeys(data)
 	});
 
 	uiEvents();
