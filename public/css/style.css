@@ -732,7 +732,7 @@ li.z {background: #3fff97;}
 	cursor: pointer;
 }
 
-.help {
+.help, .twitterlink, .github {
 	position: absolute;
 	top: 35px;
 	right: 35px;
@@ -743,9 +743,52 @@ li.z {background: #3fff97;}
 	font-size: 25px;
 	line-height: 35px;
 	padding-left: 10px;
-	text-shadow: 0 2px 0 rgba(0,0,0,.5);
+	text-shadow: 0 2px 0 rgba(0,0,0,.15);
 	z-index: 11;
 	cursor: pointer;
+	-webkit-transition: background .15s linear, color .15s linear;
+	-moz-transition: background .15s linear, color .15s linear;
+	transition: background .15s linear, color .15s linear;
+}
+
+.help:hover, .twitterlink:hover, .github:hover {
+	background: #55ACEE;
+	color: #fff;
+}
+
+.twitterlink:hover img, .github:hover img {
+	opacity: 1;
+}
+
+.help:active, .twitterlink:active, .github:active {
+	top: 36px;
+}
+
+.twitterlink {
+	top: 80px;
+	line-height: 31px;
+	padding-left: 9px;
+	padding-right: 1px;
+}
+
+.twitterlink:active {
+	top: 81px;
+}
+
+.twitterlink img {
+	width: 18px;
+	opacity: .25;
+}
+
+.github {
+	padding-left: 8px;
+	padding-right: 2px;
+	right: 80px;
+}
+
+.github img {
+	width: 19px;
+	opacity: .25;
 }
 
 .tooltipster-content {
