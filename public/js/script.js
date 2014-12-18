@@ -168,7 +168,6 @@ var state = 'stopped';
 var time = 1;
 var tempo = 120;
 var fxpass = 0;
-var life = 60; // in seconds
 
 // Basic functions for pulse
 

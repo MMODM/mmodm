@@ -1,3 +1,5 @@
+var life = 30; // in seconds
+
 var tracks = [
 {
 	"id": 0,
