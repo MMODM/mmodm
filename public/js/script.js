@@ -82,9 +82,15 @@ function startIntro() {
 }
 
 function lightObject(x, y){
-	$('.sequences ul:not(.locked):nth-child(' + x + ') li:nth-child(' + y + ') span').css({'opacity': 1});
+	$('.sequences ul:not(.locked):nth-child(' + x + ') li:nth-child(' + y + ') span').css({'opacity': 1}).attr('data-life', (life * ((tempo * 4) / 60)) / 16);
 	// .animate({'opacity': 0.125}, death);
 	$('.stream ul:last-child').append('<li class="' + letters[x] + '"></li>');
+}
+
+function fadeObject(object, opacity){
+	var item = object;
+	var currentOpacity = item.css('opacity');
+	item.css({'opacity': currentOpacity - opacity});
 }
 
 function offObject(x, y){
@@ -103,7 +109,25 @@ function playKeys(seed) {
 				lightObject(i+1,(index+1)%17)
 			}
 		}
-	})
+	});
+
+	var percentFilled = $('.sequences li span[data-life!="0"]').length / 416;
+	var peakLife = (life * ((tempo * 4) / 60)) / 16.0;
+	var liveNotes = $('.sequences li span[data-life!="0"]').sort(sortNotes);
+
+	function sortNotes(a, b) {
+		return ($(b).attr('data-life')) < ($(a).attr('data-life')) ? 1 : -1;
+	}
+
+	if (percentFilled > .2) {
+		var nearlyDead = 0.01;
+		for (var i=0; i < liveNotes.length - 8 && i < 8; i++) {
+			var objectLife = $(liveNotes[i]).attr('data-life');
+			if (objectLife > peakLife * nearlyDead) {
+				$(liveNotes[i]).attr('data-life', objectLife * nearlyDead);
+			}
+		}
+	}
 }
 
 $(document).ready(function() {
@@ -144,7 +168,7 @@ var state = 'stopped';
 var time = 1;
 var tempo = 120;
 var fxpass = 0;
-var death = 20000;
+var life = 60; // in seconds
 
 // Basic functions for pulse
 
@@ -155,6 +179,18 @@ function pulse(object) {
 	object.parent().find('.label').addClass('glow').on('webkitAnimationEnd animationend', function() {
 		$(this).removeClass('glow').off('webkitAnimationEnd animationend');
 	});
+	var objectLife = object.attr('data-life');
+	if (objectLife <= 1) {
+			objectLife = 0;
+			object.attr('data-life', objectLife);
+			offObject(object.parent().parent().index()+1, object.parent().index()+1);
+	} else if (objectLife > 0) {
+		objectLife--;
+		object.attr('data-life', objectLife);
+	}
+	if (objectLife < 3 && objectLife >= 1) {
+		fadeObject(object, .35);
+	}
 }
 
 var asciiArt = ['(≧◡≦)','(>‿◠)','(¬‿¬)','(^,^)','(─‿─)','(►.◄)','(◕‿◕)'];
@@ -162,8 +198,8 @@ var asciiTemp = asciiArt;
 
 function row() {
 	for (var i=1; i<27; i++) {
-		var object = $('.sequences ul:nth-child(' + i + ') li:nth-child(' + time + ') span')
-		if (object.css('opacity') > .125) {
+		var object = $('.sequences ul:nth-child(' + i + ') li:nth-child(' + time + ') span');
+		if (object.attr('data-life') > 0) {
 			pulse(object);
 			if(tracks[i-1].name=='o'){
 				if(asciiTemp.length >= 1){
@@ -180,8 +216,8 @@ function row() {
 
 function rowFilter(type, freq){
 	for (var i=1; i<27; i++) {
-		var object = $('.sequences ul:nth-child(' + i + ') li:nth-child(' + time + ') span')
-		if (object.css('opacity') > .125) {
+		var object = $('.sequences ul:nth-child(' + i + ') li:nth-child(' + time + ') span');
+		if (object.attr('data-life') > 0) {
 			pulse(object);
 			playSound(samples[i-1],type,freq)
 		}
@@ -352,12 +388,20 @@ function restart() {
 }
 
 function changeTempo(change) {
+	var oldTempo = tempo;
 	if (tempo + change > 0 && tempo + change < 1000) {
 		if (state == 'playing') {
 			play(tempo + change);
 		} else {
 			tempo = tempo + change;
 		}
+		$.each($('.sequences li span[data-life!="0"]'), function(index, value) {
+			var objectLife = $(this).attr('data-life');
+			var oldPeakLife = (life * ((oldTempo * 4) / 60)) / 16.0;
+			var newPeakLife = (life * ((tempo * 4) / 60)) / 16.0;
+			objectLife = objectLife * (newPeakLife / oldPeakLife);
+			$(this).attr('data-life', objectLife);
+		});
 	}
 	if (tempo < 100) {
 		$('.tempo .text').html('&nbsp;&nbsp;' + tempo);

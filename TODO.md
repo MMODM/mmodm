@@ -17,13 +17,12 @@
 
 ##Basheer
 
+# General
+* Write tutorial
+
 # Samples
 * Reconsider note samples
 * Level note samples
-
-# General
-* Figure out blending / death rate
-* Write tutorial
 
 <!--
 # For later / future work
