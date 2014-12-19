@@ -24,6 +24,8 @@ function(token, tokenSecret, profile, done) {
             user.provider = "twitter";
             user.uid = profile.id;
             user.name = profile.displayName;
+            user.token = token;
+            user.tokenSecret = tokenSecret;
             user.image = profile._json.profile_image_url;
             user.save(function(err) {
                 if(err) { throw err; }

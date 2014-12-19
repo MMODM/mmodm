@@ -10,6 +10,8 @@ var UserSchema = new Schema({
     uid: String,
     name: String,
     image: String,
+    token: String,
+    tokenSecret: String,
     created: {type: Date, default: Date.now}
 });
 

@@ -130,11 +130,17 @@ function playKeys(seed) {
 	}
 }
 
+function tweet(data){
+	var request = new XMLHttpRequest();
+	request.open('GET', '/tweet/'+data+'%20%23MMODM', true);
+	request.send();
+}
+
 $(document).ready(function() {
 	//Get Keys from URL
 	if(document.location.hash != undefined && document.location.hash.length){
 		var introSeed = document.location.hash.split('#')[1].split('');
-		document.location.hash='>.<#oc.mdomm'
+		document.location.hash=''
 		playKeys(introSeed);
 	}
 	turnOnShortcuts();
@@ -147,8 +153,33 @@ $(document).ready(function() {
 	});
 	$('#simForm').on('submit', function(e){
 		e.preventDefault();
-		data = inputField.val().split('');
-		playKeys(data);
+		data = inputField.val()
+
+		var hasHashtag = false;
+		var hasBrackets = false;
+		var mmodmTagPos=1;
+
+
+		var tweetMsg = data.split("#");
+		var tweetLen = tweetMsg.length;
+
+		if(tweetLen >= 1){
+			for(var i = 0; i< tweetLen; i++){
+				if(tweetMsg[i] == "MMODM") {
+					hasHashtag = true;
+					mmodmTagPos = i;
+				}
+			}
+		}
+
+		if(tweetMsg[0].length > 1){
+			hasBrackets = tweetMsg[0].match(/\[.*\]/);
+			if(!hasBrackets)
+				tweet(Date.now()+" ["+tweetMsg[0]+"]");
+			else
+				tweet(Date.now()+" "+tweetMsg[0]);
+		}
+		//playKeys(data);
 		inputField.val('');
 	})
 	var socket = io();
@@ -191,19 +222,23 @@ function pulse(object) {
 	}
 }
 
-// var asciiArt = ['(≧◡≦)','(>‿◠)','(¬‿¬)','(^,^)','(─‿─)','(►.◄)','(◕‿◕)'];
-// var asciiTemp = asciiArt;
-// var cu = 0;
+var asciiArt = ['(≧◡≦)','(>‿◠)','(¬‿¬)','(^,^)','(─‿─)','(►.◄)','(◕‿◕)'];
+var asciiTemp = asciiArt;
+var cu = 0;
+
+function urlAscii(i){
+	if(tracks[i-1].name=='o'){
+		document.location.hash=asciiArt[cu%(asciiArt.length-1)]
+		cu++;
+	}
+}
 
 function row() {
 	for (var i=1; i<27; i++) {
 		var object = $('.sequences ul:nth-child(' + i + ') li:nth-child(' + time + ') span');
 		if (object.attr('data-life') > 0) {
 			pulse(object);
-			// if(tracks[i-1].name=='o'){
-			// 	document.location.hash=asciiArt[cu%(asciiArt.length-1)]
-			// 	cu++;
-			// }
+			//urlAscii(i);
 			playSound(samples[i-1],false,false);
 		}
 	}

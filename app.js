@@ -49,7 +49,7 @@ if ('development' == app.get('env')) {
 //Routes
 app.get('/', routes.index);
 
-//app.get('/tweet/:msg', routes.tweet)
+app.get('/tweet/:msg', routes.tweet)
 
 app.get('/auth/twitter',
 passport.authenticate('twitter'),
@@ -60,10 +60,6 @@ passport.authenticate('twitter', { failureRedirect: '/login' }),
 routes.auth_cb);
 
 app.get('/logout', routes.logout);
-
-app.post('/simulate/tweet', function(req, res){
-    console.log(res.body);
-})
 
 //Middlewear
 function ensureAuthenticated(req, res, next) {
@@ -93,7 +89,7 @@ function emitKeys(users,keystrokes){
 var watch = ['#MMODM'];
 
 twit.verifyCredentials(function (err, data) {
-    if(err) console.log(err);
+    if(err) console.error(err);
 })
 .stream('statuses/filter', {track:watch}, function(stream) {
     console.log("Twitter stream is ready and waiting for inc tweets...");
@@ -121,6 +117,6 @@ twit.verifyCredentials(function (err, data) {
     });
 
     stream.on('error', function (err, code) {
-        console.log("err: "+err+" "+code)
+        console.error("err: "+err+" "+code)
     });
 });

@@ -3,14 +3,39 @@
  * Das Routes.
  */
 
+var config = require('../config')[process.env.ENVAR || 'dev'];
+var twitter = require('ntwitter');
+
+function makeTweet(req,cb) {
+
+    if (!req.user.token) {
+        console.warn("You didn't have the user log in first");
+    }
+    else{
+        var twit = new twitter({
+            consumer_key: config.consumer_key,
+            consumer_secret: config.consumer_secret,
+            access_token_key: req.user.token,
+            access_token_secret: req.user.tokenSecret
+        });
+
+        twit
+        .verifyCredentials(function (err, data) {
+            console.log(data);
+        })
+        .updateStatus(req.params.msg,
+            function (err, data) {
+                if(err)
+                    console.error(err)
+            }
+        );
+
+    }
+}
 exports.index = function(req, res){
   res.render('index', { title: 'MMODM', user: req.user });
 };
 
-exports.urlplay = function(req, res){
-    console.log(req.params.keys);
-    res.render('index', { title: 'MMODM', user: req.user, keys: req.params.keys})
-}
 
 exports.logout = function(req, res){
     req.logout();
@@ -27,13 +52,10 @@ exports.auth = function(req, res){
 }
 
 exports.tweet = function(req, res){
-    twit.verifyCredentials(function (err, data) {
+    makeTweet(req,function(err, data){
+        if(err)
+            console.error(err)
+        else
+            console.log(req.user.name + ' is jamming on' + req.params.msg)
     })
-    .updateStatus("#"+req.params.msg+" "+ new Date().getTime(),
-    function (err, data) {
-        res.send(200);
-    }
-);
-
-
 }
