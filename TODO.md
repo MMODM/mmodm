@@ -3,7 +3,10 @@
 ##Donald
 
 # Bugs
-* Low/high filters only work during drag and also kill note early by replaying it
+* Low/high filters
+	* Currently only work during drag and
+	* Notes are killed early by replaying it
+	* Low / high are swapped on the slider
 * Check for formatting for tweet in onsite tweet box
 
 # Features
