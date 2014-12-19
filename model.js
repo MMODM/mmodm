@@ -22,12 +22,19 @@ var TweetSchema = new Schema({
     created: {type: Date, default: Date.now}
 })
 
-var MachineState = new Schema({
+var MachineStateSchema = new Schema({
     longUrl: String,
     shortUrl: String,
     created: {type: Date, default: Date.now}
 })
 
+var RoomsSchema = new Schema({
+    hashtag: String,
+    tweets: [],
+    created: {type: Date, default: Date.now}
+})
+
+mongoose.model('Rooms',RoomsSchema);
 mongoose.model('User',UserSchema);
 mongoose.model('Tweet',TweetSchema);
-mongoose.model('MachineState',MachineState);
+mongoose.model('MachineState',MachineStateSchema);

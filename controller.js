@@ -72,3 +72,13 @@ exports.findState = function(short, cb){
         cb(err, ms.longUrl)
     })
 }
+
+var Rooms = mongoose.model('Rooms');
+
+exports.createRoom = function(hashtag, cb){
+    var rm = new Room();
+    rm.hashtag = hashtag;
+    rm.save(function(err){
+        cb(err,rm.hashtag);
+    });
+}

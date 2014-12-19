@@ -180,11 +180,11 @@ $(document).ready(function() {
 		if(tweetMsg[0].length > 1){
 			hasBrackets = tweetMsg[0].match(/\[.*\]/);
 			if(!hasBrackets){
-				tweet(Date.now()+" ["+tweetMsg[0]+"]");
+				tweet(Math.random().toString(36).slice(2).substr(2,8)+" ["+tweetMsg[0]+"]");
 				console.log(Date.now()+" ["+tweetMsg[0]+"]");
 			}
 			else{
-				console.log(Date.now()+" ["+tweetMsg[0]+"]");
+				console.log(Math.random().toString(36).slice(2).substr(2,8)+" ["+tweetMsg[0]+"]");
 				tweet(Date.now()+" "+tweetMsg[0]);
 			}
 
@@ -219,18 +219,16 @@ function pulse(object) {
 	object.parent().find('.label').addClass('glow').on('webkitAnimationEnd animationend', function() {
 		$(this).removeClass('glow').off('webkitAnimationEnd animationend');
 	});
-	if (stutterState == 0) {
-		var objectLife = object.attr('data-life');
-		if (objectLife <= 1) {
-				objectLife = 0;
-				offObject(object.parent().parent().index()+1, object.parent().index()+1);
-		} else if (objectLife > 0) {
-			objectLife--;
-			object.attr('data-life', objectLife);
-		}
-		if (objectLife < 3 && objectLife >= 1) {
-			fadeObject(object, .35);
-		}
+	var objectLife = object.attr('data-life');
+	if (objectLife <= 1) {
+			objectLife = 0;
+			offObject(object.parent().parent().index()+1, object.parent().index()+1);
+	} else if (objectLife > 0) {
+		objectLife--;
+		object.attr('data-life', objectLife);
+	}
+	if (objectLife < 3 && objectLife >= 1) {
+		fadeObject(object, .35);
 	}
 }
 
@@ -256,7 +254,7 @@ function row() {
 	}
 }
 
-function rowFilter(type, freq){
+	function rowFilter(type, freq){
 	for (var i=1; i<27; i++) {
 		var object = $('.sequences ul:nth-child(' + i + ') li:nth-child(' + time + ') span');
 		if (object.attr('data-life') > 0) {

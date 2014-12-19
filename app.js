@@ -63,6 +63,10 @@ app.get('/sm/:shorturl', function(req, res){
     })
 })
 
+app.get('/rm/:hashtag', function(req, res){
+
+})
+
 app.get('/auth/twitter',
 passport.authenticate('twitter'),
 routes.auth);
@@ -104,7 +108,7 @@ twit.verifyCredentials(function (err, data) {
     if(err) console.error(err);
 })
 .stream('statuses/filter', {track:watch}, function(stream) {
-    console.log("Twitter stream is ready and waiting for inc tweets...");
+    console.log("Twitter Stream API, listening.");
     stream.on('data', function (data) {
 
         if (data.text !== undefined) {
