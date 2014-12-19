@@ -61,6 +61,22 @@ function samplesLoaded(samples){
 
 // Seeding random "data" so that it doesn't look bad while I'm coding
 function seed() {
+	// Human starter
+	playKeys(["o","-","-","-","o","-","-","-","o","-","-","-","o","-","-","-"]);
+
+	if (!$('.o').hasClass('locked')) {
+		lockColumn(14);
+	}
+
+	if ($('.save').hasClass('saved')) {
+		$('.save').removeClass('saved');
+		saveState = [];
+		undoSave = [];
+		$('.save').tooltipster('destroy');
+		$('.save').tooltipster({'content': 'Save & Share'});
+	}
+
+	// Random filler
 	for (var tweets=1; tweets<2; tweets++) {
 		var seedArray = [];
 		var randomOff = [];
