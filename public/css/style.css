@@ -4,9 +4,11 @@ ol,ul { list-style: none; }
 img {border: 0;}
 
 body {
+	position: relative;
 	background: #000;
 	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
 	font-weight: 300;
+	min-width: 800px;
 }
 
 .grid {
