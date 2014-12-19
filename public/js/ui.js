@@ -24,6 +24,10 @@ function uiEvents() {
 		return false;
 	});
 
+	$('.shade a').on('click', function(event) {
+		event.stopPropagation();
+	});
+
 	// Click handler for sound on labels
 
 	$('.label').on('click', function() {
@@ -183,9 +187,7 @@ function uiEvents() {
 
 	$('.roomform input:submit').on('click', function(e) {
 		e.preventDefault();
-
 		document.location.href = '/'+$('.roomform input:text').attr('value');
-
 		$('.room').removeClass('opened');
 		$('.roomform').fadeOut(function() {
 			$('.roomform input:text').attr('value', '');

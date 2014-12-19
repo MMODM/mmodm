@@ -928,6 +928,16 @@ li.z {background: #3fff97;}
 	color: #aaa;
 }
 
+.shade p a {
+	color: #00baff;
+	text-decoration: none;
+	border-bottom: 1px solid transparent;
+}
+
+.shade p a.hover {
+	border-bottom: 1px solid #00baff;
+}
+
 body.helping .shade {
 	opacity: .8;
 }
@@ -942,6 +952,16 @@ body.helping .help {
 body.helping .help img {
 	width: 16px;
 	margin-bottom: 1px;
+}
+
+body.helping .container,
+body.helping .sequences {
+	pointer-events: none;
+}
+
+body.helping .menu,
+body.helping .effects {
+	pointer-events: all;
 }
 
 body.helping .logo,
