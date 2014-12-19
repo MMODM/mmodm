@@ -202,9 +202,18 @@ $(document).ready(function() {
 
 			}
 		}
-		else{
-
-			playKeys(data.split(''));
+		else {
+			if (data == "seed") {
+				seed();
+			} else if ($.grep(beats, function(e){return e.name == data}).length > 0) {
+				$.each(beats, function(index, value) {
+					if (beats[index].name == data) {
+						playKeys(beats[index].sequence.split(''));
+					}
+				});
+			} else {
+				playKeys(data.split(''));
+			}
 		}
 		inputField.val('');
 	})

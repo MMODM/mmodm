@@ -1,5 +1,24 @@
 var life = 30; // in seconds
 
+var beats = [
+{
+	"name": "downbeat",
+	"sequence": "o---o---o---o---"
+},{
+	"name": "hihat",
+	"sequence": "-nnn--n----n---"
+},{
+	"name": "snare",
+	"sequence": "v--v--v--v--v-v-"
+},{
+	"name": "bongo",
+	"sequence": "j--i--i-j--i--i-"
+},{
+	"name": "hiphat",
+	"sequence": "m-m-n--m-m-mn-n-"
+}
+]
+
 var tracks = [
 {
 	"id": 0,
