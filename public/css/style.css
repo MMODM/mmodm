@@ -3,6 +3,13 @@ h1,h2,h3 { font-size: 100%; font-weight: normal; }
 ol,ul { list-style: none; }
 img {border: 0;}
 
+::selection {
+	color: #fff;
+	background: rgba(85, 172, 238, .99); }
+::-moz-selection {
+	color: #fff;
+	background: rgba(85, 172, 238, .99); }
+
 body {
 	position: relative;
 	background: #000;
@@ -429,11 +436,6 @@ li.z {background: #3fff97;}
 .saveUrl:focus {
 	outline: 0;
 }
-
-.saveUrl::selection {
-	background: rgba(85, 172, 238, .99); }
-.saveUrl::-moz-selection {
-	background: rgba(85, 172, 238, .99); }
 
 .room.button {
 	position: relative;
@@ -919,10 +921,13 @@ li.z {background: #3fff97;}
 	display: inline-block;
 	background: black;
 	padding: 10px 15px;
+	-webkit-user-select: text;
+	-moz-user-select: text;
+	user-select: text;
 }
 
 .shade {
-	display: table;
+	display: block;
 	position: absolute;
 	top: 0; left: 0;
 	width: 100%;
