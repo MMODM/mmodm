@@ -424,6 +424,15 @@ li.z {background: #3fff97;}
 	margin-bottom: 1px;
 }
 
+.saveUrl:focus {
+	outline: 0;
+}
+
+.saveUrl::selection {
+	background: rgba(85, 172, 238, .99); }
+.saveUrl::-moz-selection {
+	background: rgba(85, 172, 238, .99); }
+
 .room.button {
 	position: relative;
 	padding: 0;

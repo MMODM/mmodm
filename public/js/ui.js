@@ -126,9 +126,10 @@ function uiEvents() {
 
 					ell.tooltipster('destroy');
 					ell.tooltipster({
-						'content': saveUrl,
+						'content': $('<span class="saveUrl" contenteditable="true">' + saveUrl + '</span>'),
 						'interactive': 'true'
 					}).tooltipster('show');
+					$('.saveUrl').focus().selectText();
 
 					var tweet = $('.tweet').attr('value');
 					if (tweet === "") {
@@ -140,8 +141,29 @@ function uiEvents() {
 		}
 
 		return false;
-
 	});
+
+	$('#saveUrl').on('click', function() {
+		$(this).select();
+		return false;
+	});
+
+	jQuery.fn.selectText = function(){
+	   var doc = document;
+	   var element = this[0];
+	   console.log(this, element);
+	   if (doc.body.createTextRange) {
+	       var range = document.body.createTextRange();
+	       range.moveToElementText(element);
+	       range.select();
+	   } else if (window.getSelection) {
+	       var selection = window.getSelection();        
+	       var range = document.createRange();
+	       range.selectNodeContents(element);
+	       selection.removeAllRanges();
+	       selection.addRange(range);
+	   }
+	};
 
 	// Click handler for opening room
 
