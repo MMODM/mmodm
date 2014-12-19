@@ -432,7 +432,6 @@ function keyboardShortcuts(){
 				e.preventDefault();
 				changeFxPass(1);
 			}
-		} else {
 			if (e.keyCode >= 65 && e.keyCode <= 90) {
 				// a through z
 				playSound(samples[$('.' + String.fromCharCode(e.keyCode).toLowerCase()).index()]);
