@@ -7,7 +7,7 @@ mixin tweetForm(imgSource, imgAlt)
 
         else
             img(class="avatar", src=user.image, alt=user.name)
-            input(type="text", placeholder="ex: riff on this [a--a--a--abc--cc] with me on #mmodm", class="tweet")
+            input(type="text", placeholder="ex: riff on this [a--a--a--abc--cc] with me on #mmodm", class="tweet", autocomplete="off")
             input(type="submit", value="Tweet", class="post")
 
 mixin drumLine(name)
