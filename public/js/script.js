@@ -67,10 +67,8 @@ function seed() {
 		for (var i=0; i<13; i++) {
 			randomOff.push(Math.floor(Math.random() * (26)));
 		}
-		console.log(randomOff);
 		for (var i=0; i<40; i++) {
 			var randomLetter = Math.floor(Math.random() * (27));
-			console.log(randomLetter);
 			if ($.inArray(randomLetter, randomOff) < 0) {
 				seedArray.push(letters[randomLetter]);
 			}
