@@ -110,24 +110,6 @@ function playKeys(seed) {
 			}
 		}
 	});
-
-	var percentFilled = $('.sequences li span[data-life!="0"]').length / 416;
-	var peakLife = (life * ((tempo * 4) / 60)) / 16.0;
-	var liveNotes = $('.sequences li span[data-life!="0"]').sort(sortNotes);
-
-	function sortNotes(a, b) {
-		return ($(b).attr('data-life')) < ($(a).attr('data-life')) ? 1 : -1;
-	}
-
-	if (percentFilled > .2) {
-		var nearlyDead = 0.01;
-		for (var i=0; i < liveNotes.length - 8 && i < 8; i++) {
-			var objectLife = $(liveNotes[i]).attr('data-life');
-			if (objectLife > peakLife * nearlyDead) {
-				$(liveNotes[i]).attr('data-life', objectLife * nearlyDead);
-			}
-		}
-	}
 }
 
 function tweet(data){
@@ -382,6 +364,22 @@ function play(newTempo) {
 		$('.play').addClass('off');
 		$('.pauseplay').tooltipster('content', 'Pause');
 		mainLoop = setInterval(function() {
+			var percentFilled = $('.sequences li span[data-life!="0"]').length / 416;
+			var peakLife = (life * ((tempo * 4) / 60)) / 16.0;
+			var liveNotes = $('.sequences li span[data-life!="0"]').sort(sortNotes);
+			liveNotes = $.grep(liveNotes, function(element, index) {
+				return $(element).parent().parent().hasClass('locked');
+			}, true);
+
+			function sortNotes(a, b) {
+				return ($(b).attr('data-life')) < ($(a).attr('data-life')) ? 1 : -1;
+			}
+
+			if (percentFilled > 0.2 && stutterState == 0) {
+				for (var i=0; i < 8 && i < liveNotes.length; i++) {
+					offObject($(liveNotes[i]).parent().parent().index()+1, $(liveNotes[i]).parent().index()+1);
+				}
+			}
 			beat();
 			if (stutter() > 0) {
 				if (scounter < 1) {

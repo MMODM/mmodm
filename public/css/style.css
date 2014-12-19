@@ -915,6 +915,7 @@ li.z {background: #3fff97;}
 	height: 100%;
 	text-align: center;
 	background: black;
+	opacity: 0;
 	z-index: 9;
 }
 
@@ -925,6 +926,10 @@ li.z {background: #3fff97;}
 	font-size: 24px;
 	line-height: 38px;
 	color: #aaa;
+}
+
+body.helping .shade {
+	opacity: .8;
 }
 
 body.helping .help {

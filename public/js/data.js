@@ -4,22 +4,22 @@ var tracks = [
 {
 	"id": 0,
 	"name": "a",
-	"filename": "arp-c2.mp3"
+	"filename": "strings.mp3"
 },
 {
 	"id": 1,
 	"name": "b",
-	"filename": "arp-c3.mp3"
+	"filename": "snare3.mp3"
 },
 {
 	"id": 2,
 	"name": "c",
-	"filename": "base-f4.mp3"
+	"filename": "timbales.mp3"
 },
 {
 	"id": 3,
 	"name": "d",
-	"filename": "base-f5.mp3"
+	"filename": "clap.mp3"
 },
 {
 	"id": 4,
@@ -39,7 +39,7 @@ var tracks = [
 {
 	"id": 7,
 	"name": "h",
-	"filename": "chimes.mp3"
+	"filename": "triangle-mute.mp3"
 },
 {
 	"id": 8,
@@ -59,7 +59,7 @@ var tracks = [
 {
 	"id": 11,
 	"name": "l",
-	"filename": "cyan.mp3"
+	"filename": "chirpy.mp3"
 },
 {
 	"id": 12,
@@ -79,12 +79,12 @@ var tracks = [
 {
 	"id": 15,
 	"name": "p",
-	"filename": "lofi.mp3"
+	"filename": "kick2.mp3"
 },
 {
 	"id": 16,
 	"name": "q",
-	"filename": "piano.mp3"
+	"filename": "tom.mp3"
 },
 {
 	"id": 17,
@@ -94,22 +94,22 @@ var tracks = [
 {
 	"id": 18,
 	"name": "s",
-	"filename": "saw-c4.mp3"
+	"filename": "e-perc.mp3"
 },
 {
 	"id": 19,
 	"name": "t",
-	"filename": "saw-c5.mp3"
+	"filename": "shaker.mp3"
 },
 {
 	"id": 20,
 	"name": "u",
-	"filename": "shaker.mp3"
+	"filename": "snare.mp3"
 },
 {
 	"id": 21,
 	"name": "v",
-	"filename": "snare.mp3"
+	"filename": "snare2.mp3"
 },
 {
 	"id": 22,
@@ -129,7 +129,7 @@ var tracks = [
 {
 	"id": 25,
 	"name": "z",
-	"filename": "wub.mp3"
+	"filename": "e-perc2.mp3"
 }
 ]
 
