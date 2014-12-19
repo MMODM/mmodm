@@ -63,8 +63,9 @@ app.get('/sm/:shorturl', function(req, res){
     })
 })
 
-app.get('/rm/:hashtag', function(req, res){
-
+app.get('/:room', function(req, res){
+    var room  = req.params.room
+    res.render('index',{ title: 'MMODM-'+room, user: req.user, room:room })
 })
 
 app.get('/auth/twitter',
@@ -94,10 +95,11 @@ io.on('connection', function (socket) {
     users.push(socket);
 });
 
-function emitKeys(users,keystrokes){
+function emitKeys(users,keystrokes, room){
+    var room = room || 'MMODM';
     if(users.length >= 0){
         users.forEach(function(s, i, arr){
-            s.emit('keys', keystrokes);
+            s.emit('keys', {keys:keystrokes,room:room});
         })
     }
 }
@@ -120,7 +122,13 @@ twit.verifyCredentials(function (err, data) {
             if (ma){
                 var m = ma[0].split("");
                 var keystrokes = m.splice(1,m.length-1);
-                emitKeys(users,keystrokes);
+
+                for (var i=1; i < tweet_txt.length; i++){
+                    if(tweet_txt[i]!=watch[0])
+                        emitKeys(users, keystrokes, tweet_txt[i])
+                }
+                if(tweet_txt.length == 2)
+                    emitKeys(users,keystrokes);
                 var tweet = {};
                 tweet.handler = name;
                 tweet.beat = keystrokes;

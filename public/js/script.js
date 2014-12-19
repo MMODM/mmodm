@@ -204,7 +204,10 @@ $(document).ready(function() {
 	})
 	var socket = io();
 	socket.on('keys', function (data) {
-		playKeys(data);
+		if(data.room == document.location.pathname.split('/')[1])
+			playKeys(data.keys);
+		else if(data.room == 'MMODM')
+			playKeys(data.keys);
 	});
 
 	uiEvents();

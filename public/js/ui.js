@@ -110,8 +110,8 @@ function uiEvents() {
 			}
 			var longState = saveString.join('')
 			console.log(longState)
-			var request = new XMLHttpRequest();
 
+			var request = new XMLHttpRequest();
 			request.open('GET', '/save/'+longState, true);
 			request.send();
 
@@ -137,7 +137,7 @@ function uiEvents() {
 					}
 				}
 			};
-			
+
 		}
 
 		return false;
@@ -157,7 +157,7 @@ function uiEvents() {
 	       range.moveToElementText(element);
 	       range.select();
 	   } else if (window.getSelection) {
-	       var selection = window.getSelection();        
+	       var selection = window.getSelection();
 	       var range = document.createRange();
 	       range.selectNodeContents(element);
 	       selection.removeAllRanges();
@@ -183,6 +183,9 @@ function uiEvents() {
 
 	$('.roomform input:submit').on('click', function(e) {
 		e.preventDefault();
+
+		document.location.href = '/'+$('.roomform input:text').attr('value');
+
 		$('.room').removeClass('opened');
 		$('.roomform').fadeOut(function() {
 			$('.roomform input:text').attr('value', '');
