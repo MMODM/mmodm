@@ -130,13 +130,17 @@ function playKeys(seed) {
 	}
 }
 
-function reqListener () {
-	console.log(this.responseText);
-}
-
 function tweet(data){
 	var request = new XMLHttpRequest();
-	request.onLoad = reqListener;
+	request.onreadystatechange = function (oEvent) {
+		if (request.readyState === 4) {
+			if (request.status === 200) {
+				console.log(request.responseText)
+			} else {
+				console.log("Error", request.statusText);
+			}
+		}
+	};
 	request.open('GET', '/tweet/'+data+'%20%23MMODM', true);
 	request.send();
 }
@@ -156,40 +160,46 @@ $(document).ready(function() {
 	}).on('focusout', function(e) {
 		turnOnShortcuts();
 	});
+
+	//Demo Hack
+	var userHandler = $('#simForm img').attr('alt')
 	$('#simForm').on('submit', function(e){
 		e.preventDefault();
-		data = inputField.val()
+		var data = inputField.val()
 
-		var hasHashtag = false;
-		var hasBrackets = false;
-		var mmodmTagPos=1;
+		if(userHandler != 'MMODM'){
+			var hasHashtag = false;
+			var hasBrackets = false;
+			var mmodmTagPos=1;
+			var tweetMsg = data.split("#");
+			var tweetLen = tweetMsg.length;
 
-
-		var tweetMsg = data.split("#");
-		var tweetLen = tweetMsg.length;
-
-		if(tweetLen >= 1){
-			for(var i = 0; i< tweetLen; i++){
-				if(tweetMsg[i] == "MMODM") {
-					hasHashtag = true;
-					mmodmTagPos = i;
+			if(tweetLen >= 1){
+				for(var i = 0; i< tweetLen; i++){
+					if(tweetMsg[i] == "MMODM") {
+						hasHashtag = true;
+						mmodmTagPos = i;
+					}
 				}
 			}
-		}
 
-		if(tweetMsg[0].length > 1){
-			hasBrackets = tweetMsg[0].match(/\[.*\]/);
-			if(!hasBrackets){
-				tweet(Math.random().toString(36).slice(2).substr(2,8)+" ["+tweetMsg[0]+"]");
-				console.log(Date.now()+" ["+tweetMsg[0]+"]");
-			}
-			else{
-				console.log(Math.random().toString(36).slice(2).substr(2,8)+" ["+tweetMsg[0]+"]");
-				tweet(Date.now()+" "+tweetMsg[0]);
-			}
+			if(tweetMsg[0].length > 1){
+				hasBrackets = tweetMsg[0].match(/\[.*\]/);
+				if(!hasBrackets){
+					tweet(Math.random().toString(36).slice(2).substr(2,8)+" ["+tweetMsg[0]+"]");
+					console.log(" ["+tweetMsg[0]+"]");
+				}
+				else{
+					tweet(Math.random().toString(36).slice(2).substr(2,8)+" "+tweetMsg[0]);
+					console.log(tweetMsg[0]);
+				}
 
+			}
 		}
-		//playKeys(data);
+		else{
+
+			playKeys(data.split(''));
+		}
 		inputField.val('');
 	})
 	var socket = io();
