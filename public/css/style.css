@@ -909,6 +909,18 @@ li.z {background: #3fff97;}
     100% { opacity: 0; }
 }
 
+.footer {
+	color: #777;
+	padding: 10px 0 25px 0;
+	font-size: 12px;
+}
+
+.footer p {
+	display: inline-block;
+	background: black;
+	padding: 10px 15px;
+}
+
 .shade {
 	display: table;
 	position: absolute;
@@ -923,7 +935,7 @@ li.z {background: #3fff97;}
 
 .shade p {
 	width: 700px;
-	margin: 330px auto 0 auto;
+	margin: 305px auto 0 auto;
 	text-align: left;
 	font-size: 24px;
 	line-height: 38px;
@@ -934,10 +946,18 @@ li.z {background: #3fff97;}
 	color: #00baff;
 	text-decoration: none;
 	border-bottom: 1px solid transparent;
+	-webkit-transition: .15s border-bottom ease-in-out;
+	-moz-transition: .15s border-bottom ease-in-out;
+	transition: .15s border-bottom ease-in-out;
 }
 
-.shade p a.hover {
+.shade p a:hover {
 	border-bottom: 1px solid #00baff;
+}
+
+.shade p a:active {
+	position: relative;
+	top: 1px;
 }
 
 body.helping .shade {
