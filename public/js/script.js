@@ -130,8 +130,13 @@ function playKeys(seed) {
 	}
 }
 
+function reqListener () {
+	console.log(this.responseText);
+}
+
 function tweet(data){
 	var request = new XMLHttpRequest();
+	request.onLoad = reqListener;
 	request.open('GET', '/tweet/'+data+'%20%23MMODM', true);
 	request.send();
 }
@@ -174,10 +179,15 @@ $(document).ready(function() {
 
 		if(tweetMsg[0].length > 1){
 			hasBrackets = tweetMsg[0].match(/\[.*\]/);
-			if(!hasBrackets)
+			if(!hasBrackets){
 				tweet(Date.now()+" ["+tweetMsg[0]+"]");
-			else
+				console.log(Date.now()+" ["+tweetMsg[0]+"]");
+			}
+			else{
+				console.log(Date.now()+" ["+tweetMsg[0]+"]");
 				tweet(Date.now()+" "+tweetMsg[0]);
+			}
+
 		}
 		//playKeys(data);
 		inputField.val('');
@@ -260,7 +270,6 @@ function rowFilter(type, freq){
 
 var gaterState = 0;
 var gcounter = 0;
-var filterState = 0;
 
 function gater(gate) {
 	// Options are (1) 1/2, (2) 2/3
@@ -329,9 +338,6 @@ function beat() {
 			gcounter = 0;
 		}
 	} else {
-		if(filterState != 0)
-			rowFilter(filterState.split('#')[0]+'pass',filterState.split('#')[1])
-		else
 			row();
 	}
 }
@@ -457,10 +463,10 @@ function changeFxPass(change) {
 	var right = barWidth/2.0;
 	if (fxpass > 0) {
 		right = barWidth/2.0 + (fxpass / 20)*barWidth;
-		filterState = 'low#'+right*24;
+		rowFilter('lowpass',right*24)
 	} else if (fxpass < 0) {
 		left = barWidth/2.0 - (Math.abs(fxpass) / 20)*barWidth;
-		filterState = 'high#'+left*24;
+		rowFilter('highpass',left*24)
 
 	} else {
 		left = barWidth*.4875;

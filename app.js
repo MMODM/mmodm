@@ -51,6 +51,18 @@ app.get('/', routes.index);
 
 app.get('/tweet/:msg', routes.tweet)
 
+app.get('/save/:longurl', function(req, res){
+    controller.saveState(req.params.longurl, function(err, id){
+        res.send(id);
+    })
+})
+
+app.get('/sm/:shorturl', function(req, res){
+    controller.findState(req.params.shorturl, function(err, longUrl){
+        res.redirect('/#'+longUrl);
+    })
+})
+
 app.get('/auth/twitter',
 passport.authenticate('twitter'),
 routes.auth);

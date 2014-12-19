@@ -22,5 +22,12 @@ var TweetSchema = new Schema({
     created: {type: Date, default: Date.now}
 })
 
+var MachineState = new Schema({
+    longUrl: String,
+    shortUrl: String,
+    created: {type: Date, default: Date.now}
+})
+
 mongoose.model('User',UserSchema);
 mongoose.model('Tweet',TweetSchema);
+mongoose.model('MachineState',MachineState);

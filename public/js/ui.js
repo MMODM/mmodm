@@ -44,6 +44,14 @@ function uiEvents() {
 	// 		$('.tweet').attr('value', tweet.substr(0, $(this).index()) + letter + tweet.substr($(this).index()+1));
 	// 	}
 	// })
+	function bin2String(array) {
+		var result = "";
+		for (var i = 0; i < array.length; i++) {
+			result += String.fromCharCode(parseInt(array[i], 8));
+		}
+		return result;
+	}
+
 
 	// Click handler for locked column
 
@@ -73,26 +81,43 @@ function uiEvents() {
 			for (var j=1; j<17; j++) {
 				var opacity = $('.sequences ul:nth-child(' + i + ') li:nth-child(' + j + ') span').css('opacity');
 				if (opacity < 1) {
-					saveString.push("0");
+					saveString.push("-");
+
 				} else {
-					saveString.push("1");
+					saveString.push(tracks[i-1].name);
 				}
 			}
 		}
-		for (var i=8;i<416;i+=8) {
-			saveState.push(saveString.join('').substring(i-8, i));
-		}
-		$(this).tooltipster('destroy');
-		$(this).tooltipster({
-			'content': saveUrl,
-			'interactive': 'true'
-		}).tooltipster('show');
+		var longState = saveString.join('')
+		console.log(longState)
+		var request = new XMLHttpRequest();
 
-		var tweet = $('.tweet').attr('value');
-		if (tweet === "") {
-			$('.tweet').attr('value', tweet + saveUrl);
-		}
+		request.open('GET', '/save/'+longState, true);
+		request.send();
+
+		/*for (var i=8;i<416;i+=8) {
+			saveState.push(saveString.join('').substring(i-8, i));
+		}*/
+		var ell = $(this);
+
+		request.onreadystatechange = function() {
+			if (request.readyState == 4 && request.status == 200){
+				saveUrl = document.location.host+"/sm/"+request.responseText.replace(/"/g, "");
+
+				ell.tooltipster('destroy');
+				ell.tooltipster({
+					'content': saveUrl,
+					'interactive': 'true'
+				}).tooltipster('show');
+
+				var tweet = $('.tweet').attr('value');
+				if (tweet === "") {
+					$('.tweet').attr('value', tweet + saveUrl);
+				}
+			}
+		};
 		return false;
+
 	})
 
 	// Click handler for opening room

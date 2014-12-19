@@ -9,7 +9,7 @@ var twitter = require('ntwitter');
 function makeTweet(req,cb) {
 
     if (!req.user.token) {
-        console.warn("You didn't have the user log in first");
+        console.warn("Must Loggin first.");
     }
     else{
         var twit = new twitter({
@@ -18,10 +18,9 @@ function makeTweet(req,cb) {
             access_token_key: req.user.token,
             access_token_secret: req.user.tokenSecret
         });
-
         twit
         .verifyCredentials(function (err, data) {
-            console.log(data);
+            if(err) console.error(err);
         })
         .updateStatus(req.params.msg,
             function (err, data) {

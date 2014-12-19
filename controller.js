@@ -55,3 +55,20 @@ exports.insert = function (tw){
     tweet.msg = tw.msg;
     tweet.save();
 }
+
+var MachineState = mongoose.model('MachineState');
+
+exports.saveState = function(url, cb){
+    var ms = new MachineState();
+    ms.longUrl = url;
+    ms.shortUrl = Math.random().toString(36).slice(2).substr(2,8);
+    ms.save(function(err){
+        cb(err,ms.shortUrl);
+    });
+}
+
+exports.findState = function(short, cb){
+    MachineState.findOne({shortUrl: short}, function(err, ms) {
+        cb(err, ms.longUrl)
+    })
+}
