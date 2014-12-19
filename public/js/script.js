@@ -61,10 +61,19 @@ function samplesLoaded(samples){
 
 // Seeding random "data" so that it doesn't look bad while I'm coding
 function seed() {
-	for (var tweets=1; tweets<3; tweets++) {
+	for (var tweets=1; tweets<2; tweets++) {
 		var seedArray = [];
-		for (var i=0; i<26; i++) {
-			seedArray.push(letters[Math.floor(Math.random() * (27))]);
+		var randomOff = [];
+		for (var i=0; i<13; i++) {
+			randomOff.push(Math.floor(Math.random() * (26)));
+		}
+		console.log(randomOff);
+		for (var i=0; i<40; i++) {
+			var randomLetter = Math.floor(Math.random() * (27));
+			console.log(randomLetter);
+			if ($.inArray(randomLetter, randomOff) < 0) {
+				seedArray.push(letters[randomLetter]);
+			}
 		}
 		playKeys(seedArray);
 	}
