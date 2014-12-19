@@ -260,6 +260,7 @@ function rowFilter(type, freq){
 
 var gaterState = 0;
 var gcounter = 0;
+var filterState = 0;
 
 function gater(gate) {
 	// Options are (1) 1/2, (2) 2/3
@@ -328,7 +329,10 @@ function beat() {
 			gcounter = 0;
 		}
 	} else {
-		row();
+		if(filterState != 0)
+			rowFilter(filterState.split('#')[0]+'pass',filterState.split('#')[1])
+		else
+			row();
 	}
 }
 
@@ -453,10 +457,11 @@ function changeFxPass(change) {
 	var right = barWidth/2.0;
 	if (fxpass > 0) {
 		right = barWidth/2.0 + (fxpass / 20)*barWidth;
-		rowFilter('lowpass',left*24)
+		filterState = 'low#'+right*24;
 	} else if (fxpass < 0) {
 		left = barWidth/2.0 - (Math.abs(fxpass) / 20)*barWidth;
-		rowFilter('highpass',right*24)
+		filterState = 'high#'+left*24;
+
 	} else {
 		left = barWidth*.4875;
 		right = barWidth*.5125;

@@ -55,7 +55,9 @@ exports.tweet = function(req, res){
     makeTweet(req,function(err, data){
         if(err)
             console.error(err)
-        else
-            console.log(req.user.name + ' is jamming on' + req.params.msg)
+        else{
+            res.send(200)
+        }
+
     })
 }
