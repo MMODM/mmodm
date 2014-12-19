@@ -157,13 +157,14 @@ $(document).ready(function() {
 		document.location.hash=''
 		playKeys(introSeed);
 	}
-	turnOnShortcuts();
+	inputting = 0;
+	keyboardShortcuts();
 	var inputField = $("#simForm input:text");
 	inputField.on('focus',function(e){
 		e.preventDefault();
-		$(document).unbind('keydown');
+		inputting = 1;
 	}).on('focusout', function(e) {
-		turnOnShortcuts();
+		inputting = 0;
 	});
 
 	//Demo Hack

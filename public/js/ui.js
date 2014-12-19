@@ -180,9 +180,9 @@ function uiEvents() {
 
 	$('.roomform input:text').on('focus',function(e){
 		e.preventDefault();
-		$(document).unbind('keydown');
+		inputting = 1;
 	}).on('focusout', function(e) {
-		turnOnShortcuts();
+		inputting = 0;
 	});
 
 	$('.roomform input:submit').on('click', function(e) {
@@ -333,103 +333,110 @@ function uiEvents() {
 
 // Handlers for keyboard buttons
 
-function turnOnShortcuts(){
+function keyboardShortcuts(){
 	$(document).keydown(function(e) {
-		if (e.keyCode == 46 || e.keyCode == 8) {
-			// Backspace / Delete
-			e.preventDefault();
-			for (var i=1; i<27; i++) {
-				for (var j=1; j<17; j++) {
-					offObject(i, j);
+		if (inputting < 1) {
+			if (e.keyCode == 46 || e.keyCode == 8) {
+				// Backspace / Delete
+				e.preventDefault();
+				for (var i=1; i<27; i++) {
+					for (var j=1; j<17; j++) {
+						offObject(i, j);
+					}
+				}
+				clearLock();
+				$('.stream').empty();
+			}
+			if (e.keyCode == 27) {
+				// Esc
+				e.preventDefault();
+				stop();
+			}
+			if (e.keyCode == 32) {
+				// Spacebar
+				e.preventDefault();
+				if (state == 'playing') {
+					pause();
+				} else {
+					play();
 				}
 			}
-			clearLock();
-			$('.stream').empty();
-		}
-		if (e.keyCode == 27) {
-			// Esc
-			e.preventDefault();
-			stop();
-		}
-		if (e.keyCode == 32) {
-			// Spacebar
-			e.preventDefault();
-			if (state == 'playing') {
-				pause();
-			} else {
-				play();
+			if (e.keyCode == 13) {
+				// Enter
+				e.preventDefault();
+				restart();
 			}
-		}
-		if (e.keyCode == 13) {
-			// Enter
-			e.preventDefault();
-			restart();
-		}
-		if (e.keyCode == 39) {
-			// Right Arrow
-			e.preventDefault();
-			changeTempo(10);
-		}
-		if (e.keyCode == 37) {
-			// Left Arrow
-			e.preventDefault();
-			changeTempo(-10);
-		}
-		if (e.keyCode == 220) {
-			// \
-			e.preventDefault();
-			stutter(0);
-			gater(0);
-		}
-		if (e.keyCode == 81) {
-			// Q
-			e.preventDefault();
-			stutter(0);
-		}
-		if (e.keyCode == 87) {
-			// W
-			e.preventDefault();
-			stutter(1);
-		}
-		if (e.keyCode == 69) {
-			// E
-			e.preventDefault();
-			stutter(2);
-		}
-		if (e.keyCode == 82) {
-			// R
-			e.preventDefault();
-			stutter(3);
-		}
-		if (e.keyCode == 84) {
-			// T
-			e.preventDefault();
-			stutter(4);
-		}
-		if (e.keyCode == 65) {
-			// A
-			e.preventDefault();
-			gater(0);
-		}
-		if (e.keyCode == 83) {
-			// S
-			e.preventDefault();
-			gater(1);
-		}
-		if (e.keyCode == 68) {
-			// D
-			e.preventDefault();
-			gater(2);
-		}
-		if (e.keyCode == 189) {
-			// _-
-			e.preventDefault();
-			changeFxPass(-1);
-		}
-		if (e.keyCode == 187) {
-			// +=
-			e.preventDefault();
-			changeFxPass(1);
+			if (e.keyCode == 39) {
+				// Right Arrow
+				e.preventDefault();
+				changeTempo(10);
+			}
+			if (e.keyCode == 37) {
+				// Left Arrow
+				e.preventDefault();
+				changeTempo(-10);
+			}
+			if (e.keyCode == 48) {
+				// 0
+				e.preventDefault();
+				stutter(0);
+				gater(0);
+			}
+			if (e.keyCode == 49) {
+				// 1
+				e.preventDefault();
+				stutter(0);
+			}
+			if (e.keyCode == 50) {
+				// 2
+				e.preventDefault();
+				stutter(1);
+			}
+			if (e.keyCode == 51) {
+				// 3
+				e.preventDefault();
+				stutter(2);
+			}
+			if (e.keyCode == 52) {
+				// 4
+				e.preventDefault();
+				stutter(3);
+			}
+			if (e.keyCode == 53) {
+				// 5
+				e.preventDefault();
+				stutter(4);
+			}
+			if (e.keyCode == 54) {
+				// 6
+				e.preventDefault();
+				gater(0);
+			}
+			if (e.keyCode == 55) {
+				// 7
+				e.preventDefault();
+				gater(1);
+			}
+			if (e.keyCode == 56) {
+				// 8
+				e.preventDefault();
+				gater(2);
+			}
+			if (e.keyCode == 189) {
+				// _-
+				e.preventDefault();
+				changeFxPass(-1);
+			}
+			if (e.keyCode == 187) {
+				// +=
+				e.preventDefault();
+				changeFxPass(1);
+			}
+		} else {
+			if (e.keyCode >= 65 && e.keyCode <= 90) {
+				// a through z
+				playSound(samples[$('.' + String.fromCharCode(e.keyCode).toLowerCase()).index()]);
+			}
 		}
 	});
 }

@@ -142,6 +142,8 @@ var saveState = [];
 var undoSave = [];
 var saveUrl = "http://mmodm.co/savedurl";
 
+var inputting = 0;
+
 // converts binary string to a hexadecimal string
 // returns an object with key 'valid' to a boolean value, indicating
 // if the string is a valid binary string.
