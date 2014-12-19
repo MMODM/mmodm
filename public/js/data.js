@@ -139,6 +139,7 @@ var letters = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","
 
 var lock = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,];
 var saveState = [];
+var undoSave = [];
 var saveUrl = "http://mmodm.co/savedurl";
 
 // converts binary string to a hexadecimal string

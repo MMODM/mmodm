@@ -22,14 +22,14 @@ function uiEvents() {
 			$(this).tooltipster('content', 'Help');
 		}
 		return false;
-	})
+	});
 
 	// Click handler for sound on labels
 
 	$('.label').on('click', function() {
 		playSound(samples[$('.' + $(this).text()).index()]);
 		return false;
-	})
+	});
 
 	// Click handler for text generation on labels
 
@@ -60,6 +60,7 @@ function uiEvents() {
 		if ($('.save').hasClass('saved')) {
 			$('.save').removeClass('saved');
 			saveState = [];
+			undoSave = [];
 			$('.save').tooltipster('destroy');
 			$('.save').tooltipster({'content': 'Save & Share'});
 		}
@@ -68,57 +69,79 @@ function uiEvents() {
 	// Click handler for saving state
 
 	$('.save').on('click', function() {
-		$.each(lock, function(index, value) {
-			if (value < 1) {
-				lockColumn(index);
-			}
-		});
-		$(this).addClass('saved');
 
-		saveState = [];
-		var saveString = [];
-		for (var i=1; i<27; i++) {
-			for (var j=1; j<17; j++) {
-				var opacity = $('.sequences ul:nth-child(' + i + ') li:nth-child(' + j + ') span').css('opacity');
-				if (opacity < 1) {
-					saveString.push("-");
+		if ($(this).hasClass('saved')) {
 
+			$.each(lock, function(index, value) {
+				if ($.inArray(index, undoSave) < 0) {
+					lockColumn(index);
+				}
+			});
+
+			$(this).removeClass('saved');
+			saveState = [];
+			undoSave = [];
+			$(this).tooltipster('destroy');
+			$(this).tooltipster({'content': 'Save & Share'});
+
+		} else {
+
+			$.each(lock, function(index, value) {
+				if (value < 1) {
+					lockColumn(index);
 				} else {
-					saveString.push(tracks[i-1].name);
+					undoSave.push(index);
+				}
+			});
+			$(this).addClass('saved');
+
+			saveState = [];
+			var saveString = [];
+			for (var i=1; i<27; i++) {
+				for (var j=1; j<17; j++) {
+					var opacity = $('.sequences ul:nth-child(' + i + ') li:nth-child(' + j + ') span').css('opacity');
+					if (opacity < 1) {
+						saveString.push("-");
+
+					} else {
+						saveString.push(tracks[i-1].name);
+					}
 				}
 			}
+			var longState = saveString.join('')
+			console.log(longState)
+			var request = new XMLHttpRequest();
+
+			request.open('GET', '/save/'+longState, true);
+			request.send();
+
+			/*for (var i=8;i<416;i+=8) {
+				saveState.push(saveString.join('').substring(i-8, i));
+			}*/
+			var ell = $(this);
+
+			request.onreadystatechange = function() {
+				if (request.readyState == 4 && request.status == 200){
+					saveUrl = document.location.host+"/sm/"+request.responseText.replace(/"/g, "");
+
+					ell.tooltipster('destroy');
+					ell.tooltipster({
+						'content': saveUrl,
+						'interactive': 'true'
+					}).tooltipster('show');
+
+					var tweet = $('.tweet').attr('value');
+					if (tweet === "") {
+						$('.tweet').attr('value', tweet + saveUrl);
+					}
+				}
+			};
+			
 		}
-		var longState = saveString.join('')
-		console.log(longState)
-		var request = new XMLHttpRequest();
 
-		request.open('GET', '/save/'+longState, true);
-		request.send();
-
-		/*for (var i=8;i<416;i+=8) {
-			saveState.push(saveString.join('').substring(i-8, i));
-		}*/
-		var ell = $(this);
-
-		request.onreadystatechange = function() {
-			if (request.readyState == 4 && request.status == 200){
-				saveUrl = document.location.host+"/sm/"+request.responseText.replace(/"/g, "");
-
-				ell.tooltipster('destroy');
-				ell.tooltipster({
-					'content': saveUrl,
-					'interactive': 'true'
-				}).tooltipster('show');
-
-				var tweet = $('.tweet').attr('value');
-				if (tweet === "") {
-					$('.tweet').attr('value', tweet + saveUrl);
-				}
-			}
-		};
 		return false;
 
-	})
+	});
 
 	// Click handler for opening room
 
@@ -144,7 +167,7 @@ function uiEvents() {
 		});
 		$('.room').tooltipster('enable');
 		return false;
-	})
+	});
 
 	// Click handlers for effects buttons
 
