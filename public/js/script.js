@@ -229,7 +229,7 @@ function pulse(object) {
 	object.parent().find('.label').addClass('glow').on('webkitAnimationEnd animationend', function() {
 		$(this).removeClass('glow').off('webkitAnimationEnd animationend');
 	});
-	if (stutterState == 0) {
+	if (stutterState == 0 && !object.parent().parent().hasClass('locked')) {
 		var objectLife = object.attr('data-life');
 		if (objectLife <= 1) {
 				objectLife = 0;
