@@ -15,4 +15,3 @@
 
 # General
 * Add some type of post-commit hook to push from github to mmodm.co server
-* Add intro / hello / onboarding

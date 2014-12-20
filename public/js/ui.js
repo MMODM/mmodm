@@ -2,7 +2,33 @@ function uiEvents() {
 
 	// Enable Tooltips
 
-	$('.tooltip').tooltipster();
+	$('.tooltip').tooltipster({
+		theme: 'tooltip-theme',
+		animation: 'swing'
+	});
+
+	$('.introtip').tooltipster({
+		theme: 'introtip-theme',
+		offsetY: '10px',
+		trigger: 'click'
+	});
+	$('.introtip').tooltipster('show');
+
+	// Show Room Tag
+
+	function roomTip(room) {
+		$('.roomtip').tooltipster({
+			content: '#' + room,
+			theme: 'roomtip-theme',
+			position: 'right',
+			offsetX: '-15px',
+			offsetY: '8px',
+			trigger: function(){}
+		});
+		$('.roomtip').tooltipster('show');
+	}
+
+	roomTip(document.location.pathname.split('/')[1]);
 
 	// Click handler for help menu
 
