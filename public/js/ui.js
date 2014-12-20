@@ -32,6 +32,9 @@ function uiEvents() {
 
 	$('.label').on('click', function() {
 		playSound(samples[$('.' + $(this).text()).index()]);
+		$(this).addClass('shine').on('webkitAnimationEnd animationend', function() {
+			$(this).removeClass('shine').off('webkitAnimationEnd animationend');
+		});
 		return false;
 	});
 
@@ -48,6 +51,7 @@ function uiEvents() {
 	// 		$('.tweet').attr('value', tweet.substr(0, $(this).index()) + letter + tweet.substr($(this).index()+1));
 	// 	}
 	// })
+
 	function bin2String(array) {
 		var result = "";
 		for (var i = 0; i < array.length; i++) {
@@ -442,6 +446,9 @@ function keyboardShortcuts(){
 			if (e.keyCode >= 65 && e.keyCode <= 90) {
 				// a through z
 				playSound(samples[$('.' + String.fromCharCode(e.keyCode).toLowerCase()).index()]);
+				$('.' + String.fromCharCode(e.keyCode).toLowerCase()).addClass('shine').on('webkitAnimationEnd animationend', function() {
+					$(this).removeClass('shine').off('webkitAnimationEnd animationend');
+				});
 			}
 		}
 	});

@@ -285,6 +285,12 @@ li.z {background: #3fff97;}
 	animation: glow 1s linear;
 }
 
+.shine {
+	-webkit-animation: shine .15s linear;
+	-moz-animation: shine .15s linear;
+	animation: shine .15s linear;
+}
+
 @-webkit-keyframes pulse {
     0% {
     	-webkit-transform: scale(1);
@@ -353,6 +359,18 @@ li.z {background: #3fff97;}
     100% { opacity: .25; }
 }
 
+@-webkit-keyframes shine {
+    0% { text-shadow: 0 0 11px, 0 0 12px, 0 0 13px, 0 0 14px, 0 0 15px, 0 0 16px, 0 0 17px, 0 0 18px, 0 0 19px, 0 0 20px, 0 0 21px, 0 0 22px, 0 0 23px, 0 0 24px, 0 0 25px, 0 0 26px, 0 0 27px, 0 0 28px, 0 0 29px, 0 0 30px, 0 0 31px, 0 0 32px, 0 0 33px, 0 0 34px, 0 0 35px, 0 0 36px, 0 0 37px, 0 0 38px, 0 0 39px, 0 0 40px, 0 0 41px, 0 0 42px, 0 0 43px, 0 0 44px, 0 0 45px, 0 0 46px, 0 0 47px, 0 0 48px, 0 0 49px, 0 0 50px, 0 0 51px, 0 0 52px, 0 0 53px, 0 0 54px, 0 0 55px, 0 0 56px, 0 0 57px, 0 0 58px, 0 0 59px, 0 0 60px, 0 0 61px, 0 0 62px, 0 0 63px, 0 0 64px, 0 0 65px, 0 0 66px, 0 0 67px, 0 0 68px, 0 0 69px, 0 0 70px; }
+    100% { text-shadow: 0; }
+}
+@-moz-keyframes shine {
+    0% { text-shadow: 0 0 11px, 0 0 12px, 0 0 13px, 0 0 14px, 0 0 15px, 0 0 16px, 0 0 17px, 0 0 18px, 0 0 19px, 0 0 20px, 0 0 21px, 0 0 22px, 0 0 23px, 0 0 24px, 0 0 25px, 0 0 26px, 0 0 27px, 0 0 28px, 0 0 29px, 0 0 30px, 0 0 31px, 0 0 32px, 0 0 33px, 0 0 34px, 0 0 35px, 0 0 36px, 0 0 37px, 0 0 38px, 0 0 39px, 0 0 40px, 0 0 41px, 0 0 42px, 0 0 43px, 0 0 44px, 0 0 45px, 0 0 46px, 0 0 47px, 0 0 48px, 0 0 49px, 0 0 50px, 0 0 51px, 0 0 52px, 0 0 53px, 0 0 54px, 0 0 55px, 0 0 56px, 0 0 57px, 0 0 58px, 0 0 59px, 0 0 60px, 0 0 61px, 0 0 62px, 0 0 63px, 0 0 64px, 0 0 65px, 0 0 66px, 0 0 67px, 0 0 68px, 0 0 69px, 0 0 70px; }
+    100% { text-shadow: 0; }
+}
+@keyframes shine {
+    0% { text-shadow: 0 0 11px, 0 0 12px, 0 0 13px, 0 0 14px, 0 0 15px, 0 0 16px, 0 0 17px, 0 0 18px, 0 0 19px, 0 0 20px, 0 0 21px, 0 0 22px, 0 0 23px, 0 0 24px, 0 0 25px, 0 0 26px, 0 0 27px, 0 0 28px, 0 0 29px, 0 0 30px, 0 0 31px, 0 0 32px, 0 0 33px, 0 0 34px, 0 0 35px, 0 0 36px, 0 0 37px, 0 0 38px, 0 0 39px, 0 0 40px, 0 0 41px, 0 0 42px, 0 0 43px, 0 0 44px, 0 0 45px, 0 0 46px, 0 0 47px, 0 0 48px, 0 0 49px, 0 0 50px, 0 0 51px, 0 0 52px, 0 0 53px, 0 0 54px, 0 0 55px, 0 0 56px, 0 0 57px, 0 0 58px, 0 0 59px, 0 0 60px, 0 0 61px, 0 0 62px, 0 0 63px, 0 0 64px, 0 0 65px, 0 0 66px, 0 0 67px, 0 0 68px, 0 0 69px, 0 0 70px; }
+    100% { text-shadow: 0; }
+}
 @-webkit-keyframes slide {
     0% { opacity: .25; height: 0px; }
     50% { opacity: 1; }
