@@ -56,6 +56,13 @@ function uiEvents() {
 		return result;
 	}
 
+	// Click handler for logo playing intro
+
+	$('.logo').on('click', function() {
+		if ($('.sequences li span[data-life!="0"]').length == 0) {
+			smileFace();
+		}
+	});
 
 	// Click handler for locked column
 

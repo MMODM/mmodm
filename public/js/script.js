@@ -104,6 +104,12 @@ function startIntro() {
 	}
 }
 
+function smileFace() {
+	$.each(smile, function(index, value) {
+		lightObject(smile[index][0], smile[index][1]);
+	});
+}
+
 function lightObject(x, y){
 	$('.sequences ul:not(.locked):nth-child(' + x + ') li:nth-child(' + y + ') span').css({'opacity': 1}).attr('data-life', (life * ((tempo * 4) / 60)) / 16);
 	// .animate({'opacity': 0.125}, death);
@@ -205,6 +211,8 @@ $(document).ready(function() {
 		else {
 			if (data == "seed") {
 				seed();
+			} else if (data == "intro") {
+				startIntro();
 			} else if ($.grep(beats, function(e){return e.name == data}).length > 0) {
 				$.each(beats, function(index, value) {
 					if (beats[index].name == data) {
