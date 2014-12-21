@@ -96,7 +96,6 @@ io.on('connection', function (socket) {
 });
 
 function emitKeys(users,keystrokes, room){
-    var room = room || 'MMODM';
     if(users.length >= 0){
         users.forEach(function(s, i, arr){
             s.emit('keys', {keys:keystrokes,room:room});
@@ -124,11 +123,13 @@ twit.verifyCredentials(function (err, data) {
                 var keystrokes = m.splice(1,m.length-1);
 
                 for (var i=1; i < tweet_txt.length; i++){
-                    if(tweet_txt[i]!=watch[0])
+                    if("#"+tweet_txt[i] != watch[0]){
+                        //console.log("k: " + keystrokes +" #"+tweet_txt[i]);
                         emitKeys(users, keystrokes, tweet_txt[i])
+                    }
                 }
                 if(tweet_txt.length == 2)
-                    emitKeys(users,keystrokes);
+                    emitKeys(users,keystrokes,"MMODM");
                 var tweet = {};
                 tweet.handler = name;
                 tweet.beat = keystrokes;

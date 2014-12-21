@@ -153,12 +153,11 @@ function playKeys(seed) {
 			if(seed[i].match(tracks[j].name)) sst[tracks[j].id].push(seed[i]);
 		}
 	}
-	
+
 	for(var i=0; i<sst.length; i++){
 		var dist=0;
 		for(var j=0; j<sst[i].length; j++){
 			 dist += sst[i][j].length;
-			console.log(dist)
 			lightObject(i+1,dist%17);
 		}
 	}
@@ -248,13 +247,6 @@ $(document).ready(function() {
 		}
 		inputField.val('');
 	})
-	var socket = io();
-	socket.on('keys', function (data) {
-		if(data.room == document.location.pathname.split('/')[1])
-			playKeys(data.keys);
-		else if(data.room == 'MMODM')
-			playKeys(data.keys);
-	});
 
 	uiEvents();
 
@@ -571,6 +563,22 @@ function clearLock() {
 		lock[index] = 0;
 	});
 }
+
+var socket = io.connect(document.location.host);
+var room = ""
+var urlRoom = ""
+socket.on('keys', function (data) {
+	room = JSON.stringify(data.room)
+	room = room.replace(/\"/g, "")
+	urlRoom = document.location.pathname.split('/')[1];
+
+	if(room.trim() == urlRoom) {
+		console.log(room+'-private')
+		playKeys(data.keys);}
+	else if(room == "MMODM" && urlRoom == ''){
+		console.log(room+'-public');
+ 		playKeys(data.keys);}
+});
 
 // Helper function
 /*setInterval(function() {
