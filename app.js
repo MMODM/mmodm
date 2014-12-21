@@ -56,7 +56,7 @@ cacheMiddleware = function(seconds) {
 };
 
 //Routes
-app.get('/', cacheMiddleware(5 * 60), routes.index);
+app.get('/', cacheMiddleware(30000), routes.index);
 
 app.get('/tweet/:msg', routes.tweet)
 
