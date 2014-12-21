@@ -39,6 +39,11 @@ app.use(passport.session());
 app.use(express.logger('dev'));
 app.use(express.bodyParser());
 app.use(express.methodOverride());
+
+app.use(function (req, res, next) {
+    res.header("X-powered-by", "The Force")
+    next()
+})
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public'),{ maxAge: 2629800000 }));
 
