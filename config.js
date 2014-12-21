@@ -16,7 +16,7 @@ module.exports = {
 		consumer_secret: 'Gy13AOg45x0Mx5tttaaJJaAHtDyhrNEKzLQZC5GamPU2UmhESn',
 		ac_key:'2924960029-Thl4yvlqWwCODMWbhmWfzeQSwCLFHCooOCMECh1',
 		ac_secret:'otBi276UIhpYayM6Bvg5TI6LUcdGqWMzeCJqTxDZWXHAa',
-		cb_url:'http://mmodm.co/auth/twitter/callback',
+		cb_url:'http://mmodm.co:8080/auth/twitter/callback',
 		db:'mongodb://localhost/mmodm',
 		session_secret:'4415155W334'
 	}
