@@ -30,7 +30,7 @@ var twit = new twitter({
 app.set('port', process.env.PORT || 3000);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
-app.use(express.compress()); 
+app.use(express.compress());
 app.use(express.favicon());
 app.use(express.cookieParser());
 app.use(express.session({ secret: config.session_secret }));
@@ -40,7 +40,7 @@ app.use(express.logger('dev'));
 app.use(express.bodyParser());
 app.use(express.methodOverride());
 app.use(app.router);
-app.use(express.static(path.join(__dirname, 'public',{ maxAge: 2629800000 })));
+app.use(express.static(path.join(__dirname, 'public'),{ maxAge: 2629800000 }));
 
 // development only
 if ('development' == app.get('env')) {
