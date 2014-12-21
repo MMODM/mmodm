@@ -77,6 +77,16 @@ function uiEvents() {
 		}
 	});
 
+	function Create2DArray(rows) {
+		var arr = [];
+
+		for (var i=0;i<rows;i++) {
+			arr[i] = [];
+		}
+
+		return arr;
+	}
+
 	// Click handler for saving state
 
 	$('.save').on('click', function() {
@@ -107,21 +117,35 @@ function uiEvents() {
 			$(this).addClass('saved');
 
 			saveState = [];
-			var saveString = [];
+			var saveArr = Create2DArray(26);
+
 			for (var i=1; i<27; i++) {
+				var c = 0;
 				for (var j=1; j<17; j++) {
 					var opacity = $('.sequences ul:nth-child(' + i + ') li:nth-child(' + j + ') span').css('opacity');
 					if (opacity < 1) {
-						saveString.push("-");
-
+						saveArr[i-1].push("-");
+						c++;
+						if(c==16) saveArr[i-1].splice(0, 16);
 					} else {
-						saveString.push(tracks[i-1].name);
+						c=0;
+						saveArr[i-1].push(tracks[i-1].name);
 					}
 				}
 			}
-			var longState = saveString.join('')
-			console.log(longState)
+			var longState = "";
+			for (var i=0; i<26; i++) {
+				var ss = saveArr[i].join('').split(tracks[i].name);
+				ss.pop();
 
+				for (var j=0; j<ss.length; j++) {
+					ss[j] += tracks[i].name;
+				}
+				console.log(ss.join(''));
+				longState += ss.join('');
+			}
+
+			console.log(longState);
 			var request = new XMLHttpRequest();
 			request.open('GET', '/save/'+longState, true);
 			request.send();
