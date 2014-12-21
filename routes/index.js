@@ -32,6 +32,7 @@ function makeTweet(req,cb) {
     }
 }
 exports.index = function(req, res){
+  console.log("[" + process.pid + "]");
   res.render('index', { title: 'MMODM', user: req.user });
 };
 
