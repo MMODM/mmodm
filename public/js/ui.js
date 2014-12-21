@@ -2,7 +2,33 @@ function uiEvents() {
 
 	// Enable Tooltips
 
-	$('.tooltip').tooltipster();
+	$('.tooltip').tooltipster({
+		theme: 'tooltip-theme',
+		animation: 'swing'
+	});
+
+	$('.introtip').tooltipster({
+		theme: 'introtip-theme',
+		offsetY: '10px',
+		trigger: 'click'
+	});
+	$('.introtip').tooltipster('show');
+
+	// Show Room Tag
+
+	function roomTip(room) {
+		$('.roomtip').tooltipster({
+			content: '#' + room,
+			theme: 'roomtip-theme',
+			position: 'right',
+			offsetX: '-15px',
+			offsetY: '8px',
+			trigger: function(){}
+		});
+		$('.roomtip').tooltipster('show');
+	}
+
+	roomTip(document.location.pathname.split('/')[1]);
 
 	// Click handler for help menu
 
@@ -32,6 +58,9 @@ function uiEvents() {
 
 	$('.label').on('click', function() {
 		playSound(samples[$('.' + $(this).text()).index()]);
+		$(this).addClass('shine').on('webkitAnimationEnd animationend', function() {
+			$(this).removeClass('shine').off('webkitAnimationEnd animationend');
+		});
 		return false;
 	});
 
@@ -48,6 +77,7 @@ function uiEvents() {
 	// 		$('.tweet').attr('value', tweet.substr(0, $(this).index()) + letter + tweet.substr($(this).index()+1));
 	// 	}
 	// })
+
 	function bin2String(array) {
 		var result = "";
 		for (var i = 0; i < array.length; i++) {
@@ -466,6 +496,9 @@ function keyboardShortcuts(){
 			if (e.keyCode >= 65 && e.keyCode <= 90) {
 				// a through z
 				playSound(samples[$('.' + String.fromCharCode(e.keyCode).toLowerCase()).index()]);
+				$('.' + String.fromCharCode(e.keyCode).toLowerCase()).addClass('shine').on('webkitAnimationEnd animationend', function() {
+					$(this).removeClass('shine').off('webkitAnimationEnd animationend');
+				});
 			}
 		}
 	});
