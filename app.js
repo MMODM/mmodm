@@ -46,8 +46,17 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
+var cacheMiddleware;
+
+cacheMiddleware = function(seconds) {
+    return function(req, res, next) {
+        res.setHeader("Cache-Control", "public, max-age=" + seconds);
+        return next();
+    };
+};
+
 //Routes
-app.get('/', routes.index);
+app.get('/', cacheMiddleware(5 * 60), routes.index);
 
 app.get('/tweet/:msg', routes.tweet)
 
@@ -63,7 +72,8 @@ app.get('/sm/:shorturl', function(req, res){
     })
 })
 
-app.get('/:room', function(req, res){
+app.get('/:room',cacheMiddleware(5 * 60),function(req, res){
+
     var room  = req.params.room
     res.render('index',{ title: 'MMODM-'+room, user: req.user, room:room })
 })

@@ -174,7 +174,11 @@ function tweet(data){
 			}
 		}
 	};
-	request.open('GET', '/tweet/'+data+'%20%23MMODM', true);
+	var room = document.location.pathname.split('/')[1];
+	if(!room)
+		request.open('GET', '/tweet/'+data+'%20%23MMODM', true);
+	else
+		request.open('GET', '/tweet/'+data+'%20%23'+room+'%20%23MMODM', true);
 	request.send();
 }
 
@@ -573,10 +577,8 @@ socket.on('keys', function (data) {
 	urlRoom = document.location.pathname.split('/')[1];
 
 	if(room.trim() == urlRoom) {
-		console.log(room+'-private')
 		playKeys(data.keys);}
 	else if(room == "MMODM" && urlRoom == ''){
-		console.log(room+'-public');
  		playKeys(data.keys);}
 });
 
