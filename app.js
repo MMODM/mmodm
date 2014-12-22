@@ -12,16 +12,10 @@ var path = require('path');
 var config = require('./config')[process.env.ENVAR || 'dev'];
 var twitter = require('ntwitter');
 var fs = require('fs');
-var cluster = require('cluster');
-
-// Count the machine's CPUs
 var cpuCount = require('os').cpus().length;
-
-mongoose.connect(config.db);
-
-var app = express();
-var http = require('http').Server(app);
-var io = require('socket.io')(http);
+var cluster = require('cluster');
+var ioe = require('socket.io-emitter')({ host: '127.0.0.1', port: 6379 });
+var sticky = require('sticky-session');
 
 var twit = new twitter({
     consumer_key: config.consumer_key,
@@ -29,6 +23,14 @@ var twit = new twitter({
     access_token_key: config.ac_key,
     access_token_secret: config.ac_secret
 });
+
+mongoose.connect(config.db);
+
+var app = express();
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
+var redis = require('socket.io-redis');
+io.adapter(redis({ host: 'localhost', port: 6379 }));
 
 // all environments
 app.set('port', process.env.PORT || 3000);
@@ -50,12 +52,6 @@ app.use(function (req, res, next) {
 })
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public'),{ maxAge: 2629800000 }));
-
-// development only
-if ('development' == app.get('env')) {
-  app.use(express.errorHandler());
-}
-
 
 
 //Routes
@@ -91,33 +87,31 @@ routes.auth_cb);
 
 app.get('/logout', routes.logout);
 
+//Socket.io & Twitter Stream API
+var users = []
+io.on('connection', function (socket) {
+    users.push(socket);
+});
+
 //Middlewear
 function ensureAuthenticated(req, res, next) {
     if (req.isAuthenticated()) { return next(); }
-        res.redirect('/')
+    res.redirect('/')
 }
 
-// Master process
+function emitKeys(users,keystrokes, room){
+    if(users.length >= 0){
+        users.forEach(function(s, i, arr){
+            s.emit('keys', {keys:keystrokes,room:room});
+        })
+    }
+}
+
+sticky(http).listen(app.get('port'), function(){
+    console.log('[' + process.pid + '] running MMODM server on port ' + app.get('port') +' with '+cpuCount+' horsemen');
+})
+
 if (cluster.isMaster) {
-
-    // Create a worker for each CPU
-    for (var i = 0; i < cpuCount; i += 1) {
-        cluster.fork();
-    }
-
-    //Socket.io & Twitter Stream API
-    var users = []
-    io.on('connection', function (socket) {
-        users.push(socket);
-    });
-
-    function emitKeys(users,keystrokes, room){
-        if(users.length >= 0){
-            users.forEach(function(s, i, arr){
-                s.emit('keys', {keys:keystrokes,room:room});
-            })
-        }
-    }
 
     var watch = ['#MMODM'];
 
@@ -127,47 +121,29 @@ if (cluster.isMaster) {
     .stream('statuses/filter', {track:watch}, function(stream) {
         console.log("Twitter Stream API, listening.");
         stream.on('data', function (data) {
-
             if (data.text !== undefined) {
                 var name = data.user.screen_name;
                 var tweet_txt = data.text.split("#");
                 var ma = false
-                if(tweet_txt[0] != null)
-                    ma = tweet_txt[0].match(/\[.*\]/);
+                if(tweet_txt[0] != null) ma = tweet_txt[0].match(/\[.*\]/);
                 if (ma){
                     var m = ma[0].split("");
                     var keystrokes = m.splice(1,m.length-1);
-
                     for (var i=1; i < tweet_txt.length; i++){
-                        if("#"+tweet_txt[i] != watch[0]){
-                            //console.log("k: " + keystrokes +" #"+tweet_txt[i]);
-                            emitKeys(users, keystrokes, tweet_txt[i])
-                        }
-                    }
-                    if(tweet_txt.length == 2)
-                        emitKeys(users,keystrokes,"MMODM");
-                    var tweet = {};
-                    tweet.handler = name;
-                    tweet.beat = keystrokes;
-                    tweet.msg = tweet_txt[0];
-                    controller.insert(tweet);
+                        if("#"+tweet_txt[i] != watch[0]) if(tweet_txt.length == 2) ioe.emit('keys', {keys:keystrokes,room:tweet_txt[i]});
                 }
-                else
-                    console.log("Dump.")
+                if(tweet_txt.length == 2) ioe.emit('keys', {keys:keystrokes,room:"MMODM"});
+                        var tweet = {};
+                        tweet.handler = name;
+                        tweet.beat = keystrokes;
+                        tweet.msg = tweet_txt[0];
+                        controller.insert(tweet);
+                }
+                else console.log("Dump.")
             }
         });
-
         stream.on('error', function (err, code) {
             console.error("err: "+err+" "+code)
         });
     });
-}
-else {
-
-    http.listen(app.get('port'), function(){
-
-        console.log('[' + process.pid + '] running MMODM server on port ' + app.get('port') +' with '+cpuCount+' horsemen');
-        fs.writeFile(__dirname + '/start.log', 'started');
-    });
-
 }
