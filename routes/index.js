@@ -32,6 +32,7 @@ function makeTweet(req,cb) {
     }
 }
 exports.index = function(req, res){
+    
   res.render('index', { title: 'MMODM', user: req.user });
 };
 

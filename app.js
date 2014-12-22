@@ -24,27 +24,7 @@ var port = process.env.PORT || 3000;
 var workers = process.env.WORKERS || require('os').cpus().length;
 var app = express();
 
-sticky(workers, function() {
 
-    // This code will be executed only in slave workers
-    var server = http.createServer(app);
-
-    var io = require('socket.io')(server);
-
-    // configure socket.io to use redis adapter
-    addRedisAdapter(io);
-
-    // configure socket.io to respond to certain events
-    addIOEventHandlers(io);
-
-    return server;
-
-}).listen(port, function() {
-
-    // this code is executed in both slaves and master
-    console.log('server started on port '+port+'. process id = '+process.pid);
-
-});
 
 mongoose.connect(config.db);
 app.set('port', process.env.PORT || 3000);
@@ -183,3 +163,25 @@ if (cluster.isMaster) {
         });
 
 }
+
+sticky(workers, function() {
+
+    // This code will be executed only in slave workers
+    var server = http.createServer(app);
+
+    var io = require('socket.io')(server);
+
+    // configure socket.io to use redis adapter
+    addRedisAdapter(io);
+
+    // configure socket.io to respond to certain events
+    addIOEventHandlers(io);
+
+    return server;
+
+}).listen(port, function() {
+
+    // this code is executed in both slaves and master
+    console.log('server started on port '+port+'. process id = '+process.pid);
+
+});
