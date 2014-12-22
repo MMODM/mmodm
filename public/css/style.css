@@ -716,7 +716,7 @@ li.z {background: #3fff97;}
 	opacity: .3;
 	-webkit-transition: .15s opacity ease-in-out;
 	-moz-transition: .15s opacity ease-in-out;
-	transition: .15s opacity ease-in-out;	
+	transition: .15s opacity ease-in-out;
 }
 
 .effects .clear {
@@ -897,7 +897,7 @@ li.z {background: #3fff97;}
 }
 
 .tooltip-theme {
-	border-radius: 5px; 
+	border-radius: 5px;
 	border: 2px solid #000;
 	background: #4c4c4c;
 	color: #fff;
@@ -995,7 +995,7 @@ li.z {background: #3fff97;}
 .shade p {
 	width: 700px;
 	margin: 305px auto 0 auto;
-	text-align: left;
+	text-align: justify;
 	font-size: 24px;
 	line-height: 38px;
 	color: #aaa;
