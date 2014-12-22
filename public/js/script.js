@@ -143,22 +143,24 @@ function playKeys(seed) {
 	},10000);
 
 	var re = /(\-*\w)/g
-	var strSeed = seed.join('')
-	var seed = strSeed.match(re);
+	var strSeed = seed.join('');
+	var seed = strSeed.match(re).join('').split('');
 	var sst = Create2DArray(26);
 	var x = 0;
 
-	for(var i=0; i<seed.length; i++){
+	for(var i=0; i<seed.length && i<16; i++){
 		for(var j = 0; j<tracks.length; j++){
-			if(seed[i].match(tracks[j].name)) sst[tracks[j].id].push(seed[i]);
+			if (seed[i].match(tracks[j].name)) {
+				sst[tracks[j].id].push(i+1);
+			} else {
+				sst[tracks[j].id].push(0);
+			}
 		}
 	}
 
 	for(var i=0; i<sst.length; i++){
-		var dist=0;
 		for(var j=0; j<sst[i].length; j++){
-			 dist += sst[i][j].length;
-			lightObject(i+1,dist%17);
+			lightObject(i+1,sst[i][j]);
 		}
 	}
 }
