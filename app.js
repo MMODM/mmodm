@@ -17,17 +17,17 @@ var ioe = require('socket.io-emitter')({ host: '127.0.0.1', port: 6379 });
 
 var redis = require('redis');
 var redisAdapter = require('socket.io-redis');
-var sticky = require('sticky-session');
 
 
 var port = process.env.PORT || 3000;
 var workers = process.env.WORKERS || require('os').cpus().length;
+
 var app = express();
-
-
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
 
 mongoose.connect(config.db);
-app.set('port', process.env.PORT || 3000);
+app.set('port', port);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
 app.use(express.compress());
@@ -44,6 +44,7 @@ app.use(function (req, res, next) {
     next()
 })
 app.use(app.router);
+
 app.use(express.static(path.join(__dirname, 'public'),{ maxAge: 2629800000 }));
 
 //Routes
@@ -92,7 +93,6 @@ function emitKeys(users,keystrokes, room){
         })
     }
 }
-
 function addRedisAdapter(io) {
     var redisUrl = process.env.REDISTOGO_URL || 'redis://127.0.0.1:6379';
     var redisOptions = require('parse-redis-url')(redis).parse(redisUrl);
@@ -117,7 +117,6 @@ function addIOEventHandlers(io) {
         console.log('Connection made. socket.id='+socket.id+' . pid = '+process.pid);
     });
 };
-
 var twit = new twitter({
     consumer_key: config.consumer_key,
     consumer_secret: config.consumer_secret,
@@ -161,27 +160,27 @@ if (cluster.isMaster) {
                 console.error("err: "+err+" "+code)
             });
         });
+        console.log('start cluster with %s workers', workers - 1);
+        workers--;
+        for (var i = 0; i < workers; ++i) {
+            var worker = cluster.fork();
+            console.log('worker %s started.', worker.process.pid);
+        }
+
+        cluster.on('death', function(worker) {
+            console.log('worker %s died. restart...', worker.process.pid);
+        });
 
 }
+else {
+    start();
+}
 
-sticky(workers, function() {
-
-    // This code will be executed only in slave workers
-    var server = http.createServer(app);
-
-    var io = require('socket.io')(server);
-
-    // configure socket.io to use redis adapter
+function start() {
     addRedisAdapter(io);
-
-    // configure socket.io to respond to certain events
     addIOEventHandlers(io);
 
-    return server;
-
-}).listen(port, function() {
-
-    // this code is executed in both slaves and master
-    console.log('server started on port '+port+'. process id = '+process.pid);
-
-});
+    http.listen(port, function() {
+        console.log('server started on port '+port+'. process id = '+process.pid);
+    });
+}
