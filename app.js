@@ -1,6 +1,6 @@
 /**
- * Module dependencies.
- */
+* Module dependencies.
+*/
 
 var mongoose = require('mongoose');
 var http = require('http');
@@ -25,7 +25,6 @@ var twit = new twitter({
 });
 
 if (cluster.isMaster) {
-    console.log('master')
     var watch = ['#MMODM'];
 
     twit.verifyCredentials(function (err, data) {
@@ -43,7 +42,9 @@ if (cluster.isMaster) {
                     var m = ma[0].split("");
                     var keystrokes = m.splice(1,m.length-1);
                     for (var i=1; i < tweet_txt.length; i++){
-                        if("#"+tweet_txt[i] != watch[0]) if(tweet_txt.length == 2) ioe.emit('keys', {keys:keystrokes,room:tweet_txt[i]});
+                        if("#"+tweet_txt[i] != watch[0]){
+                            ioe.emit('keys', {keys:keystrokes,room:tweet_txt[i]});
+                        }
                     }
                     if(tweet_txt.length == 2) ioe.emit('keys', {keys:keystrokes,room:"MMODM"});
                     var tweet = {};
@@ -59,20 +60,17 @@ if (cluster.isMaster) {
                 console.error("err: "+err+" "+code)
             });
         });
-        var workers = [];
 
+        var workers = [];
         // Helper function for spawning worker at index 'i'.
         var spawn = function(i) {
             workers[i] = cluster.fork();
-
-            // Optional: Restart worker on exit
             workers[i].on('exit', function(worker, code, signal) {
                 console.log('respawning worker', i);
                 spawn(i);
             });
         };
 
-        // Spawn workers.
         for (var i = 0; i < cpuCount; i++) {
             spawn(i);
         }
@@ -84,18 +82,14 @@ if (cluster.isMaster) {
                     s += ip[i];
                 }
             }
-
             return Number(s) % len;
         };
-
-        mongoose.connect(config.db);
 
         var app = express();
         var http = require('http').Server(app);
         var io = require('socket.io')(http);
         io.adapter(redis({ host: 'localhost', port: 6379 }));
-
-        // all environments
+        mongoose.connect(config.db);
         app.set('port', process.env.PORT || 3000);
         app.set('views', __dirname + '/views');
         app.set('view engine', 'jade');
@@ -108,14 +102,12 @@ if (cluster.isMaster) {
         app.use(express.logger('dev'));
         app.use(express.bodyParser());
         app.use(express.methodOverride());
-
         app.use(function (req, res, next) {
             res.header("X-powered-by", "The Force")
             next()
         })
         app.use(app.router);
         app.use(express.static(path.join(__dirname, 'public'),{ maxAge: 2629800000 }));
-
 
         //Routes
         app.get('/', routes.index);
@@ -166,17 +158,11 @@ if (cluster.isMaster) {
         http.listen(app.get('port'), function(){
             console.log('[' + process.pid + '] running MMODM server on port ' + app.get('port') +' with '+cpuCount+' horsemen');
         });
-
-
-
-}
-else{
-
-var app = new express();
-
-var server = app.listen(0, 'localhost'),
-io = sio(server);
-console.log('[' + process.pid + '] is running ws server.')
-io.adapter(redis({ host: 'localhost', port: 6379 }));
-
-}
+    }
+    else{
+        var app = new express();
+        var server = app.listen(0, 'localhost'),
+        io = sio(server);
+        console.log('[' + process.pid + '] is running ws server.')
+        io.adapter(redis({ host: 'localhost', port: 6379 }));
+    }
