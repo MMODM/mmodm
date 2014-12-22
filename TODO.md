@@ -3,6 +3,9 @@
 # Features
 * Prepopulate page
 
+# General
+* Update Readme with final install & run instructions
+
 # Future work
 * Low/high filters
 	* Currently only work during drag and
