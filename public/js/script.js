@@ -570,7 +570,7 @@ function clearLock() {
 	});
 }
 
-var socket = io.connect(document.location.host);
+var socket = io.connect(document.location.host,{transports: [ 'websocket' ]});
 var room = ""
 var urlRoom = ""
 socket.on('keys', function (data) {

@@ -21,10 +21,14 @@ var redisAdapter = require('socket.io-redis');
 
 var port = process.env.PORT || 3000;
 var workers = process.env.WORKERS || require('os').cpus().length;
-
+function start(){
 var app = express();
+
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
+
+addRedisAdapter(io);
+addIOEventHandlers(io);
 
 mongoose.connect(config.db);
 app.set('port', port);
@@ -80,6 +84,10 @@ routes.auth_cb);
 
 app.get('/logout', routes.logout);
 
+http.listen(port, function() {
+    console.log('server started on port '+port+'. process id = '+process.pid);
+});
+}
 //Middlewear
 function ensureAuthenticated(req, res, next) {
     if (req.isAuthenticated()) { return next(); }
@@ -174,13 +182,4 @@ if (cluster.isMaster) {
 }
 else {
     start();
-}
-
-function start() {
-    addRedisAdapter(io);
-    addIOEventHandlers(io);
-
-    http.listen(port, function() {
-        console.log('server started on port '+port+'. process id = '+process.pid);
-    });
 }
