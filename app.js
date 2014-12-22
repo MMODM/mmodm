@@ -14,6 +14,9 @@ var twitter = require('ntwitter');
 var fs = require('fs');
 var cluster = require('cluster');
 
+// Count the machine's CPUs
+var cpuCount = require('os').cpus().length;
+
 mongoose.connect(config.db);
 
 var app = express();
@@ -97,9 +100,6 @@ function ensureAuthenticated(req, res, next) {
 // Master process
 if (cluster.isMaster) {
 
-    // Count the machine's CPUs
-    var cpuCount = require('os').cpus().length;
-
     // Create a worker for each CPU
     for (var i = 0; i < cpuCount; i += 1) {
         cluster.fork();
@@ -169,5 +169,5 @@ else {
         console.log('[' + process.pid + '] running MMODM server on port ' + app.get('port') +' with '+cpuCount+' horsemen');
         fs.writeFile(__dirname + '/start.log', 'started');
     });
-    
+
 }
