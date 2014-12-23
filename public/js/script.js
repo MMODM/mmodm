@@ -175,10 +175,10 @@ function playKeys(seed) {
 	var sst = Create2DArray(26);
 	var x = 0;
 
-	for(var i=0; i<seed.length && i<16; i++){
+	for(var i=0; i<seed.length; i++){
 		for(var j = 0; j<tracks.length; j++){
 			if (seed[i].match(tracks[j].name)) {
-				sst[tracks[j].id].push(i+1);
+				sst[tracks[j].id].push(i%16+1);
 			} else {
 				sst[tracks[j].id].push(0);
 			}
