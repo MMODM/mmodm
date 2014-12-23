@@ -3,7 +3,8 @@ A Massive Multiplayer Online Drum Machine powered by the Twitter stream API!
 
 ###Install & Run
 
-Make sure to edit config.js with your keys.
+* Edit config.js with your keys.
+* Install and run [Redis](http://redis.io/).
 
 ```
 {
@@ -30,11 +31,12 @@ mongod
 npm start
 ```
 
+
 ### How it works
 
 Tweet with [#MMODM](http://twitter.com/search?q=%23MMODM) with a sequence of your notes. Feel free to reply to [@playmmodm](http://twitter.com/playmmodm) to play without over-spamming your feed.
 
-To define a sequence, use square brackets [] and then a string of 16 letters a-z that each correspond to a different instrument. There are 16 beats in a loop. Use a '-' or a ' ' (space) to rest. For example:
+To define a sequence, use square brackets [] and then a string of 16 letters a-z that each correspond to a different instrument. There are 16 beats in a loop. Use a '-' to rest. For example:
 
 ```
 riff on this [a--a--a--abc--cc] with me on #mmodm http://mmodm.co/
