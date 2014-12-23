@@ -220,6 +220,7 @@ $(document).ready(function() {
 		$.getJSON( "tws/5", function( data ) {
 			playKeys(data.split(''));
 		});
+		playKeys(["o","-","-","-","o","-","-","-","o","-","-","-","o","-","-","-"]);
 	}
 	//Get Keys from URL
 	if(document.location.hash != undefined && document.location.hash.length){
