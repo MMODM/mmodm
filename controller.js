@@ -48,18 +48,19 @@ passport.deserializeUser(function(uid, done) {
 
 var Tweet = mongoose.model('Tweet');
 
-exports.insert = function (tw){
+exports.insertTweet = function (tw, cb){
+
     var tweet = new Tweet();
     tweet.handler = tw.handler;
     tweet.beat = tw.beat;
     tweet.msg = tw.msg;
-    tweet.save();
+    tweet.save(function(err){
+        if(err) cb(err)
+    });
 }
 
 exports.getLatestTweets = function(num, cb){
-    Tweet.find().sort({created: -1})
-    .limit(num)
-    .exec(function(err, tweets) {
+    Tweet.find().sort('-created').limit(5).exec(function(err,tweets){
         cb(err,tweets);
     });
 }
