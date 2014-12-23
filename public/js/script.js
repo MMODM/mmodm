@@ -214,7 +214,7 @@ function tweet(data){
 $(document).ready(function() {
 	if ($('.sequences li span[data-life!="0"]').length == 0) {
 		$.getJSON( "tws/5", function( data ) {
-			playKeysURL(data.split(''));
+			playKeys(data.split(''));
 		});
 	}
 	//Get Keys from URL

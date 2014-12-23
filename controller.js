@@ -57,7 +57,7 @@ exports.insert = function (tw){
 }
 
 exports.getLatestTweets = function(num, cb){
-    Tweet.find().sort({'created': -1})
+    Tweet.find().sort({date: -1})
     .limit(num)
     .exec(function(err, tweets) {
         cb(err,tweets);
