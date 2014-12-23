@@ -24,6 +24,8 @@ var http = require('http'),
         access_token_secret: config.ac_secret
     });
 
+    mongoose.connect(config.db);
+
 function startSlave(){
     var app = express();
     var http = require('http').Server(app);
@@ -31,8 +33,6 @@ function startSlave(){
 
     addRedisAdapter(io);
     addIOEventHandlers(io);
-
-    mongoose.connect(config.db);
 
     app.set('port', port);
     app.set('views', __dirname + '/views');
@@ -136,6 +136,7 @@ function addIOEventHandlers(io) {
 };
 
 if (cluster.isMaster) {
+
     var watch = ['#MMODM'];
 
     twit.verifyCredentials(function (err, data) {
@@ -152,17 +153,23 @@ if (cluster.isMaster) {
                 if (ma){
                     var m = ma[0].split("");
                     var keystrokes = m.splice(1,m.length-1);
+                    var tweet = {};
+
                     for (var i=1; i < tweet_txt.length; i++){
                         if("#"+tweet_txt[i] != watch[0]){
                             ioe.emit('keys', {keys:keystrokes,room:tweet_txt[i]});
                         }
                     }
-                    if(tweet_txt.length == 2) ioe.emit('keys', {keys:keystrokes,room:"MMODM"});
-                    var tweet = {};
+                    if(tweet_txt.length == 2)
+                        ioe.emit('keys', {keys:keystrokes,room:"MMODM"});
+                    
                     tweet.handler = name;
                     tweet.beat = keystrokes;
                     tweet.msg = tweet_txt[0];
-                    controller.insert(tweet);
+                    controller.insertTweet(tweet, function(err){
+                        console.log(err)
+                    });
+
                 }
                 else console.log("Dump.")
                 }
