@@ -27,6 +27,7 @@ npm install
 Then start the servers
 
 ```
+redis-server
 mongod
 npm start
 ```
