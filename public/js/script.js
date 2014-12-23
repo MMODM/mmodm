@@ -158,7 +158,9 @@ function playKeysURL(seed) {
 		var dist=0;
 		for(var j=0; j<sst[i].length; j++){
 			dist += sst[i][j].length;
-			lightObject(i+1,dist%17);
+			if (sst[i][j] != 0) {
+				lightObject(i+1,dist%17);
+			}
 		}
 	}
 }
@@ -187,7 +189,9 @@ function playKeys(seed) {
 
 	for(var i=0; i<sst.length; i++){
 		for(var j=0; j<sst[i].length; j++){
-			lightObject(i+1,sst[i][j]);
+			if (sst[i][j] != 0) {
+				lightObject(i+1,sst[i][j]);
+			}
 		}
 	}
 }
