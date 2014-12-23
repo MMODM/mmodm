@@ -56,6 +56,13 @@ exports.insert = function (tw){
     tweet.save();
 }
 
+exports.getLatestTweets = function(num, cb){
+    Tweet.find().sort({'created': -1})
+    .limit(num)
+    .exec(function(err, tweets) {
+        cb(err,tweets);
+    });
+}
 var MachineState = mongoose.model('MachineState');
 
 exports.saveState = function(url, cb){

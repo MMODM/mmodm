@@ -212,6 +212,11 @@ function tweet(data){
 }
 
 $(document).ready(function() {
+	if ($('.sequences li span[data-life!="0"]').length == 0) {
+		$.getJSON( "tws/5", function( data ) {
+			playKeysURL(data.split(''));
+		});
+	}
 	//Get Keys from URL
 	if(document.location.hash != undefined && document.location.hash.length){
 		var introSeed = document.location.hash.split('#')[1].split('');
