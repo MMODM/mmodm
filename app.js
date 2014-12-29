@@ -80,7 +80,7 @@ function startSlave(){
             var set = '';
             for(var i=0; i<tweets.length; i++){
                 var seq = tweets[i].msg.match(/(\[.*\])/g)[0];
-                seq.replace(/o/g,'s')
+                seq = seq.replace(/o/g,'s')
                 set += seq.substr(1,seq.length-2)
             }
             res.json(set);
