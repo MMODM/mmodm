@@ -1,7 +1,10 @@
 ##MMODM TODO
 
 # Features
-* Prepopulate page
+* Test sequence button
+* Better initial instructions
+* List out rooms or some way to access them
+* Reorder letters to keyboard
 
 # Future work
 * Low/high filters
