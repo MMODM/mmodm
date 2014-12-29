@@ -79,7 +79,7 @@ function startSlave(){
         controller.getLatestTweets(req.params.num,function(err, tweets){
             var set = '';
             for(var i=0; i<tweets.length; i++){
-                //var seq = tweets[i].msg.match(/(\[.*\])/g)[0];
+                var seq = tweets[i].msg.match(/(\[.*\])/g)[0];
                 //if(!seq.match(/(o)/g))
                 set += seq.substr(1,seq.length-2)
             }
