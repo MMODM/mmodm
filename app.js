@@ -79,9 +79,9 @@ function startSlave(){
         controller.getLatestTweets(req.params.num,function(err, tweets){
             var set = '';
             for(var i=0; i<tweets.length; i++){
-                var seq = tweets[i].msg.match(/(\[.*\])/g)[0];
-                if(!seq.match(/(o)/g))
-                    set += seq.substr(1,seq.length-2)
+                //var seq = tweets[i].msg.match(/(\[.*\])/g)[0];
+                //if(!seq.match(/(o)/g))
+                set += seq.substr(1,seq.length-2)
             }
             res.json(set);
         })
@@ -162,7 +162,7 @@ if (cluster.isMaster) {
                     }
                     if(tweet_txt.length == 2)
                         ioe.emit('keys', {keys:keystrokes,room:"MMODM"});
-                    
+
                     tweet.handler = name;
                     tweet.beat = keystrokes;
                     tweet.msg = tweet_txt[0];
