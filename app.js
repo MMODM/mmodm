@@ -106,6 +106,7 @@ function ensureAuthenticated(req, res, next) {
 function emitKeys(users,keystrokes, room){
     if(users.length >= 0){
         users.forEach(function(s, i, arr){
+            console.log(keystrokes)
             s.emit('keys', {keys:keystrokes,room:room});
         })
     }
@@ -163,11 +164,9 @@ if (cluster.isMaster) {
                     }
                     if(tweet_txt.length == 2)
                         ioe.emit('keys', {keys:keystrokes,room:"MMODM"});
-
                     tweet.handler = name;
                     tweet.beat = keystrokes;
                     tweet.msg = tweet_txt[0];
-                    console.log(tweet.msg);
                     controller.insertTweet(tweet, function(err){
                         console.log(err)
                     });
