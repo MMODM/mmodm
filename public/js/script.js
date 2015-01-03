@@ -611,7 +611,6 @@ var socket = io.connect(document.location.host,{transports: [ 'websocket' ]});
 var room = ""
 var urlRoom = ""
 socket.on('keys', function (data) {
-	console.log(data.keys)
 	room = JSON.stringify(data.room)
 	room = room.replace(/\"/g, "")
 	urlRoom = document.location.pathname.split('/')[1];
@@ -619,6 +618,7 @@ socket.on('keys', function (data) {
 	if(room.trim() == urlRoom) {
 		playKeys(data.keys);}
 	else if(room == "MMODM" && urlRoom == ''){
+		console.log(data.keys)
  		playKeys(data.keys);}
 });
 

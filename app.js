@@ -162,17 +162,19 @@ if (cluster.isMaster) {
                             ioe.emit('keys', {keys:keystrokes,room:tweet_txt[i]});
                         }
                     }
-                    if(tweet_txt.length == 2)
+                    if(tweet_txt.length == 2){
+                        console.log(keystrokes)
                         ioe.emit('keys', {keys:keystrokes,room:"MMODM"});
+                    }
                     tweet.handler = name;
                     tweet.beat = keystrokes;
                     tweet.msg = tweet_txt[0];
                     controller.insertTweet(tweet, function(err){
-                        console.log(err)
+                        if(err) console.error(err)
                     });
 
                 }
-                else console.log("Dump.")
+                else console.warn("Dump.")
                 }
             });
             stream.on('error', function (err, code) {
