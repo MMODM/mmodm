@@ -167,6 +167,7 @@ if (cluster.isMaster) {
                     tweet.handler = name;
                     tweet.beat = keystrokes;
                     tweet.msg = tweet_txt[0];
+                    console.log(tweet.msg);
                     controller.insertTweet(tweet, function(err){
                         console.log(err)
                     });
