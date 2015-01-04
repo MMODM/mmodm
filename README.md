@@ -1,9 +1,9 @@
+#MMODM
 ![buid](https://travis-ci.org/MMODM/mmodm.svg?branch=master)
 
-##MMODM
 A Massive Multiplayer Online Drum Machine powered by the Twitter stream API!
 
-###Install & Run
+##Install & Run
 
 * Edit config.js with your keys.
 * Install and run [Redis](http://redis.io/).
@@ -37,7 +37,7 @@ npm start
 ### Sample Run
 <img src='https://raw.githubusercontent.com/MMODM/mmodm/master/public/images/previeww.png' width='400'/>
 
-### How it works
+## How it works
 
 Tweet with [#MMODM](http://twitter.com/search?q=%23MMODM) with a sequence of your notes. Feel free to reply to [@playmmodm](http://twitter.com/playmmodm) to play without over-spamming your feed.
 
