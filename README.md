@@ -34,8 +34,8 @@ mongod
 npm start
 ```
 
-<img src='https://raw.githubusercontent.com/MMODM/mmodm/master/public/images/previeww.png' witdh='300'/>
-_starting the engine_
+### Sample Run
+<img src='https://raw.githubusercontent.com/MMODM/mmodm/master/public/images/previeww.png' width='400'/>
 
 ### How it works
 
