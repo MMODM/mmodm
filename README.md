@@ -1,7 +1,5 @@
-<div style="float:right;" markdown="1">
 ![buid](https://travis-ci.org/MMODM/mmodm.svg?branch=master)
-<div>
-<br/>
+
 ##MMODM
 A Massive Multiplayer Online Drum Machine powered by the Twitter stream API!
 
