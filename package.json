@@ -6,9 +6,11 @@
     "start": "node app.js"
   },
   "dependencies": {
+    "colors": "^1.0.3",
     "express": "3.3.6",
     "jade": "*",
     "mongoose": "^3.8.20",
+    "morgan": "^1.5.1",
     "ntwitter": "^0.5.0",
     "parse-redis-url": "0.0.1",
     "passport": "^0.2.1",

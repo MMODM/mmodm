@@ -1,16 +1,5 @@
 mixin tweetForm(imgSource, imgAlt)
     form.twitter(action="#", id='simForm')
-
-        //- Login with Twitter - deprecated
-        //-
-            -if(!user)
-                a.introtip.login.button(href='/auth/twitter', title="To add your own notes, sign in with Twitter.")
-                    img(src="images/twitter_logo.png")
-                    p Login with Twitter
-            else
-                img.avatar(src=user.image, alt=user.name)
-                input.introtip.tweet(type="text", placeholder="ex: riff on this [o---o---o---oz--z-zzz-zz] with me on #mmodm", autocomplete="off", title="Tweet a sequence of letters and dashes.")
-                input.post(type="submit", value="Tweet")
         a.introtip.login.button(href='https://twitter.com/intent/tweet?url=http://mmodm.co/&amp;text=rif with me [z--z--zzz-d-d-d-de--eee-e]&amp;via=playmmodm&amp;hashtags=MMODM', title="To add your own beats.")
                     img(src="images/twitter_logo.png")
                     p Tweet to #MMODM
