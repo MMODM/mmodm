@@ -32,7 +32,7 @@ mongod
 npm start
 ```
 
-<img src='https://raw.githubusercontent.com/MMODM/mmodm/master/public/images/previeww.png'witdh='400'/>
+<img src='https://raw.githubusercontent.com/MMODM/mmodm/master/public/images/previeww.png' witdh='300'/>
 _starting the engine_
 
 ### How it works
