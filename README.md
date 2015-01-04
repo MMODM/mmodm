@@ -32,6 +32,8 @@ mongod
 npm start
 ```
 
+<img src='https://raw.githubusercontent.com/MMODM/mmodm/master/public/images/preview.png'/>
+_starting the engine_
 
 ### How it works
 
