@@ -1,8 +1,5 @@
 ##MMODM TODO
 
-# Bug Fixes
-* Fix populating tweets and share state
-
 # Features
 * Test sequence button
 * Better initial instructions
