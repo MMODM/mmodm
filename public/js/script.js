@@ -214,9 +214,9 @@ function tweet(data){
 		request.open('GET', '/tweet/'+data+'%20%23'+room+'%20%23MMODM', true);
 	request.send();
 }
-
 $(document).ready(function() {
-	if ($('.sequences li span[data-life!="0"]').length == 0) {
+	console.log(document.location.hash)
+	if ($('.sequences li span[data-life!="0"]').length == 0 && document.location.hash == '') {
 		$.getJSON( "tws/5", function( data ) {
 			playKeys(data.split(''));
 		});
