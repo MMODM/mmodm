@@ -37,7 +37,7 @@ exports.saveState = function(url, cb){
 
 exports.findState = function(short, cb){
     MachineState.findOne({shortUrl: short}, function(err, ms) {
-        if(ms.longUrl != null)
+        if(ms != null)
             cb(err, ms.longUrl)
         else
             console.log('404')
