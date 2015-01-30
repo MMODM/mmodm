@@ -48,8 +48,8 @@ riff on this [a--a--a--abc--cc] with me on #mmodm http://mmodm.co/
 ```
 
 ###License
-
-Copyright (c) 2015 [Basheer Tome](http://basheertome.com/) & [Donald Derek Haddad](http://donaldderek.com/)
+<!-- 
+Copyright (c) 2015 [Basheer Tome](http://basheertome.com/) & [Donald Derek Haddad](http://donaldderek.com/) -->
 
 The MIT License (MIT)
 
