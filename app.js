@@ -113,10 +113,10 @@ function startSlave(){
     app.use(app.router);
     app.use(express.static(path.join(__dirname, 'public'),{ maxAge: 2629800000 }));
     app.use(express.logger());
+    app.use(express.errorHandler())
 
     //Routes
     app.get('/', routes.index);
-
 
     app.get('/save/:longurl', function(req, res){
         controller.saveState(req.params.longurl, function(err, id){
