@@ -22,7 +22,6 @@ exports.insertTweet = function (tw, cb){
 exports.getLatestTweets = function(num, cb){
 
     Tweet.find().sort('-created').limit(num).exec(function(err,tweets){
-        console.log(tweets);
         cb(err,tweets);
         if(err)
             console.error('510: Database error - Save State ' + err)
