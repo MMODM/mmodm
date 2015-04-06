@@ -54,7 +54,7 @@ if (cluster.isMaster) {
                         }
                     }
                     if(tweet_txt.length == 2){
-                        console.log("[New Tweet]".bgBlue +" "+ data.text);
+                        console.log("[New Tweet] ".bgBlue +" from: @"+ name + data.text);
                         ioe.emit('keys', {keys:keystrokes,room:"MMODM"});
                     }
                     tweet.handler = name;
@@ -65,11 +65,14 @@ if (cluster.isMaster) {
                     });
 
                 }
-                else console.warn("Dump.")
+                else console.error("314: bad tweet ".red + JSON.stringify(data))
                 }
             });
-            stream.on('error', function (err, code) {
-                console.error("err: "+err+" "+code)
+            stream.on('error', function (err) {
+                console.error("315: Twitter stream error ".red + err);
+            });
+            stream.on('end', function (message) {
+                console.log("316: Twitter stream end ".red + message);
             });
         });
         console.log("[OK]".bgMagenta + ' start cluster with %s workers'.red, workers - 1);
@@ -117,36 +120,21 @@ function startSlave(){
 
     //Routes
     app.get('/', routes.index);
+    app.get('/save/:longurl', routes.longURL);
+    app.get('/sm/:shorturl', routes.shortURL);
+    app.get('/:room', routes.room);
+    app.get('/tws/:num', routes.getLatestTweets);
 
-    app.get('/save/:longurl', function(req, res){
-        controller.saveState(req.params.longurl, function(err, id){
-            res.send(id);
-        })
-    })
+    // Handle 404
+    app.use(function(req, res) {
+        res.send('404: Sometimes things are lost and never found.\t I see you '+req.connection.remoteAddress, 404);
+     });
 
-    app.get('/sm/:shorturl', function(req, res){
-        controller.findState(req.params.shorturl, function(err, longUrl){
-            res.redirect('/#'+longUrl);
-        })
-    })
-
-    app.get('/:room', function(req, res){
-        var room  = req.params.room
-        res.render('index',{ title: 'MMODM-'+room, room:room })
-    })
-
-    app.get('/tws/:num', function(req, res){
-        controller.getLatestTweets(req.params.num,function(err, tweets){
-            var set = '';
-            for(var i=0; i<tweets.length; i++){
-                var seq = tweets[i].msg.match(/(\[.*\])/g)[0];
-                seq = seq.replace(/o/g,'s')
-                seq = seq.replace(/\@.*\s/,"")
-                set += seq.substr(1,seq.length-2)
-            }
-            res.json(set);
-        })
-    })
+     // Handle 500
+    app.use(function(error, req, res, next) {
+        res.send('500: Something is jammed: ', 500);
+        console.error("500: Internal Server Error ".red + "\t client ip: "+ req.connection.remoteAddress + "\n" + error);
+    });
 
     http.listen(port, function() {
         console.log("[OK]".bgYellow + ' server started on port '+port+'. process id = '.red+process.pid);
