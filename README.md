@@ -1,9 +1,9 @@
-#MMODM
+# MMODM
 ![buid](https://travis-ci.org/MMODM/mmodm.svg?branch=master)
 
 A Massive Multiplayer Online Drum Machine powered by the Twitter stream API!
 
-##Install & Run
+## Install & Run
 
 * Edit config.js with your keys.
 * Install and run [Redis](http://redis.io/).
@@ -47,7 +47,7 @@ To define a sequence, use square brackets [] and then a string of 16 letters a-z
 riff on this [a--a--a--abc--cc] with me on #mmodm http://mmodm.co/
 ```
 
-###License
+### License
 <!-- 
 Copyright (c) 2015 [Basheer Tome](http://basheertome.com/) & [Donald Derek Haddad](http://donaldderek.com/) -->
 
